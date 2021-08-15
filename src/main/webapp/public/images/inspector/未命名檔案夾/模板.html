@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selectAsm</title>
+    <link rel="stylesheet" href="/public/css/selectAsm2.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<html>
+	<body class="is-preload">
+<!-- 載入頭部段
+<%- include('header',{
+    title:'selectAsm'
+}); -%> -->
+
+<!-- 中間內容 -->
+<section id="lefter">
+    <header>
+        <div>
+            <h3 id="title1">請選擇欲檢查之主機板與零件型號</h3>
+        </div>
+        <form action="/selectAsm" method="post">
+            <div> 
+                <%
+                assydata.forEach(function(d) {
+                %>
+                <button type="submit" class="<%= d['assy_pcb'] %>" name="pcb_compo"
+                    id="<%= d['assy_pcb'] %>+<%= d['assy_compo'] %>" 
+                    value="<%= d['assy_key'] %>" style="background-image:url('images/pcb.jpeg')";>
+                    <%= d['assy_pcb'] %>_<%= d['assy_compo'] %>
+                </button>
+                <% }); %>
+            </div>
+        </form>
+    </header>
+</section>
+<section id="header">
+    <header>
+        <span class="image avatar"><img src="/public/images/selectAsm/avatar.jpg" alt="" /></span>
+        <h1 id="idId">張◯睿</h1>
+        <p id="number">inspector0002</p>
+        <h4 id="position">檢查員</h4>
+    </header>
+    <nav id="nav">
+        <ul>
+            <li></li>
+            <!-- <li><a href="#one" class="active">開始辨識</a></li>
+            <li><a href="#two">停止辨識</a></li>
+            <li><a href="#three">重置</a></li> -->
+            <!-- <li><input type="submit" name="button" id="button" value="確認提交"></li>  -->
+            <!-- <li><a onclick="">進入</a></li> -->
+            <li><a onclick="self.location.href='/'">登出</a></li>
+        </ul>
+    </nav>
+</section>
+
+
+
+    <script src="/public/javascript/selectAsm/jquery.min.js" type='text/JavaScript'></script>
+	<script src="/public/javascript/selectAsm/jquery.scrollex.min.js" type='text/JavaScript'></script>
+	<script src="/public/javascript/selectAsm/jquery.scrolly.min.js" type='text/JavaScript'></script>
+	<script src="/public/javascript/selectAsm/browser.min.js" type='text/JavaScript'></script>
+	<script src="/public/javascript/selectAsm/breakpoints.min.js" type='text/JavaScript'></script>
+	<script src="/public/javascript/selectAsm/util.js" type='text/JavaScript'></script>
+	<script src="/public/javascript/selectAsm/main.js" type='text/JavaScript'></script>
+    </body>
+</html>
+<!-- //載入尾段 -->
+<%- include('footer'); -%>

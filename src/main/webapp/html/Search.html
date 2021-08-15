@@ -1,0 +1,26 @@
+<!-- 0728 test the bean -->
+<!-- main過來查詢html頁面 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Search + </title>
+<!-- 防 cache -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+</head>
+
+<body style= 'background-color:#BEBEBE'>
+<div align ="left">
+<h3>Search Employee</h3>
+<!-- 出去JAVA方法 / name就是豆子名 -->
+<form method="post" action="/JavaServer/QueryEmp">
+EMPKEY: <input type="text" name="empkey" /><p>
+<input type="submit" value="check" />
+</form> 
+
+</body>
+
+</html>
