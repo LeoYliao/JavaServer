@@ -107,7 +107,7 @@ public class DatasLoader extends HttpServlet {
 //				out.write(text);
 				JSONArray jsonDatas = new JSONArray();
 				//json first try
-				//System.out.println(text);
+				System.out.println(jsonDatas);
 		}
 	protected void aseLoader(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//import datas us session
