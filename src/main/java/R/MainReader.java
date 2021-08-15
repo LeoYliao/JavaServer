@@ -56,7 +56,7 @@ public class MainReader extends HttpServlet {
 				rsReader(request, response);
 				break;
 			default:
-				request.getRequestDispatcher("/html/MainReader.jsp").forward(request, response);
+				response.getWriter().append("no such table in MainReader");
 			}
 		}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -126,6 +126,7 @@ public class MainReader extends HttpServlet {
 			data.setEmp_hired(rs.getDate("emp_hired"));
 			data.setEmp_leave(rs.getDate("emp_leave"));
 			datas.add(data);
+			System.out.println(data.toString());
 				}
 		//save data to session
 		session.setAttribute("datas",datas);

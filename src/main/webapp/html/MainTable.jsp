@@ -24,34 +24,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
 </head>
 
-	<body class="is-preload">
+<body class="is-preload">
 <input id="dbname" style="display:none" value=<%=session.getAttribute("dbname")%>>
-<script>
-	var dbname=$("#dbname").val();
-	//var text =[{key:value}];
-	//var value;
-		var loadData =function(){
-				console.log(dbname+" in loadData");
-		$.ajax ({	
-			 		url : '/JavaServer/DatasLoader',
-			 		type :'POST',
-			 		contentType:'application/json',
-			 		data : JSON.stringify({}),
-			 		dataType : 'json',
-			 		success : function (res){
-			 			//text=new Array(res);
-			 			$('#mainTable').load('/JavaServer/EmpReader');
-			 			console.log("res:"+res);
-			 			//console.log("stop ");
-			 			console.log("typeof res:"+typeof res);
-			 			//console.log("text.1:"+res.text[0].1.emp_no);
-						},
-			 		error : function (error) {
-			 			console.log(error);
-			 			}
-			 	});
-			}
-</script>
+
 <!-- 中間內容 -->
 <section id="lefter">
     <header>
@@ -60,11 +35,93 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         </div>
 			
         <!-- 表格加入以下這段div -->
+        
         <div id='mainTable'>
-            <script>loadData();</script>
+        	<table id='myDataTalbe' class='display'>
+        	<thead id='thead'>
+        	</thead>
+        	<tbody id='tbody'>
+            </tbody>
+            </table>
+            <input class='btn btn-primary' type='button' value='新增' id='buttonAdd'>
         </div>
         
     </header>
+<script>
+		//Ajax 載入 Table 內容列印
+		var dbname = $("#dbname").val();
+		var html;
+		var loadBody = function(){
+			console.log(dbname+" in loadData");
+			$.ajax ({	
+			 		url : '/JavaServer/DatasLoader',
+			 		type :'POST',
+			 		dataType : 'json',
+			 		success : function (res){
+			 			//$('#mainTable').load('/JavaServer/EmpReader');
+			 			console.log("res:"+res);
+			 			console.log("typeof res:"+typeof res);
+			 			console.log("res[0]:"+res.length);
+			 			//console.log(JSON.stringify(res[0]));
+			 			
+			 			for(var i=0;i<res.length;i++){
+			 				console.log(JSON.stringify(res[i]));
+			 				var keys = Object.keys(res[i]);
+			 				var data = res[i];
+			 				console.log(keys);
+			 				console.log(keys.length);
+			 				console.log(data["emp_key"]);
+			 				html+="<tr>";
+			 				for(var j = 0;j<keys.length;j++){
+			 					html+="<td>"+data[keys[j]]+"</td>";
+			 					console.log(data[keys[j]]);
+			 					}
+			 				html+="<td><button type='button' class='btn btn-warning' id='buttonChg'>修改</button><button type='button' class='btn btn-danger'>刪除</button></td>";
+			 				html+="</tr>";
+			 				console.log(html);
+			 				}
+			 			//window.alert(html);
+			 			$('#tbody').html(html);
+			 			//$('#tbody').html("<tr><td>fadfafasdfgdsf</td></tr>");
+			 			},
+			 		error : function (error) {
+			 			console.log(error);
+			 			}
+			 	});
+			}
+		loadBody();
+		var title;
+		var loadHead = function(){
+			switch(dbname){
+			case "pcb":
+				title = "<tr><th>編號</th><th>電路板編號</th><th>電路板名稱</th><th>電路板創建日</th><th>使用中是/否</th><th>停用日期</th><th></th></tr>";
+				$('thead').html(title);
+				break;
+			case "employee":
+				title = "<tr><th>編號</th><th>員工編號</th><th>帳號</th><th>密碼</th><th>姓名</th><th>職稱</th><th>照片</th><th>權限</th><th>入職日期</th><th>離職日期</th><th></th></tr>";
+				$('thead').html(title);
+				break;
+			case "assy":
+				title = "<tr><th>組裝編號</th><th>電路板編號</th><th>零件編號</th><th>零件總數量</th><th>組裝日</th><th>使用中是/否</th><th>組裝停止日</th><th></th></tr>";
+				$('thead').html(title);
+				break;
+			case "compo":
+				title = "<tr><th>編號</th><th>零件編號</th><th>零件名稱</th><th>零件創建日</th><th>使用中是/否</th><th>零件停用日</th><th></th></tr>";
+				$('thead').html(title);
+				break;
+			case "img":
+				title = "<tr><th>圖片編號</th><th>RPI檔名</th><th>錯誤位置</th><th>偵測結果編號</th><th>圖片URL</th><th>圖片創建日</th><th></th></tr>";
+				$('thead').html(title);
+				break;
+			case "result":
+				title = "<tr><th>偵測編號</th><th>組裝編號</th><th>員工編號</th><th>零件總數</th><th>正確數量</th><th>錯誤數量</th><th>錯誤率</th><th>錯誤位置</th><th>掃描結果日期</th><th></th></tr>";
+				$('thead').html(title);
+				break;
+			default:
+			}
+		}
+		loadHead();
+</script>
 </section>
 <section id="header">
     <header>
@@ -117,13 +174,24 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			// $("#example").on("click", ".btn-danger", function () {
 			var tr = $(this).parents('tr');
 			var key = tr.find('td:eq(0)').text();
-			//$.ajax({})
+			//$.ajax ({	
+		 	//	url : '/JavaServer/DatasLoader',
+		 	//	type :'POST',
+		 	//	dataType : 'json',
+		 	//	success : function (res){
+		 	//		//$('#mainTable').load('/JavaServer/EmpReader');
+		 	//		console.log("res:"+res);
+		 	//		},
+		 	//	error : function (error) {
+		 	//		console.log(error);
+		 	//		}
+		 	//});
 			$(this).parents('tr').remove();
 		});
 		// 重整鍵
 		$('#refresh').click(function () {
 			console.log("refresh click~??");
-			loadData();
+			loadBody();
 		});
 
 		// 新增鍵
@@ -211,21 +279,20 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		//         }]
 		//     });
 
-		$("#myDataTalbe").DataTable({
-			"searching": false, //關閉search功能
-			"ordering":false,
-			"processing":false,
+				$("#myDataTalbe").DataTable({
+			 				//"searching": false, //關閉search功能
+			 				//"ordering":false,
+			 				//"processing":false,
 
-			"paging":false,
-            "information":false,
-            "info":false,
-			// columnDefs: [{
-			// 	targets: [3],
-			// 	orderable: false,
-			// }],
-			// serverSide:true
-		});
-
+			 				//"paging":false,
+			 	            //"information":false,
+			 	            //"info":false,
+			 				// columnDefs: [{
+			 				// 	targets: [3],
+			 				// 	orderable: false,
+			 				// }],
+			 				// serverSide:true
+			 				});
 
 
 	</script>
