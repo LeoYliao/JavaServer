@@ -106,7 +106,7 @@ public class DatasLoader extends HttpServlet {
 //				text+="}";
 //				out.write(text);
 				JSONArray jsonDatas = new JSONArray();
-				
+				//json first try
 				//System.out.println(text);
 		}
 	protected void aseLoader(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
