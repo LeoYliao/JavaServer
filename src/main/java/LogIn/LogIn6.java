@@ -69,7 +69,9 @@ public class LogIn6 extends HttpServlet {
 	        		HttpSession session = request.getSession();
 	        		session.setAttribute("dbname", "employee"); 
 	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
-	        		request.getRequestDispatcher("/LogInChannelConfirm").forward(request, response);
+	        		request.getRequestDispatcher("/MainReader").include(request, response);
+	        		request.getRequestDispatcher("/html/MainTable.jsp").forward(request, response);
+	        		
 	            }
 				out.close();
 			} else if ( userAcc.equals(dbAcc)){
