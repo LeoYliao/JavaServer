@@ -17,8 +17,8 @@ import javax.sql.*;
 import javax.servlet.annotation.*;
 import javax.sql.DataSource;
 import DbBean.EmpBean;
-@WebServlet("/LogIn5")
-public class LogIn5 extends HttpServlet {
+@WebServlet("/LogIn6")
+public class LogIn6 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		doPost(request, response);
@@ -49,28 +49,28 @@ public class LogIn5 extends HttpServlet {
 				emp.setEmp_no(rs.getString("emp_no"));
 				emp.setEmp_acc(rs.getString("emp_acc"));
 				emp.setEmp_pwd(rs.getString("emp_pwd"));
+				emp.setEmp_mgr(rs.getInt("emp_mgr"));
 				System.out.println(rs.getString("emp_no"));
-				System.out.println("bbb");
+				System.out.println(rs.getInt("emp_mgr"));
 			}else {
 			    out.println("<h1>員編錯誤! </h1>");
 			    System.out.println("ccc");
 			}
-			//outside user 
 			String userAcc= request.getParameter("userAcc");
 			String userPwd= request.getParameter("userPwd");
-			//db user
 			String dbAcc = emp.getEmp_acc();
 			String dbPwd = emp.getEmp_pwd();
-			
 			System.out.println(userAcc);
 			System.out.println(userPwd);
 			
 			if ( userAcc.equals(dbAcc) && userPwd.equals(dbPwd) ) {
-	            out.println("<h1>歡迎回來</h1>");
-	            //need click function
-	            out.println("<a href=\"/JavaServer/html/MainPage.html\">跳轉</a><br>");
-	            //not working in ajax
-//				request.getRequestDispatcher("/html/MainReader.jsp").forward(request, response);
+	            if ((rs.getInt("emp_mgr"))==1){
+	            	//一直有include問題
+	        		HttpSession session = request.getSession();
+	        		session.setAttribute("dbname", "employee"); 
+	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
+	        		request.getRequestDispatcher("/LogInChannelConfirm").forward(request, response);
+	            }
 				out.close();
 			} else if ( userAcc.equals(dbAcc)){
             out.println("<h1>密碼錯誤</h1>");	
