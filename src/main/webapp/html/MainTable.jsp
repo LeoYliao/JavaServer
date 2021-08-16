@@ -51,34 +51,36 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		//Ajax 載入 Table 內容列印
 		var dbname = $("#dbname").val();
 		var html;
+		var keys;
+		var data;
 		var loadBody = function(){
-			console.log(dbname+" in loadData");
+			console.log(dbname+" in loadData");	//test
 			$.ajax ({	
 			 		url : '/JavaServer/DatasLoader',
 			 		type :'POST',
 			 		dataType : 'json',
 			 		success : function (res){
 			 			//$('#mainTable').load('/JavaServer/EmpReader');
-			 			console.log("res:"+res);
-			 			console.log("typeof res:"+typeof res);
-			 			console.log("res[0]:"+res.length);
+			 			console.log("res:"+res);	//test
+			 			console.log("typeof res:"+typeof res);	//test
+			 			console.log("res[0]:"+res.length);	//test
 			 			//console.log(JSON.stringify(res[0]));
 			 			
 			 			for(var i=0;i<res.length;i++){
-			 				console.log(JSON.stringify(res[i]));
-			 				var keys = Object.keys(res[i]);
-			 				var data = res[i];
-			 				console.log(keys);
-			 				console.log(keys.length);
-			 				console.log(data["emp_key"]);
+			 				console.log(JSON.stringify(res[i]));	//test
+			 				keys = Object.keys(res[i]);
+			 				data = res[i];
+			 				console.log(keys);	//test
+			 				console.log(keys.length);	//test
+			 				console.log(data["emp_key"]);	//test
 			 				html+="<tr>";
 			 				for(var j = 0;j<keys.length;j++){
-			 					html+="<td>"+data[keys[j]]+"</td>";
-			 					console.log(data[keys[j]]);
+			 					html+="<td id=\""+keys[j]+"\">"+data[keys[j]]+"</td>";
+			 					console.log(data[keys[j]]);	//test
 			 					}
 			 				html+="<td><button type='button' class='btn btn-warning' id='buttonChg'>修改</button><button type='button' class='btn btn-danger'>刪除</button></td>";
 			 				html+="</tr>";
-			 				console.log(html);
+			 				console.log(html);	//test
 			 				}
 			 			//window.alert(html);
 			 			$('#tbody').html(html);
@@ -129,6 +131,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         <h1 id="idId">張◯睿</h1>
         <p id="number">inspector0002</p>
         <h4 id="position">檢查員</h4>
+        <div id='test'></div>
     </header>
     <nav id="nav">
         <form method="POST" id="contoller">
@@ -190,7 +193,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		});
 		// 重整鍵
 		$('#refresh').click(function () {
-			console.log("refresh click~??");
+			console.log("refresh click~??");	//test
 			loadBody();
 		});
 
@@ -200,44 +203,76 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			
 		});
 
-
+		
 		// 修改鍵
 		$("#myDataTalbe").on("click", ".btn-warning", function () {
-			// $("#example").on("click", ".btn-warning", function () {
+			//get $('this') object{key:value}
 			var tr = $(this).parents('tr');
-			var key = tr.find('td:eq(0)').text();
-			var no = tr.find('td:eq(1)').text();
-			var acc = tr.find('td:eq(2)').text();
-			var pwd = tr.find('td:eq(3)').text();
-			var name = tr.find('td:eq(4)').text();
-			var job = tr.find('td:eq(5)').text();
-			var img = tr.find('td:eq(6)').text();
-			var mgr = tr.find('td:eq(7)').text();
-			var hired = tr.find('td:eq(8)').text();
-			var leave = tr.find('td:eq(9)').text();
-            // $('table')
-            $(this).parents('tr').before("<tr>\
-				<td><input type='text' size='2' value=" + key + " ></td>\
-				<td><input type='text' size='2' value=" + no + " ></td>\
-				<td><input type='text' size='2' value=" + acc + " ></td>\
-				<td><input type='text' size='2' value=" + pwd + " ></td>\
-				<td><input type='text' size='2' value=" + name + " ></td>\
-				<td><input type='text' size='2' value=" + job + " ></td>\
-				<td><input type='text' size='2' value=" + img + " ></td>\
-				<td><input type='text' size='2' value=" + mgr + " ></td>\
-				<td><input type='text' size='2' value=" + hired + " ></td>\
-				<td><input type='text' size='2' value=" + leave + " ></td><td>\
-				<a class='btn btn-success'>確定</a>\
-				<a class='btn btn-danger'>刪除</a>\
-				</td></tr>");
+			var obj = {};
+			var text = "<tr><form id='update'>";
+			console.log(typeof obj);	//test
+			for(var j = 0;j<keys.length;j++){
+				var tag="td:eq("+j+")";
+				var key = keys[j];
+				var value = tr.find(tag).text();
+				console.log(key);	//test
+				console.log(value);	//test
+				obj[key] = value;
+				text+="<td><input type='text' size='2' value="+value+" name="+key+" ></td>";
+					}
+			text+= "<td></form><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>"
+			console.log(text);	//test
+			
+			$(this).parents('tr').before(text);
+			//
+			//var key = tr.find('td:eq(0)').text();
+			//var no = tr.find('td:eq(1)').text();
+			//var acc = tr.find('td:eq(2)').text();
+			//var pwd = tr.find('td:eq(3)').text();
+			//var name = tr.find('td:eq(4)').text();
+			//var job = tr.find('td:eq(5)').text();
+			//var img = tr.find('td:eq(6)').text();
+			//var mgr = tr.find('td:eq(7)').text();
+			//var hired = tr.find('td:eq(8)').text();
+			//var leave = tr.find('td:eq(9)').text();
+            // $('table')   
+            //
+            //$(this).parents('tr').before("<tr>\
+			//	<td><input type='text' size='2' value=" + key + " ></td>\
+			//	<td><input type='text' size='2' value=" + no + " ></td>\
+			//	<td><input type='text' size='2' value=" + acc + " ></td>\
+			//	<td><input type='text' size='2' value=" + pwd + " ></td>\
+			//	<td><input type='text' size='2' value=" + name + " ></td>\
+			//	<td><input type='text' size='2' value=" + job + " ></td>\
+			//	<td><input type='text' size='2' value=" + img + " ></td>\
+			//	<td><input type='text' size='2' value=" + mgr + " ></td>\
+			//	<td><input type='text' size='2' value=" + hired + " ></td>\
+			//	<td><input type='text' size='2' value=" + leave + " ></td><td>\
+			//	<a class='btn btn-success'>確定</a>\
+			//	<a class='btn btn-danger'>刪除</a>\
+			//	</td></tr>");
+			//
 			$(this).parents('tr').remove();
-		});
+			});
 
 
 		// 確定鍵
 		$("#myDataTalbe").on("click", ".btn-success", function () {
-			// $("#example").on("click", ".btn-success", function () {
 			var tr1 = $(this).closest('tr');
+			var update=$('#update').serialize();
+			$('#test').html(update).append("dafsedgfgdfxgbd");	//test
+			//$.ajax({
+		    //      url: '/JavaServer/MainUpdate',
+		    //      type: "POST",
+		    //      data: $('#update').serialize(), // serializes the form's elements.
+		    //      success: function(data){
+		    //      		window.alert("succeed!?"); // show response from the php script.
+		    //      		},
+		    //      error : function (error) {
+			// 			console.log(error);
+			//			}
+		    //  	});
+			
 			var key1 = tr1.find('td:eq(0)').find("input").val();
 			var no1 = tr1.find('td:eq(1)').find("input").val();
 			var acc1 = tr1.find('td:eq(2)').find("input").val();
@@ -248,27 +283,27 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			var mgr1 = tr1.find('td:eq(7)').find("input").val();
 			var hired1 = tr1.find('td:eq(8)').find("input").val();
 			var leave1 = tr1.find('td:eq(9)').find("input").val();
+			loadBody();
+            //$(this).parents('tr').before(`<tr>\
+			//	<td>${key1}</td>\
+			//	<td>${no1}</td>\
+			//	<td>${acc1}</td>\
+			//	<td>${pwd1}</td>\
+			//	<td>${name1}</td>\
+			//	<td>${job1}</td>\
+			//	<td>${img1}</td>\
+			//	<td>${mgr1}</td>\
+			//	<td>${hired1}</td>\
+			//	<td>${leave1}</td>\
+			//	<td>\
+			//		<a class="btn btn-warning" id="buttonChange">修改</a>\
+			//		<a class="btn btn-danger">刪除</a>\
+			//	</td>\
+			//	</tr>`);
+			//$(this).parents('tr').remove();
 
-            $(this).parents('tr').before(`<tr>\
-				<td>${key1}</td>\
-				<td>${no1}</td>\
-				<td>${acc1}</td>\
-				<td>${pwd1}</td>\
-				<td>${name1}</td>\
-				<td>${job1}</td>\
-				<td>${img1}</td>\
-				<td>${mgr1}</td>\
-				<td>${hired1}</td>\
-				<td>${leave1}</td>\
-				<td>\
-					<a class="btn btn-warning" id="buttonChange">修改</a>\
-					<a class="btn btn-danger">刪除</a>\
-				</td>\
-				</tr>`);
-			$(this).parents('tr').remove();
 
-
-		});
+			});
 
 
 		// $("#myDataTalbe").DataTable({
@@ -280,13 +315,13 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		//     });
 
 				$("#myDataTalbe").DataTable({
-			 				//"searching": false, //關閉search功能
-			 				//"ordering":false,
-			 				//"processing":false,
+			 				"searching": false, //關閉search功能
+			 				"ordering":false,
+			 				"processing":false,
 
-			 				//"paging":false,
-			 	            //"information":false,
-			 	            //"info":false,
+			 				"paging":false,
+			 	            "information":false,
+			 	            "info":false,
 			 				// columnDefs: [{
 			 				// 	targets: [3],
 			 				// 	orderable: false,
