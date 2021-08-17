@@ -25,7 +25,7 @@ import DbBean.ImgBean;
 import DbBean.PcbBean;
 import DbBean.RsBean;
 
-@WebServlet(urlPatterns="/MainUpdate",initParams=@WebInitParam(name="SQL" ,value="UPDATE aiot2."))
+@WebServlet(urlPatterns="/MainUpdate")
 public class MainUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static String SQL = "UPDATE aiot2.";   
@@ -74,13 +74,12 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
-			String SQL = getInitParameter("SQL");
 			SQL+= dbname+" SET ";
-			sqlSet(request,SQL,"pcb_no");
-			sqlSet(request,SQL,"pcb_name");
-			sqlSet(request,SQL,"pcb_create");
-			sqlSet(request,SQL,"pcb_alive");
-			sqlSet(request,SQL,"pcb_out");
+			SQL=sqlSet(request,SQL,"pcb_no")+",";
+			SQL=sqlSet(request,SQL,"pcb_name")+",";
+			SQL=sqlSet(request,SQL,"pcb_create")+",";
+			SQL=sqlSet(request,SQL,"pcb_alive")+",";
+			SQL=sqlSet(request,SQL,"pcb_out");
 			//set PK (Primary key)
 			SQL+="WHERE pcb_key="+request.getParameter("pcb_key");
 			//excute SQL cmd
@@ -105,25 +104,27 @@ public class MainUpdate extends HttpServlet {
 			//use session to get DB name (DB name)
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
-			System.out.println(dbname+" +in update emp");	//test
+			System.out.println(dbname+" in update emp");	//test
 			//set SQL
 			//String SQL = getInitParameter("SQL");
 			SQL+= dbname+" SET ";
-			sqlSet(request,SQL,"emp_no");
-			sqlSet(request,SQL,"emp_acc");
-			sqlSet(request,SQL,"emp_pwd");
-			sqlSet(request,SQL,"emp_name");
-			sqlSet(request,SQL,"emp_job");
-			sqlSet(request,SQL,"emp_img");
-			sqlSet(request,SQL,"emp_mgr");
-			sqlSet(request,SQL,"emp_hired");
-			sqlSet(request,SQL,"emp_leave");
+			SQL=sqlSet(request,SQL,"emp_no")+",";
+			System.out.println("return of sqlset: "+SQL);	//test
+			SQL=sqlSet(request,SQL,"emp_acc")+",";
+			SQL=sqlSet(request,SQL,"emp_pwd")+",";
+			SQL=sqlSet(request,SQL,"emp_name")+",";
+			SQL=sqlSet(request,SQL,"emp_job")+",";
+			SQL=sqlSet(request,SQL,"emp_img")+",";
+			SQL=sqlSet(request,SQL,"emp_mgr")+",";
+			SQL=sqlSet(request,SQL,"emp_hired")+",";
+			SQL=sqlSet(request,SQL,"emp_leave");
 			//set PK (Primary key)
-			SQL+="WHERE pcb_key="+request.getParameter("emp_key");
+			SQL+="WHERE emp_key="+request.getParameter("emp_key");
 			//excute SQL cmd
 			System.out.println("SQL: "+SQL);	//test
 			PreparedStatement pstm = conn.prepareStatement(SQL);
-			ResultSet rs = pstm.executeQuery();
+			int rs = pstm.executeUpdate();
+			System.out.println("how many data been update: "+rs);
 			//succeed or fail feedback
 			
 			//connection close
@@ -144,16 +145,15 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
-			String SQL = getInitParameter("SQL");
 			SQL+= dbname+" SET ";
-			sqlSet(request,SQL,"assy_pcb");
-			sqlSet(request,SQL,"assy_compo");
-			sqlSet(request,SQL,"assy_parts");
-			sqlSet(request,SQL,"assy_create");
-			sqlSet(request,SQL,"assy_alive");
-			sqlSet(request,SQL,"assy_out");
+			SQL=sqlSet(request,SQL,"assy_pcb")+",";
+			SQL=sqlSet(request,SQL,"assy_compo")+",";
+			SQL=sqlSet(request,SQL,"assy_parts")+",";
+			SQL=sqlSet(request,SQL,"assy_create")+",";
+			SQL=sqlSet(request,SQL,"assy_alive")+",";
+			SQL=sqlSet(request,SQL,"assy_out");
 			//set PK (Primary key)
-			SQL+="WHERE pcb_key="+request.getParameter("assy_key");
+			SQL+="WHERE assy_key="+request.getParameter("assy_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
 			ResultSet rs = pstm.executeQuery();
@@ -177,15 +177,14 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
-			String SQL = getInitParameter("SQL");
 			SQL+= dbname+" SET ";
-			sqlSet(request,SQL,"compo_no");
-			sqlSet(request,SQL,"compo_name");
-			sqlSet(request,SQL,"compo_create");
-			sqlSet(request,SQL,"compo_alive");
-			sqlSet(request,SQL,"compo_out");
+			SQL=sqlSet(request,SQL,"compo_no")+",";
+			SQL=sqlSet(request,SQL,"compo_name")+",";
+			SQL=sqlSet(request,SQL,"compo_create")+",";
+			SQL=sqlSet(request,SQL,"compo_alive")+",";
+			SQL=sqlSet(request,SQL,"compo_out");
 			//set PK (Primary key)
-			SQL+="WHERE pcb_key="+request.getParameter("compo_key");
+			SQL+="WHERE compo_key="+request.getParameter("compo_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
 			ResultSet rs = pstm.executeQuery();
@@ -209,14 +208,13 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
-			String SQL = getInitParameter("SQL");
 			SQL+= dbname+" SET ";
-			sqlSet(request,SQL,"img_rpi");
-			sqlSet(request,SQL,"img_errloc");
-			sqlSet(request,SQL,"img_seqid");
-			sqlSet(request,SQL,"img_url");
+			SQL=sqlSet(request,SQL,"img_rpi")+",";
+			SQL=sqlSet(request,SQL,"img_errloc")+",";
+			SQL=sqlSet(request,SQL,"img_seqid")+",";
+			SQL=sqlSet(request,SQL,"img_url");
 			//set PK (Primary key)
-			SQL+="WHERE pcb_key="+request.getParameter("img_key");
+			SQL+="WHERE img_key="+request.getParameter("img_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
 			ResultSet rs = pstm.executeQuery();
@@ -240,18 +238,17 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
-			String SQL = getInitParameter("SQL");
 			SQL+= dbname+" SET ";
-			sqlSet(request,SQL,"r_seqid");
-			sqlSet(request,SQL,"r_assykey");
-			sqlSet(request,SQL,"r_empno");
-			sqlSet(request,SQL,"r_allqty");
-			sqlSet(request,SQL,"r_errqty");
-			sqlSet(request,SQL,"r_er");
-			sqlSet(request,SQL,"r_errloc");
-			sqlSet(request,SQL,"r_cdate");
+			SQL=sqlSet(request,SQL,"r_seqid")+",";
+			SQL=sqlSet(request,SQL,"r_assykey")+",";
+			SQL=sqlSet(request,SQL,"r_empno")+",";
+			SQL=sqlSet(request,SQL,"r_allqty")+",";
+			SQL=sqlSet(request,SQL,"r_errqty")+",";
+			SQL=sqlSet(request,SQL,"r_er")+",";
+			SQL=sqlSet(request,SQL,"r_errloc")+",";
+			SQL=sqlSet(request,SQL,"r_cdate");
 			//set PK (Primary key)
-			SQL+="WHERE pcb_key="+request.getParameter("r_key");
+			SQL+="WHERE r_key="+request.getParameter("r_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
 			ResultSet rs = pstm.executeQuery();
@@ -265,9 +262,11 @@ public class MainUpdate extends HttpServlet {
 		    	e.printStackTrace();
 		    	}
 	}
-	protected void sqlSet(HttpServletRequest request,String SQL,String attr) throws ServletException, IOException {
+	protected String sqlSet(HttpServletRequest request,String SQL,String attr) throws ServletException, IOException {
 		String name=attr;
 		String val=request.getParameter(attr);
 		SQL+=name+"='"+val+"' ";
+		System.out.println("SQL in sqlset: "+SQL);
+		return SQL;
 	}
 }
