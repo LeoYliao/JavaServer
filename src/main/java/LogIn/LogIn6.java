@@ -32,7 +32,7 @@ public class LogIn6 extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String userNo = request.getParameter("userNo"); 
+		String userNo = request.getParameter("ENO"); 
 	
 		try {
 			Context context = new InitialContext();
@@ -56,8 +56,8 @@ public class LogIn6 extends HttpServlet {
 			    out.println("<h1>員編錯誤! </h1>");
 			    System.out.println("ccc");
 			}
-			String userAcc= request.getParameter("userAcc");
-			String userPwd= request.getParameter("userPwd");
+			String userAcc= request.getParameter("EACC");
+			String userPwd= request.getParameter("EPD");
 			String dbAcc = emp.getEmp_acc();
 			String dbPwd = emp.getEmp_pwd();
 			System.out.println(userAcc);
@@ -65,13 +65,10 @@ public class LogIn6 extends HttpServlet {
 			
 			if ( userAcc.equals(dbAcc) && userPwd.equals(dbPwd) ) {
 	            if ((rs.getInt("emp_mgr"))==1){
-	            	//一直有include問題
 	        		HttpSession session = request.getSession();
 	        		session.setAttribute("dbname", "employee"); 
 	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
-	        		request.getRequestDispatcher("/MainReader").include(request, response);
 	        		request.getRequestDispatcher("/html/MainTable.jsp").forward(request, response);
-	        		
 	            }
 				out.close();
 			} else if ( userAcc.equals(dbAcc)){

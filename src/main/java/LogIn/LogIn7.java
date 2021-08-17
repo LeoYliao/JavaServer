@@ -17,70 +17,76 @@ import javax.sql.*;
 import javax.servlet.annotation.*;
 import javax.sql.DataSource;
 import DbBean.EmpBean;
-@WebServlet("/LogIn5")
-public class LogIn5 extends HttpServlet {
+@WebServlet("/LogIn7")
+public class LogIn7 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		doPost(request, response);
 		}
 	private static final long serialVersionUID = 1L;
-	private static final String SQL = "select * from employee where emp_no= ? ";	
+	private static final String SQL = "select * from employee where emp_acc= ? ";	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
 		Connection conn = null;
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		String userNo = request.getParameter("userNo"); 
+		String userAcc= request.getParameter("EACC");
+
 	
 		try {
 			Context context = new InitialContext();
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/jdbc/servdb");
 			conn = ds.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(SQL);
-			stmt.setString(1,userNo);
+			stmt.setString(1,userAcc);
 			ResultSet rs = stmt.executeQuery();
+			
 			System.out.println("aaa");
 			System.out.println(rs);
 			
 			EmpBean emp = new EmpBean();
 			if(rs.next()) { 
-				emp.setEmp_no(rs.getString("emp_no"));
 				emp.setEmp_acc(rs.getString("emp_acc"));
 				emp.setEmp_pwd(rs.getString("emp_pwd"));
-				System.out.println(rs.getString("emp_no"));
+				emp.setEmp_mgr(rs.getInt("emp_mgr"));
+				
 				System.out.println("bbb");
+				System.out.println(rs.getString("emp_acc"));
+				System.out.println(rs.getInt("emp_mgr"));
 			}else {
-			    out.println("<h1>員編錯誤! </h1>");
 			    System.out.println("ccc");
 			}
-			//outside user 
-			String userAcc= request.getParameter("userAcc");
-			String userPwd= request.getParameter("userPwd");
-			//db user
+			
+			String userPwd= request.getParameter("EPD");
+			int userMgr= Integer.parseInt(request.getParameter("MGR"));
 			String dbAcc = emp.getEmp_acc();
 			String dbPwd = emp.getEmp_pwd();
+			int dbMgr = emp.getEmp_mgr();
 			
 			System.out.println(userAcc);
-			System.out.println(userPwd);
+			System.out.println(dbMgr);
 			
 			if ( userAcc.equals(dbAcc) && userPwd.equals(dbPwd) ) {
-	            out.println("<h1>歡迎回來</h1>");
-	            //need click function
-	            out.println("<a href=\"/JavaServer/html/MainPage.html\">跳轉</a><br>");
-	            //not working in ajax
-//				request.getRequestDispatcher("/html/MainReader.jsp").forward(request, response);
-				out.close();
+	            if (dbMgr==1){
+	        		HttpSession session = request.getSession();
+	        		session.setAttribute("dbname", "employee"); 
+	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
+	        		request.getRequestDispatcher("/html/MainTable.jsp").forward(request, response);
+	            }else {
+	        		request.getRequestDispatcher("/html/LogIn4.jsp").forward(request, response);
+	        		System.out.println("<h1>非主管/系統管理員</h1>");
+	            }
 			} else if ( userAcc.equals(dbAcc)){
-            out.println("<h1>密碼錯誤</h1>");	
-            } else {
-            out.println("<h1>帳號錯誤</h1>");	
-			out.close();
+        		request.getRequestDispatcher("/html/LogIn4.jsp").forward(request, response);
+        		System.out.println("<h1>密碼錯誤</h1>");
+            } else if ( userPwd.equals(dbPwd)){
+        		request.getRequestDispatcher("/html/LogIn4.jsp").forward(request, response);
+        		System.out.println("<h1>帳號錯誤</h1>");	
 			}
 //		}finally
-//		stmt.close();
-//		conn.close();
+		stmt.close();
+		conn.close();
 		}catch(Exception e) {
 	    	e.printStackTrace();
 	    	}
