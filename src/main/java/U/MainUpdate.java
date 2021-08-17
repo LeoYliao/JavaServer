@@ -28,7 +28,7 @@ import DbBean.RsBean;
 @WebServlet(urlPatterns="/MainUpdate",initParams=@WebInitParam(name="SQL" ,value="UPDATE aiot2."))
 public class MainUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	static String SQL = "UPDATE aiot2.";   
     
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,11 +37,13 @@ public class MainUpdate extends HttpServlet {
 		//use session to get DB name
 		HttpSession session = request.getSession();
 		String dbname=(String)session.getAttribute("dbname");
+		System.out.println(dbname+" in update");	//test
 			switch(dbname) {
 			case "pcb":
 				pcbSetter(request, response);
 				break;
 			case "employee":
+				System.out.println(dbname+" in update switch");	//test
 				empSetter(request, response);
 				break;
 			case "assy":
@@ -103,8 +105,9 @@ public class MainUpdate extends HttpServlet {
 			//use session to get DB name (DB name)
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
+			System.out.println(dbname+" +in update emp");	//test
 			//set SQL
-			String SQL = getInitParameter("SQL");
+			//String SQL = getInitParameter("SQL");
 			SQL+= dbname+" SET ";
 			sqlSet(request,SQL,"emp_no");
 			sqlSet(request,SQL,"emp_acc");
@@ -118,6 +121,7 @@ public class MainUpdate extends HttpServlet {
 			//set PK (Primary key)
 			SQL+="WHERE pcb_key="+request.getParameter("emp_key");
 			//excute SQL cmd
+			System.out.println("SQL: "+SQL);	//test
 			PreparedStatement pstm = conn.prepareStatement(SQL);
 			ResultSet rs = pstm.executeQuery();
 			//succeed or fail feedback

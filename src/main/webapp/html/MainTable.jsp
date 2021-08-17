@@ -209,7 +209,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			//get $('this') object{key:value}
 			var tr = $(this).parents('tr');
 			var obj = {};
-			var text = "<tr><form id='update'>";
+			var text = "<tr>";
 			console.log(typeof obj);	//test
 			for(var j = 0;j<keys.length;j++){
 				var tag="td:eq("+j+")";
@@ -220,10 +220,12 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				obj[key] = value;
 				text+="<td><input type='text' size='2' value="+value+" name="+key+" ></td>";
 					}
-			text+= "<td></form><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>"
+			text+= "<td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>"
 			console.log(text);	//test
 			
 			$(this).parents('tr').before(text);
+			//var update=$('#myDataTalbe :input').serialize();
+			//$('#test').html(update).append("!!!!!?");
 			//
 			//var key = tr.find('td:eq(0)').text();
 			//var no = tr.find('td:eq(1)').text();
@@ -259,19 +261,20 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		// 確定鍵
 		$("#myDataTalbe").on("click", ".btn-success", function () {
 			var tr1 = $(this).closest('tr');
-			var update=$('#update').serialize();
-			$('#test').html(update).append("dafsedgfgdfxgbd");	//test
-			//$.ajax({
-		    //      url: '/JavaServer/MainUpdate',
-		    //      type: "POST",
-		    //      data: $('#update').serialize(), // serializes the form's elements.
-		    //      success: function(data){
-		    //      		window.alert("succeed!?"); // show response from the php script.
-		    //      		},
-		    //      error : function (error) {
-			// 			console.log(error);
-			//			}
-		    //  	});
+			// serializes the input's elements.
+			var update=$('#myDataTalbe :input').serialize();	
+			console.log(update);	//test
+			$.ajax({
+		          url: '/JavaServer/MainUpdate',
+		          type: "POST",
+		          data: update, 
+		          success: function(data){
+		          		window.alert("succeed!?"); // show response from the php script.
+		          		},
+		          error : function (error) {
+			 			console.log(error);
+						}
+		      	});
 			
 			var key1 = tr1.find('td:eq(0)').find("input").val();
 			var no1 = tr1.find('td:eq(1)').find("input").val();
