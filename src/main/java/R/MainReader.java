@@ -227,11 +227,10 @@ public class MainReader extends HttpServlet {
 		while(rs.next()) {
 			ImgBean data = new ImgBean(); 
 			data.setImg_key(rs.getInt("img_key"));
-			data.setImg_rpi(rs.getString("img_rpi"));
 			data.setImg_errloc(rs.getString("img_errloc"));
-			data.setR_assykey(rs.getInt("r_assykey"));
-			data.setImg_seqid(rs.getDate("img_seqid"));
+			data.setR_key(rs.getInt("r_key"));
 			data.setImg_url(rs.getString("img_url"));
+			data.setImg_cdate(rs.getTimestamp("img_cdate"));
 			datas.add(data);
 				}
 		//save data to session
@@ -267,8 +266,8 @@ public class MainReader extends HttpServlet {
 			data.setR_allqty(rs.getInt("r_allqty"));
 			data.setR_okqty(rs.getInt("r_okqty"));
 			data.setR_errqty(rs.getInt("r_errqty"));
-			data.setR_er(rs.getBigDecimal("r_er"));
 			data.setR_errloc(rs.getString("r_errloc"));
+			data.setR_dtime(rs.getTimestamp("r_dtime"));
 			data.setR_cdate(rs.getTimestamp("r_cdate"));
 			datas.add(data);
 				}

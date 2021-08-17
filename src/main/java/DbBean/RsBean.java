@@ -3,19 +3,29 @@ package DbBean;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class RsBean {
 private static final long serialVersionUID = 1L;
-	
+	@JSONField(ordinal=1)
 	private int r_key;
+	@JSONField(ordinal=2)
 	private int r_assykey;
+	@JSONField(ordinal=3)
 	private String r_empno;
 	
+	@JSONField(ordinal=4)
 	private int r_allqty;
+	@JSONField(ordinal=5)
 	private int r_okqty;
+	@JSONField(ordinal=6)
 	private int r_errqty;
 	
-	private BigDecimal r_er;
+	@JSONField(ordinal=7)
 	private String r_errloc;
+	@JSONField(ordinal=8)
+	private Timestamp r_dtime;
+	@JSONField(ordinal=9)
 	private Timestamp r_cdate;
 	
 	public int getR_key() {
@@ -54,17 +64,17 @@ private static final long serialVersionUID = 1L;
 	public void setR_errqty(int r_errqty) {
 		this.r_errqty = r_errqty;
 	}
-	public BigDecimal getR_er() {
-		return r_er;
-	}
-	public void setR_er(BigDecimal r_er) {
-		this.r_er = r_er;
-	}
 	public String getR_errloc() {
 		return r_errloc;
 	}
 	public void setR_errloc(String r_errloc) {
 		this.r_errloc = r_errloc;
+	}
+	public Timestamp getR_dtime() {
+		return r_dtime;
+	}
+	public void setR_dtime(Timestamp r_dtime) {
+		this.r_dtime = r_dtime;
 	}
 	public Timestamp getR_cdate() {
 		return r_cdate;

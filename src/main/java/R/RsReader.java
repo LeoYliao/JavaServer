@@ -44,8 +44,8 @@ public class RsReader extends HttpServlet {
 			html+="<td>"+data.getR_allqty()+"</td>";
 			html+="<td>"+data.getR_okqty()+"</td>";
 			html+="<td>"+data.getR_errqty()+"</td>";
-			html+="<td>"+data.getR_er()+"</td>";
 			html+="<td>"+data.getR_errloc()+"</td>";
+			html+="<td>"+data.getR_dtime()+"</td>";
 			html+="<td>"+data.getR_cdate()+"</td>";
 			//!!!!!!
 			html+="<td><button type='button' class='btn btn-warning' id='buttonChg'>修改</button><button type='button' class='btn btn-danger'>刪除</button></td></tr>";
