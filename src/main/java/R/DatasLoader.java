@@ -32,7 +32,7 @@ public class DatasLoader extends HttpServlet {
 		//confirm DB name again (use session)
 		HttpSession session = request.getSession();
 		String dbname = (String)session.getAttribute("dbname");
-		//update to lastest datas 敺耨�
+		//update to lastest datas
 		request.getRequestDispatcher("/MainReader").include(request, response);
 		//change ArrayList to JSON
 		PrintWriter out = response.getWriter();
