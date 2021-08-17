@@ -2,13 +2,21 @@ package DbBean;
 
 import java.sql.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class PcbBean implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
+	@JSONField(ordinal=1)
 	private int pcb_key;
+	@JSONField(ordinal=2)
 	private String pcb_no;
+	@JSONField(ordinal=3)
 	private String pcb_name;
+	@JSONField(ordinal=4)
 	private Date pcb_create;
+	@JSONField(ordinal=5)
 	private String pcb_alive;
+	@JSONField(ordinal=6)
 	private Date pcb_out;
 	
 	public int getPcb_key() {
