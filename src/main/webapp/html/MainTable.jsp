@@ -61,22 +61,26 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 		dataType : 'json',
 			 		success : function (res){
 			 			//$('#mainTable').load('/JavaServer/EmpReader');
-			 			console.log("res:"+res);	//test
-			 			console.log("typeof res:"+typeof res);	//test
-			 			console.log("res[0]:"+res.length);	//test
+			 			//console.log("res:"+res);	//test
+			 			//console.log("typeof res:"+typeof res);	//test
+			 			//console.log("res[0]:"+res.length);	//test
 			 			//console.log(JSON.stringify(res[0]));
 			 			var html;
-			 			for(var i=0;i<res.length;i++){
-			 				console.log(JSON.stringify(res[i]));	//test
-			 				keys = Object.keys(res[i]);
-			 				data = res[i];
-			 				console.log(keys);	//test
-			 				console.log(keys.length);	//test
-			 				console.log(data["emp_key"]);	//test
+			 			var result = res[0];
+			 			console.log("result = " + result);
+			 			for(var i=0;i<result.length;i++){
+			 				//console.log(JSON.stringify(res[i]));	//test
+			 				//keys = Object.keys(res[i]);
+			 				//data = res[i];
+			 				//console.log(keys);	//test
+			 				//console.log(keys.length);	//test
+			 				//console.log(data["emp_key"]);	//test
+			 				keys = Object.keys(result[i]);
+			 				console.log("keys = " + keys);
 			 				html+="<tr>";
 			 				for(var j = 0;j<keys.length;j++){
-			 					html+="<td id=\""+keys[j]+"\">"+data[keys[j]]+"</td>";
-			 					console.log(data[keys[j]]);	//test
+			 					html+="<td id=\""+keys[j]+"\">"+result[i][keys[j]]+"</td>";
+			 					console.log(result[i][keys[j]]);	//test
 			 					}
 			 				html+="<td><button type='button' class='btn btn-warning' id='buttonChg'>修改</button><button type='button' class='btn btn-danger'>刪除</button></td>";
 			 				html+="</tr>";

@@ -32,13 +32,17 @@ public class DatasLoader extends HttpServlet {
 		//confirm DB name again (use session)
 		HttpSession session = request.getSession();
 		String dbname = (String)session.getAttribute("dbname");
-		//update to lastest datas 待修改
+		//update to lastest datas 敺耨�
 		request.getRequestDispatcher("/MainReader").include(request, response);
 		//change ArrayList to JSON
 		PrintWriter out = response.getWriter();
+//		JSONArray jsonDatas = new JSONArray();
+//		System.out.println(session.getAttribute("datas").toString());	//test
+//		jsonDatas=JSONObject.parseArray(JSONObject.toJSONString(session.getAttribute("datas")));
+		//======================
 		JSONArray jsonDatas = new JSONArray();
-		System.out.println(session.getAttribute("datas").toString());	//test
-		jsonDatas=JSONObject.parseArray(JSONObject.toJSONString(session.getAttribute("datas")));
+		jsonDatas.add(session.getAttribute("datas"));
+		System.out.println("jsonDatas = " + jsonDatas);
 		out.write(jsonDatas.toString());
 			}
 	catch(Exception e) {
