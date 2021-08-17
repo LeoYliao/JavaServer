@@ -268,15 +268,14 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		          type: "POST",
 		          data: update, 
 		          success: function(data){
-		        	  
-		         		 }
-		          		window.alert("succeed!?"); // show response from the php script.
+		          		window.alert("succeed!?");	//test
+		          		loadBody();
 		          		},
 		          error : function (error) {
 			 			console.log(error);
 						}
 		      	});
-			//window.alert("gsgsrgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
+			window.alert("out of Ajax succeed!?");	//test
 			var key1 = tr1.find('td:eq(0)').find("input").val();
 			var no1 = tr1.find('td:eq(1)').find("input").val();
 			var acc1 = tr1.find('td:eq(2)').find("input").val();
@@ -287,7 +286,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			var mgr1 = tr1.find('td:eq(7)').find("input").val();
 			var hired1 = tr1.find('td:eq(8)').find("input").val();
 			var leave1 = tr1.find('td:eq(9)').find("input").val();
-			loadBody();
+			
 			//$(this).parents('#tbody').remove();
             //$(this).parents('tr').before(`<tr>\
 			//	<td>${key1}</td>\
