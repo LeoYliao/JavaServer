@@ -2,15 +2,23 @@ package DbBean;
 
 import java.sql.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class AseBean implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	@JSONField(ordinal=1)
 	private int assy_key ;
+	@JSONField(ordinal=2)
 	private String assy_pcb;
+	@JSONField(ordinal=3)
 	private String assy_compo;
+	@JSONField(ordinal=4)
 	private int assy_parts;
+	@JSONField(ordinal=5)
 	private Date assy_create;
+	@JSONField(ordinal=6)
 	private String assy_alive;
+	@JSONField(ordinal=7)
 	private Date assy_out;
 
 	public int getAssy_key() {

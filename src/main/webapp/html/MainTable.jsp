@@ -116,11 +116,11 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				$('thead').html(title);
 				break;
 			case "img":
-				title = "<tr><th>圖片編號</th><th>RPI檔名</th><th>錯誤位置</th><th>偵測結果編號</th><th>圖片URL</th><th>圖片創建日</th><th></th></tr>";
+				title = "<tr><th>圖片編號</th><th>錯誤位置</th><th>偵測結果編號</th><th>圖片URL</th><th>圖片創建日</th><th></th></tr>";
 				$('thead').html(title);
 				break;
 			case "result":
-				title = "<tr><th>偵測編號</th><th>組裝編號</th><th>員工編號</th><th>零件總數</th><th>正確數量</th><th>錯誤數量</th><th>錯誤率</th><th>錯誤位置</th><th>掃描結果日期</th><th></th></tr>";
+				title = "<tr><th>偵測編號</th><th>組裝編號</th><th>員工編號</th><th>零件總數</th><th>正確數量</th><th>錯誤數量</th><th>錯誤位置</th><th>偵測總時間</th><th>掃描結果日期</th><th></th></tr>";
 				$('thead').html(title);
 				break;
 			default:

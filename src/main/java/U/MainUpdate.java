@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.naming.Context;
@@ -60,6 +61,9 @@ public class MainUpdate extends HttpServlet {
 				rsSetter(request, response);
 				break;
 			}
+		//=============
+		Enumeration<String> names=request.getParameterNames();
+		String[] values=request.getParameterValues(dbname);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

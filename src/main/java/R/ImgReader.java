@@ -39,11 +39,10 @@ public class ImgReader extends HttpServlet {
 		for(ImgBean data:datas){
 			html+="<tr>";
 			html+="<td>"+data.getImg_key()+"</td>";
-			html+="<td>"+data.getImg_rpi()+"</td>";
 			html+="<td>"+data.getImg_errloc()+"</td>";
-			html+="<td>"+data.getR_assykey()+"</td>";
-			html+="<td>"+data.getImg_seqid()+"</td>";
+			html+="<td>"+data.getR_key()+"</td>";
 			html+="<td>"+data.getImg_url()+"</td>";
+			html+="<td>"+data.getImg_cdate()+"</td>";
 			//!!!!!!
 			html+="<td><button type='button' class='btn btn-warning' id='buttonChg'>修改</button><button type='button' class='btn btn-danger'>刪除</button></td></tr>";
 			} 

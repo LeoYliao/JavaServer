@@ -2,14 +2,21 @@ package DbBean;
 
 import java.sql.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class ComBean implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	@JSONField(ordinal=1)
 	private int compo_key;
+	@JSONField(ordinal=2)
 	private String compo_no;
+	@JSONField(ordinal=3)
 	private String compo_name;
+	@JSONField(ordinal=4)
 	private Date compo_create;
+	@JSONField(ordinal=5)
 	private String compo_alive;
+	@JSONField(ordinal=6)
 	private Date compo_out;
 	
 	public int getCompo_key() {
