@@ -2,17 +2,29 @@ package DbBean;
 
 import java.sql.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class EmpBean implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
+	@JSONField(ordinal=1)
 	private int emp_key;
+	@JSONField(ordinal=2)
 	private String emp_no;
+	@JSONField(ordinal=3)
 	private String emp_acc;
+	@JSONField(ordinal=4)
 	private String emp_pwd;
+	@JSONField(ordinal=5)
 	private String emp_name;
+	@JSONField(ordinal=6)
 	private String emp_job;
+	@JSONField(ordinal=7)
 	private String emp_img;
+	@JSONField(ordinal=8)
 	private int emp_mgr;
+	@JSONField(ordinal=9)
 	private Date emp_hired;
+	@JSONField(ordinal=10)
 	private Date emp_leave;
 	
 	public int getEmp_key() {
