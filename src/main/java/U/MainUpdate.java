@@ -86,7 +86,7 @@ public class MainUpdate extends HttpServlet {
 			SQL+="WHERE pcb_key="+request.getParameter("pcb_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
-			ResultSet rs = pstm.executeQuery();
+			int rs = pstm.executeUpdate();
 			//succeed or fail feedback
 			
 			//connection close
@@ -160,7 +160,7 @@ public class MainUpdate extends HttpServlet {
 			SQL+="WHERE assy_key="+request.getParameter("assy_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
-			ResultSet rs = pstm.executeQuery();
+			int rs = pstm.executeUpdate();
 			//succeed or fail feedback
 			
 			//connection close
@@ -192,7 +192,7 @@ public class MainUpdate extends HttpServlet {
 			SQL+="WHERE compo_key="+request.getParameter("compo_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
-			ResultSet rs = pstm.executeQuery();
+			int rs = pstm.executeUpdate();
 			//succeed or fail feedback
 			
 			//connection close
@@ -223,7 +223,7 @@ public class MainUpdate extends HttpServlet {
 			SQL+="WHERE img_key="+request.getParameter("img_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
-			ResultSet rs = pstm.executeQuery();
+			int rs = pstm.executeUpdate();
 			//succeed or fail feedback
 			
 			//connection close
@@ -258,7 +258,7 @@ public class MainUpdate extends HttpServlet {
 			SQL+="WHERE r_key="+request.getParameter("r_key");
 			//excute SQL cmd
 			PreparedStatement pstm = conn.prepareStatement(SQL);
-			ResultSet rs = pstm.executeQuery();
+			int rs = pstm.executeUpdate();
 			//succeed or fail feedback
 			
 			//connection close
