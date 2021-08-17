@@ -208,7 +208,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				var key = keys[i];
 				var Today = new Date();
 				var string = "assy_create, compo_create, emp_hired, pcb_create";
-				
 				if (key=="assy_alive" || key=="pcb_alive" || key=="compo_alive"){
 					newtext+="<td><select><option>Y</option><option>N</option></select></td>"
 			    }
