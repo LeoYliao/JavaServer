@@ -202,8 +202,16 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 		// 新增鍵
 		$('#buttonAdd').click(function () {
-			$('table').append("<tr><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>");
-			
+			//$('table').append("<tr><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>");
+			var newtext = "<tr>";
+			for(var i = 0;i<keys.length;i++){
+				var key = keys[i];
+				
+				newtext+="<td><input type='text' value='' name='"+key+"'></td>";
+			}
+			newtext+="<td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>";
+			console.log(newtext);
+			$('table').append(newtext);
 		});
 
 		
@@ -211,7 +219,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		$("#myDataTalbe").on("click", ".btn-warning", function () {
 			//get $('this') object{key:value}
 			var tr = $(this).parents('tr');
-			var obj = {};
+			//var obj = {};
 			var text = "<tr>";
 			console.log(typeof obj);	//test
 			for(var j = 0;j<keys.length;j++){
@@ -220,10 +228,50 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				var value = tr.find(tag).text();
 				console.log(key);	//test
 				console.log(value);	//test
-				obj[key] = value;
-				text+="<td><input type='text' size='2' value="+value+" name="+key+" ></td>";
+				//obj[key] = value;
+				if(key=="assy_pcb"){
+				     text+="<td><select><option disabled>"+ value + "</option><option>A01</option><option>A02</option><option>A03</option><option>A04</option></select></td>"
+				    }
+				    else if (key=="assy_compo"){
+				     text+="<td><select><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
+				    }
+				    else if (key=="assy_parts"){
+				     text+="<td><input type='number' min='0' class='form-control number' value="+value+"></td>"
+				    }
+				    else if (key=="assy_alive"){
+				     text+="<td><select><option>Y</option><option>N</option></select></td>"
+				    }
+				    else if (key=="assy_compo"){
+				     text+="<td><select><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
+				    }
+				    
+				    
+				    else if (key=="pcb_no"){
+				     text+="<td><select><option disabled>"+ value +"</option><option>A01</option><option>A02</option><option>B01</option><option>B02</option><option>C01</option></select></td>"
+				    }
+				    else if (key=="pcb_name"){
+				     text+="<td><select><option selected='selected' disabled>"+ value +"</option><option>極速SERVERPCB-2021</option><option>超極速SERVERPCB-2021</option><option>M03系PCB-2107</option><option>M03+系PCB-2018</option><option>高工SERVERPCB</option></select></td>"
+				    }
+				    else if (key=="pcb_alive"){
+				     text+="<td><select><option>Y</option><option>N</option></select></td>"
+				    }
+				    
+				    
+				    else if (key=="compo_no"){
+				     text+="<td><select><option disabled>"+ value + "</option><option>CAP</option><option>SLOT</option></select></td>"
+				    }
+				    else if (key=="compo_name"){
+				     text+="<td><select><option disabled>"+ value + "</option><option>特規電容器</option><option>插槽</option></select></td>"
+				    }
+				    else if (key=="compo_alive"){
+				     text+="<td><select><option disabled>"+ value + "</option><option>Y</option><option>N</option></select></td>"
+				    }
+				    
+				    else{text+="<td><input type='text' size='2' value="+value+" name="+key+" ></td>";}
+				    console.log(text);
+				    
 					}
-			text+= "<td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>"
+			text+= "<td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>";
 			console.log(text);	//test
 			
 			$(this).parents('tr').before(text);
@@ -280,16 +328,16 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 						}
 		      	});
 			window.alert("out of Ajax succeed!?");	//test
-			var key1 = tr1.find('td:eq(0)').find("input").val();
-			var no1 = tr1.find('td:eq(1)').find("input").val();
-			var acc1 = tr1.find('td:eq(2)').find("input").val();
-			var pwd1 = tr1.find('td:eq(3)').find("input").val();
-			var name1 = tr1.find('td:eq(4)').find("input").val();
-			var job1 = tr1.find('td:eq(5)').find("input").val();
-			var img1 = tr1.find('td:eq(6)').find("input").val();
-			var mgr1 = tr1.find('td:eq(7)').find("input").val();
-			var hired1 = tr1.find('td:eq(8)').find("input").val();
-			var leave1 = tr1.find('td:eq(9)').find("input").val();
+			//var key1 = tr1.find('td:eq(0)').find("input").val();
+			//var no1 = tr1.find('td:eq(1)').find("input").val();
+			//var acc1 = tr1.find('td:eq(2)').find("input").val();
+			//var pwd1 = tr1.find('td:eq(3)').find("input").val();
+			//var name1 = tr1.find('td:eq(4)').find("input").val();
+			//var job1 = tr1.find('td:eq(5)').find("input").val();
+			//var img1 = tr1.find('td:eq(6)').find("input").val();
+			//var mgr1 = tr1.find('td:eq(7)').find("input").val();
+			//var hired1 = tr1.find('td:eq(8)').find("input").val();
+			//var leave1 = tr1.find('td:eq(9)').find("input").val();
 			
 			//$(this).parents('#tbody').remove();
             //$(this).parents('tr').before(`<tr>\
