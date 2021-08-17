@@ -1,7 +1,7 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Source+Code+Pro:400");
 
-/* 右邊欄位 */
+/* ������ */
 
 #header {
 	border-radius: 60px;
@@ -86,7 +86,7 @@
 ol, ul {
 	list-style: none;
 }
-/* 右邊特效按鈕 */
+/* �������� */
 
 .btn22 {
 	/* margin-top: 25px; */
@@ -140,7 +140,7 @@ ol, ul {
 	top: 0px;
   }
 
- /* 所有 */
+ /* ����� */
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, abbr, acronym, address, big, cite,
@@ -194,7 +194,7 @@ footer, header, hgroup, menu, nav, section {
 		line-height: 1.75em;
 	}
 
-/* 左邊欄位 */
+/* 撌阡���� */
 #lefter {
 	border-radius: 60px;
 	background: rgba(0, 0, 0, 0.2);
@@ -210,7 +210,7 @@ footer, header, hgroup, menu, nav, section {
     filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.7));
 	transition: top .2s, left .2s;
 }		
-/* 表格 */
+/* 銵冽 */
 
 /* #mainTable{
 	border: 2px red solid;
@@ -235,6 +235,7 @@ td{
 	transform: translate(-50%,-50%);
 	left: 50%;
 	top: 50%;
+	overflow-y: auto;
 }
 td{
 	color: #3c3c3c;
