@@ -28,7 +28,8 @@ import DbBean.RsBean;
 @WebServlet(urlPatterns="/MainUpdate")
 public class MainUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static String SQL = "UPDATE aiot2.";   
+	static String SQL;
+	//SQL = "UPDATE aiot2.";   
     
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,6 +75,7 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
+			SQL = "UPDATE aiot2.";
 			SQL+= dbname+" SET ";
 			SQL=sqlSet(request,SQL,"pcb_no")+",";
 			SQL=sqlSet(request,SQL,"pcb_name")+",";
@@ -107,6 +109,7 @@ public class MainUpdate extends HttpServlet {
 			System.out.println(dbname+" in update emp");	//test
 			//set SQL
 			//String SQL = getInitParameter("SQL");
+			SQL = "UPDATE aiot2.";
 			SQL+= dbname+" SET ";
 			SQL=sqlSet(request,SQL,"emp_no")+",";
 			System.out.println("return of sqlset: "+SQL);	//test
@@ -145,6 +148,7 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
+			SQL = "UPDATE aiot2.";
 			SQL+= dbname+" SET ";
 			SQL=sqlSet(request,SQL,"assy_pcb")+",";
 			SQL=sqlSet(request,SQL,"assy_compo")+",";
@@ -177,6 +181,7 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
+			SQL = "UPDATE aiot2.";
 			SQL+= dbname+" SET ";
 			SQL=sqlSet(request,SQL,"compo_no")+",";
 			SQL=sqlSet(request,SQL,"compo_name")+",";
@@ -208,6 +213,7 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
+			SQL = "UPDATE aiot2.";
 			SQL+= dbname+" SET ";
 			SQL=sqlSet(request,SQL,"img_rpi")+",";
 			SQL=sqlSet(request,SQL,"img_errloc")+",";
@@ -238,6 +244,7 @@ public class MainUpdate extends HttpServlet {
 			HttpSession session = request.getSession();
 			String dbname=(String)session.getAttribute("dbname");
 			//set SQL
+			SQL = "UPDATE aiot2.";
 			SQL+= dbname+" SET ";
 			SQL=sqlSet(request,SQL,"r_seqid")+",";
 			SQL=sqlSet(request,SQL,"r_assykey")+",";

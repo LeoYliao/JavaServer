@@ -50,7 +50,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <script>
 		//Ajax 載入 Table 內容列印
 		var dbname = $("#dbname").val();
-		var html;
+		
 		var keys;
 		var data;
 		var loadBody = function(){
@@ -65,7 +65,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 			console.log("typeof res:"+typeof res);	//test
 			 			console.log("res[0]:"+res.length);	//test
 			 			//console.log(JSON.stringify(res[0]));
-			 			
+			 			var html;
 			 			for(var i=0;i<res.length;i++){
 			 				console.log(JSON.stringify(res[i]));	//test
 			 				keys = Object.keys(res[i]);
@@ -131,7 +131,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         <h1 id="idId">張◯睿</h1>
         <p id="number">inspector0002</p>
         <h4 id="position">檢查員</h4>
-        <div id='test'></div>
     </header>
     <nav id="nav">
         <form method="POST" id="contoller">
@@ -269,13 +268,15 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		          type: "POST",
 		          data: update, 
 		          success: function(data){
+		        	  
+		         		 }
 		          		window.alert("succeed!?"); // show response from the php script.
 		          		},
 		          error : function (error) {
 			 			console.log(error);
 						}
 		      	});
-			
+			//window.alert("gsgsrgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
 			var key1 = tr1.find('td:eq(0)').find("input").val();
 			var no1 = tr1.find('td:eq(1)').find("input").val();
 			var acc1 = tr1.find('td:eq(2)').find("input").val();
@@ -287,6 +288,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			var hired1 = tr1.find('td:eq(8)').find("input").val();
 			var leave1 = tr1.find('td:eq(9)').find("input").val();
 			loadBody();
+			//$(this).parents('#tbody').remove();
             //$(this).parents('tr').before(`<tr>\
 			//	<td>${key1}</td>\
 			//	<td>${no1}</td>\
