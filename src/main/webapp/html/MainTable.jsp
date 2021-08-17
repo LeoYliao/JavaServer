@@ -242,41 +242,41 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				console.log(value);	//test
 				//obj[key] = value;
 				if(key=="assy_pcb"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>A01</option><option>A02</option><option>A03</option><option>A04</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>A01</option><option>A02</option><option>A03</option><option>A04</option></select></td>"
 				    }
 				    else if (key=="assy_compo"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
 				    }
 				    else if (key=="assy_parts"){
-				     text+="<td><input type='number' min='0' class='form-control number' value="+value+"></td>"
+				     text+="<td><input type='number' min='0' class='form-control number' name="+key+" value="+value+"></td>"
 				    }
 				    else if (key=="assy_alive"){
-				     text+="<td><select><option>Y</option><option>N</option></select></td>"
+				     text+="<td><select name="+key+"><option>Y</option><option>N</option></select></td>"
 				    }
 				    else if (key=="assy_compo"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
 				    }
 				    
 				    
 				    else if (key=="pcb_no"){
-				     text+="<td><select><option disabled>"+ value +"</option><option>A01</option><option>A02</option><option>B01</option><option>B02</option><option>C01</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value +"</option><option>A01</option><option>A02</option><option>B01</option><option>B02</option><option>C01</option></select></td>"
 				    }
 				    else if (key=="pcb_name"){
-				     text+="<td><select><option selected='selected' disabled>"+ value +"</option><option>極速SERVERPCB-2021</option><option>超極速SERVERPCB-2021</option><option>M03系PCB-2107</option><option>M03+系PCB-2018</option><option>高工SERVERPCB</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value +"</option><option>極速SERVERPCB-2021</option><option>超極速SERVERPCB-2021</option><option>M03系PCB-2107</option><option>M03+系PCB-2018</option><option>高工SERVERPCB</option></select></td>"
 				    }
 				    else if (key=="pcb_alive"){
-				     text+="<td><select><option>Y</option><option>N</option></select></td>"
+				     text+="<td><select name="+key+"><option>Y</option><option>N</option></select></td>"
 				    }
 				    
 				    
 				    else if (key=="compo_no"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>CAP</option><option>SLOT</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP</option><option>SLOT</option></select></td>"
 				    }
 				    else if (key=="compo_name"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>特規電容器</option><option>插槽</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>特規電容器</option><option>插槽</option></select></td>"
 				    }
 				    else if (key=="compo_alive"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>Y</option><option>N</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>Y</option><option>N</option></select></td>"
 				    }
 				    
 				    else{text+="<td><input type='text' size='2' value="+value+" name="+key+" ></td>";}
@@ -325,12 +325,13 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		$("#myDataTalbe").on("click", ".btn-success", function () {
 			var tr1 = $(this).closest('tr');
 			// serializes the input's elements.
-			var update=$('#myDataTalbe :input').serialize();	
-			console.log(update);	//test
+			var update1=$('#myDataTalbe :input').serialize();	
+			var update2=$('#myDataTalbe :checked').serialize();
+			console.log(update1+update2);	//test
 			$.ajax({
 		          url: '/JavaServer/MainUpdate',
 		          type: "POST",
-		          data: update, 
+		          data: update1+update2, 
 		          success: function(data){
 		          		window.alert("succeed!?");	//test
 		          		loadBody();
