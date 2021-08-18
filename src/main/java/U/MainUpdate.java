@@ -61,9 +61,8 @@ public class MainUpdate extends HttpServlet {
 				rsSetter(request, response);
 				break;
 			}
-		//=============
-		Enumeration<String> names=request.getParameterNames();
-		String[] values=request.getParameterValues(dbname);
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -102,7 +101,7 @@ public class MainUpdate extends HttpServlet {
 		    	}
 	}
 	protected void empSetter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {   
+		try { 
 			//connection 
 			Context context = new InitialContext();
 			DataSource datasource = (DataSource)context.lookup("java:/comp/env/jdbc/servdb");
@@ -131,9 +130,17 @@ public class MainUpdate extends HttpServlet {
 			System.out.println("SQL: "+SQL);	//test
 			PreparedStatement pstm = conn.prepareStatement(SQL);
 			int rs = pstm.executeUpdate();
-			System.out.println("how many data been update: "+rs);
+			System.out.println("how many data been update: "+rs);	//test
 			//succeed or fail feedback
-			
+			//=============
+			Enumeration<String> names=request.getParameterNames();
+			String[] values=request.getParameterValues(dbname); 
+			while(names.hasMoreElements()) {
+				String strName = names.nextElement();
+				String strValue = request.getParameter(strName);
+				System.out.print("Element name :"+strName);		//test
+				System.out.println(" /Element value :"+strValue);	//test
+			}
 			//connection close
 			pstm.close();
 			conn.close();

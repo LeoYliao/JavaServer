@@ -209,13 +209,13 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				var Today = new Date();
 				var string = "assy_create, compo_create, emp_hired, pcb_create";
 				if (key=="assy_alive" || key=="pcb_alive" || key=="compo_alive"){
-					newtext+="<td><select><option>Y</option><option>N</option></select></td>"
+					newtext+="<td><select name='"+key+"'><option>Y</option><option>N</option></select></td>"
 			    }
 				else if (string.includes(key)){
-					newtext+="<td><input type='text' value=" + Today.getFullYear() + - + (Today.getMonth() + 1) + - + Today.getDate() + " ></td>"
+					newtext+="<td><input type='text' name='"+key+"' value=" + Today.getFullYear() + - + (Today.getMonth() + 1) + - + Today.getDate() + " ></td>"
 			    }
 				else if (key=="assy_parts"){
-					newtext+="<td><input type='number' min='0' class='form-control number'></td>"
+					newtext+="<td><input type='number' min='0' class='form-control number' name='"+key+"'></td>"
 				}
 				
 				else{newtext+="<td><input type='text' value='' name='"+key+"'></td>";}
