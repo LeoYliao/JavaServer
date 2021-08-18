@@ -221,19 +221,22 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			// $("#example").on("click", ".btn-danger", function () {
 			var tr = $(this).parents('tr');
 			var key = tr.find('td:eq(0)').text();
-			//$.ajax ({	
-		 	//	url : '/JavaServer/DatasLoader',
-		 	//	type :'POST',
-		 	//	dataType : 'json',
-		 	//	success : function (res){
-		 	//		//$('#mainTable').load('/JavaServer/EmpReader');
-		 	//		console.log("res:"+res);
-		 	//		},
-		 	//	error : function (error) {
-		 	//		console.log(error);
-		 	//		}
-		 	//});
-			$(this).parents('tr').remove();
+			var strData = keys[0]+"="+key;
+			console.log(strData);
+			$.ajax ({	
+		 		url : '/JavaServer/MainDelete?'+strData,
+		 		type :'POST',
+		 		//data : strData,
+		 		success : function (res){
+		 			//$('#mainTable').load('/JavaServer/EmpReader');
+		 			window.alert("Delete done!!?")
+		 			loadBody();
+		 			},
+		 		error : function (error) {
+		 			console.log(error);
+		 			}
+		 	});
+			//$(this).parents('tr').remove();
 		});
 		// 重整鍵
 		$('#refresh').click(function () {
