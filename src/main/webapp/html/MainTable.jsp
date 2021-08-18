@@ -116,11 +116,11 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				$('thead').html(title);
 				break;
 			case "img":
-				title = "<tr><th>圖片編號</th><th>RPI檔名</th><th>錯誤位置</th><th>偵測結果編號</th><th>圖片URL</th><th>圖片創建日</th><th></th></tr>";
+				title = "<tr><th>圖片編號</th><th>錯誤位置</th><th>偵測結果編號</th><th>圖片URL</th><th>圖片創建日</th><th></th></tr>";
 				$('thead').html(title);
 				break;
 			case "result":
-				title = "<tr><th>偵測編號</th><th>組裝編號</th><th>員工編號</th><th>零件總數</th><th>正確數量</th><th>錯誤數量</th><th>錯誤率</th><th>錯誤位置</th><th>掃描結果日期</th><th></th></tr>";
+				title = "<tr><th>偵測編號</th><th>組裝編號</th><th>員工編號</th><th>零件總數</th><th>正確數量</th><th>錯誤數量</th><th>錯誤位置</th><th>偵測總時間</th><th>掃描結果日期</th><th></th></tr>";
 				$('thead').html(title);
 				break;
 			default:
@@ -206,8 +206,19 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			var newtext = "<tr>";
 			for(var i = 0;i<keys.length;i++){
 				var key = keys[i];
+				var Today = new Date();
+				var string = "assy_create, compo_create, emp_hired, pcb_create";
+				if (key=="assy_alive" || key=="pcb_alive" || key=="compo_alive"){
+					newtext+="<td><select><option>Y</option><option>N</option></select></td>"
+			    }
+				else if (string.includes(key)){
+					newtext+="<td><input type='text' value=" + Today.getFullYear() + - + (Today.getMonth() + 1) + - + Today.getDate() + " ></td>"
+			    }
+				else if (key=="assy_parts"){
+					newtext+="<td><input type='number' min='0' class='form-control number'></td>"
+				}
 				
-				newtext+="<td><input type='text' value='' name='"+key+"'></td>";
+				else{newtext+="<td><input type='text' value='' name='"+key+"'></td>";}
 			}
 			newtext+="<td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>";
 			console.log(newtext);
@@ -230,41 +241,41 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				console.log(value);	//test
 				//obj[key] = value;
 				if(key=="assy_pcb"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>A01</option><option>A02</option><option>A03</option><option>A04</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>A01</option><option>A02</option><option>A03</option><option>A04</option></select></td>"
 				    }
 				    else if (key=="assy_compo"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
 				    }
 				    else if (key=="assy_parts"){
-				     text+="<td><input type='number' min='0' class='form-control number' value="+value+"></td>"
+				     text+="<td><input type='number' min='0' class='form-control number' name="+key+" value="+value+"></td>"
 				    }
 				    else if (key=="assy_alive"){
-				     text+="<td><select><option>Y</option><option>N</option></select></td>"
+				     text+="<td><select name="+key+"><option>Y</option><option>N</option></select></td>"
 				    }
 				    else if (key=="assy_compo"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
 				    }
 				    
 				    
 				    else if (key=="pcb_no"){
-				     text+="<td><select><option disabled>"+ value +"</option><option>A01</option><option>A02</option><option>B01</option><option>B02</option><option>C01</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value +"</option><option>A01</option><option>A02</option><option>B01</option><option>B02</option><option>C01</option></select></td>"
 				    }
 				    else if (key=="pcb_name"){
-				     text+="<td><select><option selected='selected' disabled>"+ value +"</option><option>極速SERVERPCB-2021</option><option>超極速SERVERPCB-2021</option><option>M03系PCB-2107</option><option>M03+系PCB-2018</option><option>高工SERVERPCB</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value +"</option><option>極速SERVERPCB-2021</option><option>超極速SERVERPCB-2021</option><option>M03系PCB-2107</option><option>M03+系PCB-2018</option><option>高工SERVERPCB</option></select></td>"
 				    }
 				    else if (key=="pcb_alive"){
-				     text+="<td><select><option>Y</option><option>N</option></select></td>"
+				     text+="<td><select name="+key+"><option>Y</option><option>N</option></select></td>"
 				    }
 				    
 				    
 				    else if (key=="compo_no"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>CAP</option><option>SLOT</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP</option><option>SLOT</option></select></td>"
 				    }
 				    else if (key=="compo_name"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>特規電容器</option><option>插槽</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>特規電容器</option><option>插槽</option></select></td>"
 				    }
 				    else if (key=="compo_alive"){
-				     text+="<td><select><option disabled>"+ value + "</option><option>Y</option><option>N</option></select></td>"
+				     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>Y</option><option>N</option></select></td>"
 				    }
 				    
 				    else{text+="<td><input type='text' size='2' value="+value+" name="+key+" ></td>";}
@@ -313,12 +324,13 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		$("#myDataTalbe").on("click", ".btn-success", function () {
 			var tr1 = $(this).closest('tr');
 			// serializes the input's elements.
-			var update=$('#myDataTalbe :input').serialize();	
-			console.log(update);	//test
+			var update1=$('#myDataTalbe :input').serialize();	
+			var update2=$('#myDataTalbe :checked').serialize();
+			console.log(update1+update2);	//test
 			$.ajax({
 		          url: '/JavaServer/MainUpdate',
 		          type: "POST",
-		          data: update, 
+		          data: update1+update2, 
 		          success: function(data){
 		          		window.alert("succeed!?");	//test
 		          		loadBody();
