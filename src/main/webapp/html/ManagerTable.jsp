@@ -327,7 +327,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		 	});
 		});
 		
-		window.onload = function(){
+		$(document).ready(function(){
         $("#myDataTalbe").dataTable({
         	"language": {
                 "processing": "處理中...",
@@ -351,7 +351,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                 	}
             	}
         	});
-        };
+        });
 
 
 		// 新增鍵

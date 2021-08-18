@@ -26,13 +26,13 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
-<html>
+
 	<body class="is-preload" id="kingbody">
-<!-- 載入頭部段
+<input id="dbname" style="display:none" value=<%=session.getAttribute("dbname")%>>
 
 
 <!-- 中間內容 -->
-<section id="lefter1">
+<section style="display: none" id="lefter1">
     <div>
         <h3 id="title1">錯誤統計</h3>
     </div>
@@ -59,9 +59,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         <span>1145</span>
       </li>
     </ul>
-  </section>
+  
 </section>
-<section id="lefter2">
+<section style="display: none" id="lefter2">
     <div>
         <h3 id="title1">一週偵測錯誤變化</h3>
     </div>
