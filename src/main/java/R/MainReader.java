@@ -267,7 +267,7 @@ public class MainReader extends HttpServlet {
 			data.setR_okqty(rs.getInt("r_okqty"));
 			data.setR_errqty(rs.getInt("r_errqty"));
 			data.setR_errloc(rs.getString("r_errloc"));
-			data.setR_dtime(rs.getTimestamp("r_dtime"));
+			data.setR_dtime(rs.getBigDecimal("r_dtime"));
 			data.setR_cdate(rs.getTimestamp("r_cdate"));
 			datas.add(data);
 				}

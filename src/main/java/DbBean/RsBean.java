@@ -24,9 +24,9 @@ private static final long serialVersionUID = 1L;
 	@JSONField(ordinal=7)
 	private String r_errloc;
 	@JSONField(ordinal=8)
-	private Timestamp r_dtime;
+	private BigDecimal r_dtime;
 	@JSONField(ordinal=9)
-	private Timestamp r_cdate;
+	private String r_cdate;
 	
 	public int getR_key() {
 		return r_key;
@@ -70,17 +70,18 @@ private static final long serialVersionUID = 1L;
 	public void setR_errloc(String r_errloc) {
 		this.r_errloc = r_errloc;
 	}
-	public Timestamp getR_dtime() {
+	public BigDecimal getR_dtime() {
 		return r_dtime;
 	}
-	public void setR_dtime(Timestamp r_dtime) {
+	public void setR_dtime(BigDecimal r_dtime) {
 		this.r_dtime = r_dtime;
 	}
-	public Timestamp getR_cdate() {
+	public String getR_cdate() {
 		return r_cdate;
 	}
 	public void setR_cdate(Timestamp r_cdate) {
-		this.r_cdate = r_cdate;
+		String strTimestamp = r_cdate.toString();
+		this.r_cdate = strTimestamp.substring(0,strTimestamp.length()-2);
 	}
 	
 }

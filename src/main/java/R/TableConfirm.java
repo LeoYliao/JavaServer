@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/DbConfirm")
-public class DbConfirm extends HttpServlet {
+@WebServlet("/TableConfirm")
+public class TableConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 
@@ -22,11 +22,11 @@ public class DbConfirm extends HttpServlet {
 		String dbname = request.getParameter("dbname");
 		HttpSession session = request.getSession();
 		session.setAttribute("dbname", dbname); 
-		System.out.println(session.getAttribute("dbname")+" in confirm");	//test
+		System.out.println(session.getAttribute("dbname")+" in TableConfirm");	//test
 		//import datas from MainReader
 		//request.getRequestDispatcher("/MainReader").include(request, response);
 		//redirect to html/MainReader.jsp
-		request.getRequestDispatcher("/html/ManagerTable.jsp").forward(request, response);
+		//request.getRequestDispatcher("/html/ManagerTable.jsp").forward(request, response);
 	}
 
 

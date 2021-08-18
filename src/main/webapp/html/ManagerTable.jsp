@@ -49,11 +49,12 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     </header>
 <script>
 		//Ajax 載入 Table 內容列印
-		var dbname = $("#dbname").val();
+		var dbname=$("#dbname").val();;
 		var keys;
 		var data;
+		
 		var loadBody = function(){
-			console.log(dbname+" in loadData");	//test
+			console.log("dbname in body = "+dbname);	//test
 			$.ajax ({	
 			 		url : '/JavaServer/DatasLoader',
 			 		type :'POST',
@@ -95,8 +96,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 	});
 			}
 		loadBody();
-		var title;
 		var loadHead = function(){
+			var title;
+			console.log("dbname in head = "+dbname);	//test
 			switch(dbname){
 			case "pcb":
 				title = "<tr><th>編號</th><th>電路板編號</th><th>電路板名稱</th><th>電路板創建日</th><th>使用中是/否</th><th>停用日期</th><th></th></tr>";
@@ -123,36 +125,111 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				$('thead').html(title);
 				break;
 			default:
+				}
+			console.log("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff : "+title);	//test
 			}
-		}
 		loadHead();
 </script>
 </section>
 <section id="header">
-    <header>
-        <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
-        <h1 id="idId">張◯睿</h1>
-        <p id="number">inspector0002</p>
-        <h4 id="position">檢查員</h4>
-    </header>
-    <nav id="nav">
-        <form method="POST" id="contoller">
-            <ul>					
+        <header>
+            <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
+            <h1 id="idId">王◯瑄</h1>
+            <p id="number">0004</p>
+            <h4 id="position">主管</h4>
+        </header>
+        <nav id="nav">
+            <form method="POST" id="contoller">
+                <ul>
+                    <!-- 原來的button已分別塞入所有按鈕的第三行 -->
+                    <!-- <li><button type="submit" class="active" id="start" name="folder" value="imgs">開始辨識</button></li> -->
+                    <!-- <li><button type="submit" class="active" name="snapshot"onclick="self.location.href='/capture'" >拍照</button></li> -->
+                    <!-- <li><button type="button" class="active" id="start" name="folder" value="imgs">開始辨識</button></li> -->
+                    <!-- <li><button onclick="" class="active">停止辨識</button></li> -->
+                    <!-- <li><button type="reset" onclick="reset" class="active">重置</button></li> -->
 
-                <div>
-                    <a onclick=""><div class='wrapper22'>
-                        <button type="button" name="button" id="button" value="登出" class='btn22' onclick="self.location.href='/'">
-                            <span class='top22 content22'>登出</span>
-                            <span class='bottom22 content22'>Logout</span>
-                        </button>
-                        <input type="button" id="refresh" value="refresh">
-                    </div></a>
-                </div>
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="snapshot" onclick="" id="empButton" value="employee" class='btn22'>
+                                        <span class='top22 content22'>員工資料表</span>
+                                        <span class='bottom22 content22'>Edit Members</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
 
-            </ul>
-        </form>
-    </nav>
-</section>
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="folder" id="pcbButton" value="pcb" class='btn22'>
+                                        <span class='top22 content22'>主機版資訊</span>
+                                        <span class='bottom22 content22'>X</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="button" id="assyButton" value="assy" class='btn22' onclick="">
+                                        <span class='top22 content22'>零件資訊</span>
+                                        <span class='bottom22 content22'>X</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="button" id="comButton" value="compo" class='btn22' onclick="">
+                                        <span class='top22 content22'>主機板與零件配對表</span>
+                                        <span class='bottom22 content22'>X</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="button" id="rsButton" value="result" class='btn22' onclick="">
+                                        <span class='top22 content22'>偵測結果</span>
+                                        <span class='bottom22 content22'>X</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="button" id="button" value="登出" class='btn22'
+                                        onclick="self.location.href='/'">
+                                        <span class='top22 content22'>登出</span>
+                                        <span class='bottom22 content22'>Logout</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+                </ul>
+            </form>
+        </nav>
+    </section>
 
 <script src="<%=basePath%>public/javascript/admin/jquery.min.js" type='text/JavaScript'></script>
 <script src="<%=basePath%>public/javascript/admin/jquery.scrollex.min.js" type='text/JavaScript'></script>
@@ -169,32 +246,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 
     <script>
-    $(document).ready(function(){
-        $("#myDataTalbe").dataTable({
-        	"language": {
-                "processing": "處理中...",
-                "loadingRecords": "載入中...",
-                "lengthMenu": "顯示 _MENU_ 項結果",
-                "zeroRecords": "沒有符合的結果",
-                "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-                "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-                "infoFiltered": "(從 _MAX_ 項結果中過濾)",
-                "infoPostFix": "",
-                "search": "搜尋:",
-                "paginate": {
-                    "first": "第一頁",
-                    "previous": "上一頁",
-                    "next": "下一頁",
-                    "last": "最後一頁"
-                },
-                "aria": {
-                    "sortAscending": ": 升冪排列",
-                    "sortDescending": ": 降冪排列"
-                }
-            }
-        });
-        });
-
+    
     
     //$("#myDataTalbe").DataTable({
 	//		searching:true, //關閉search功能
@@ -225,7 +277,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			$.ajax ({	
 		 		url : '/JavaServer/MainDelete?'+strData,
 		 		type :'POST',
-		 		//data : strData,
 		 		success : function (res){
 		 			//$('#mainTable').load('/JavaServer/EmpReader');
 		 			window.alert("Delete done!!?")
@@ -237,11 +288,71 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		 	});
 			//$(this).parents('tr').remove();
 		});
-		// 重整鍵
-		$('#refresh').click(function () {
-			console.log("refresh click~??");	//test
-			loadBody();
+			
+		// 右測顯示切換鍵
+		$('#empButton,#pcbButton,#assyButton,#assyButton').click(function () {
+			dbname = this.value;
+			console.log("員工資料表 click~?? "+dbname);	//test
+			$.ajax ({	
+		 		url : '/JavaServer/TableConfirm?dbname='+dbname,
+		 		type :'POST',
+		 		success : function (res){
+		 			//$('#mainTable').load('/JavaServer/EmpReader');
+		 			window.alert("TableConfirm 員工資料表鍵 done!!?")
+		 			loadBody();
+		 			loadHead();
+		 			},
+		 		error : function (error) {
+		 			console.log(error);
+		 			}
+		 	});
 		});
+		
+		// 偵測結果鍵
+		$('#rsButton').click(function () {
+			dbname = this.value;
+			console.log("偵測結果 click~?? "+dbname);	//test
+			$.ajax ({	
+		 		url : '/JavaServer/TableConfirm?dbname='+dbname,
+		 		type :'POST',
+		 		success : function (res){
+		 			//$('#mainTable').load('/JavaServer/EmpReader');
+		 			window.alert("TableConfirm 偵測結果 done!!?")
+		 			loadBody();
+		 			loadHead();
+		 			},
+		 		error : function (error) {
+		 			console.log(error);
+		 			}
+		 	});
+		});
+		
+		window.onload = function(){
+        $("#myDataTalbe").dataTable({
+        	"language": {
+                "processing": "處理中...",
+                "loadingRecords": "載入中...",
+                "lengthMenu": "顯示 _MENU_ 項結果",
+                "zeroRecords": "沒有符合的結果",
+                "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                "infoPostFix": "",
+                "search": "搜尋:",
+                "paginate": {
+                    "first": "第一頁",
+                    "previous": "上一頁",
+                    "next": "下一頁",
+                    "last": "最後一頁"
+                },
+                "aria": {
+                    "sortAscending": ": 升冪排列",
+                    "sortDescending": ": 降冪排列"
+                	}
+            	}
+        	});
+        };
+
 
 		// 新增鍵
 		$('#buttonAdd').click(function () {

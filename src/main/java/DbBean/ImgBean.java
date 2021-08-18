@@ -16,7 +16,7 @@ private static final long serialVersionUID = 1L;
 	@JSONField(ordinal=4)
 	private String img_url;
 	@JSONField(ordinal=5)
-	private Timestamp img_cdate;
+	private String img_cdate;
 	
 	public int getImg_key() {
 		return img_key;
@@ -42,11 +42,12 @@ private static final long serialVersionUID = 1L;
 	public void setImg_url(String img_url) {
 		this.img_url = img_url;
 	}
-	public Timestamp getImg_cdate() {
+	public String getImg_cdate() {
 		return img_cdate;
 	}
 	public void setImg_cdate(Timestamp img_cdate) {
-		this.img_cdate = img_cdate;
+		String strTimestamp = img_cdate.toString();
+		this.img_cdate = strTimestamp.substring(0,strTimestamp.length()-2);
 	}
 
 }
