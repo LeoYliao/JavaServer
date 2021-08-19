@@ -21,7 +21,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
-
+<input id='errormsg' style="display:none" value=<%=request.getAttribute("error") %> >
 <!-- ä¸­éå§å®¹ -->
 <form name="form1" id="Form1" action="../LogIn7" method="post" class="login" onclick="return false">
     <img src="<%=basePath%>public/images/login/01010101.png">
@@ -55,6 +55,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         </div></a>
     </div>
 </form>
+
 <script>
     $(document).ready(function(){
         $("#button").click(function(){
@@ -77,5 +78,15 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
             }
         })
     })
+    
+    //feedback
+    var strError=$('#errormsg').val();
+    console.log("error masage : "+strError);
+    var feedback = function(){
+    	if (strError !== "null"){
+    		 window.alert("錯誤訊息 : "+strError);
+    		}
+   		}
+    feedback();
    </script>
 <!-- //è¼å¥å°¾æ®µ -->

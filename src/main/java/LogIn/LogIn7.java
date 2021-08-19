@@ -35,7 +35,7 @@ public class LogIn7 extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String userAcc= request.getParameter("EACC");
-		System.out.println(userAcc);
+		System.out.println(userAcc);	//test
 	
 		try {
 			Context context = new InitialContext();
@@ -46,8 +46,8 @@ public class LogIn7 extends HttpServlet {
 			stmt.setString(1,userAcc);
 			ResultSet rs = stmt.executeQuery();
 			
-			System.out.println("aaa");
-			System.out.println(rs);
+			//System.out.println("aaa");
+			//System.out.println(rs);
 			
 			EmpBean emp = new EmpBean();
 			if(rs.next()) { 
@@ -59,7 +59,8 @@ public class LogIn7 extends HttpServlet {
 				System.out.println(rs.getString("emp_acc"));
 				System.out.println(rs.getInt("emp_mgr"));
 			}else {
-			    System.out.println("ccc");
+				request.setAttribute("error","帳號錯誤");
+				request.getRequestDispatcher("/html/login.jsp").forward(request, response);
 			}
 			
 			String userPwd= request.getParameter("EPD");
@@ -83,16 +84,13 @@ public class LogIn7 extends HttpServlet {
 	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
 	        		request.getRequestDispatcher("/html/ManagerMain.jsp").forward(request, response);
 	            }else {
-	        		request.getRequestDispatcher("/html/login.jsp").forward(request, response);
-	        		System.out.println("<h1>非主管/系統管理員</h1>");
+	        		request.setAttribute("error","非主管/系統管理員");
+	            	request.getRequestDispatcher("/html/login.jsp").forward(request, response);
 	            }
 			} else if ( userAcc.equals(dbAcc)){
-        		request.getRequestDispatcher("/html/login.jsp").forward(request, response);
-        		System.out.println("<h1>密碼錯誤</h1>");
-            } else if ( userPwd.equals(dbPwd)){
-        		request.getRequestDispatcher("/html/login.jsp").forward(request, response);
-        		System.out.println("<h1>帳號錯誤</h1>");	
-			}
+        		response.getWriter().print("<script> alert(\"密碼錯誤\"); </script>");
+				request.getRequestDispatcher("/html/login.jsp").forward(request, response);
+            } 
 //		}finally
 		stmt.close();
 		conn.close();
