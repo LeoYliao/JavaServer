@@ -9,21 +9,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
-#chart {
-  transform: translate(-50%,-50%);
-  left: 50%;
-  top: 50%;
-  width: 600px;
-  height: 90%;
-  /* margin: 15px auto; */
-  opacity: 0.9;
 
-}
-
-#timeline-chart .apexcharts-toolbar {
-  opacity: 1;
-  border: 0;
-}
 
 #header {
 	/* display: -moz-flex;
@@ -223,50 +209,18 @@ footer, header, hgroup, menu, nav, section {
 	}
 
 /* 左邊欄位 */
-#lefter1 {
-	border-radius: 60px;
-	background: #2b2b2b;
-
-	color: #fff;
-	height: 43.5%;
-	width: 38.5%;
-	position: absolute;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	left: 23%;
-	/* right: 3.5%; */
-
-	top: 26.6%;
-	-webkit-filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-	transition: top .2s, left .2s;
-}	
-#lefter2 {
-	border-radius: 60px;
-	background: #2b2b2b;
-	color: #fff;
-	height: 43.5%;
-	width: 38.5%;
-	position: absolute;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	left: 63.5%;
-	top: 26.6%;
-	-webkit-filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-	transition: top .2s, left .2s;
-}	 
+ 
 #lefter3 {
 	border-radius: 60px;
 	background: #2b2b2b;
 	color: #fff;
-	height: 43.5%;
+	height: 90.3%;
 	width: 78.9%;
 	position: absolute;
 	text-align: center;
 	transform: translate(-50%,-50%);
 	left: 43.2%;
-	top: 73.5%;
+	top: 50%;
 	-webkit-filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
     filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
 	transition: top .2s, left .2s;
@@ -3084,44 +3038,19 @@ input, select, textarea {
 
 /* 左邊欄位 */
 
-#lefter1 {
-	border-radius: 60px;
-	/* background: rgba(0, 0, 0, 0.2); */
-	background: #2b2b2b;
-	color: #fff;
-	height: 43.5%;
-	width: 43.5%;
-	position: absolute;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	left: 26.7%;
-	top: 26.6%;
-	float: left;
-}	
-#lefter2 {
-	border-radius: 60px;
-	background: #2b2b2b;
-	color: #fff;
-	height: 43.5%;
-	width: 44%;
-	/* position: absolute; */
-	text-align: center;
-	transform: translate(-50%,-50%);
-	margin-left: 9.5%;
-	top: 26.6%;
-	float: right;
-}	 
+
+
 #lefter3 {
 	border-radius: 60px;
 	background: #2b2b2b;
 	color: #fff;
-	height: 43.5%;
+	height: 90.3%;
 	width: 90%;
 	/* position: absolute; */
 	text-align: center;
 	transform: translate(-50%,-50%);
 	left: 50%;
-	top: 73.5%;
+	top: 50%;
 
 }	
 
@@ -3322,7 +3251,7 @@ input, select, textarea {
 }
 .pie {
 	transform: translate(-50%,-50%);
-	left: 40%;
+	left: 30%;
 	top: 65%;
 	height: 400px;
 	width: 400px;

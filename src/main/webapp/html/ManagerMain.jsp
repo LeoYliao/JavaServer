@@ -26,7 +26,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
-<html>
 	<body class="is-preload" id="kingbody">
 <!-- 載入頭部段
 
@@ -60,7 +59,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
       </li>
     </ul>
   </section>
-</section>
 <section id="lefter2">
     <div>
         <h3 id="title1">一週偵測錯誤變化</h3>
@@ -197,7 +195,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="folder" id="start" value="imgs" class='btn22'>
                             <span class='top22 content22'>主機版資訊</span>
-                            <span class='bottom22 content22'>X</span>
+                            <span class='bottom22 content22'>PCBs</span>
                         </button>
                     </div></a>
                 </div></li>	
@@ -206,7 +204,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="button" value="重置" class='btn22' onclick="">
                             <span class='top22 content22'>零件資訊</span>
-                            <span class='bottom22 content22'>X</span>
+                            <span class='bottom22 content22'>Components</span>
                         </button>
                     </div></a>
                 </div></li>
@@ -215,7 +213,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="button" value="重置" class='btn22' onclick="">
                             <span class='top22 content22'>主機板與零件配對表</span>
-                            <span class='bottom22 content22'>X</span>
+                            <span class='bottom22 content22'>Pairing</span>
                         </button>
                     </div></a>
                 </div></li>
@@ -224,7 +222,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="button" value="重新選擇零件" class='btn22' onclick="history.back()">
                             <span class='top22 content22'>偵測結果</span>
-                            <span class='bottom22 content22'>X</span>
+                            <span class='bottom22 content22'>Result</span>
                         </button>
                     </div></a>
                 </div></li> 
