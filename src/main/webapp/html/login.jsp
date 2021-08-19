@@ -23,7 +23,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <body>
 
 <!-- ä¸­éå§å®¹ -->
-<form name="form1" id="Form1" action="/login" method="post" class="login" onclick="return false">
+<form name="form1" id="Form1" action="../LogIn7" method="post" class="login" onclick="return false">
     <img src="<%=basePath%>public/images/login/01010101.png">
     <!-- <h2>AI é»å­é¶ä»¶è¾¨è­ç³»çµ±</h2> -->
     <!-- <i class="fa fa-user-circle-o"></i> -->

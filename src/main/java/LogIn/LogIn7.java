@@ -4,6 +4,7 @@ package LogIn;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ public class LogIn7 extends HttpServlet {
 		doPost(request, response);
 		}
 	private static final long serialVersionUID = 1L;
-	private static final String SQL = "select * from employee where emp_acc= ? ";	
+	private static final String SQL = "select * from aiot2.employee where emp_acc = ? ";	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
@@ -34,12 +35,13 @@ public class LogIn7 extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String userAcc= request.getParameter("EACC");
-
+		System.out.println(userAcc);
 	
 		try {
 			Context context = new InitialContext();
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/jdbc/servdb");
 			conn = ds.getConnection();
+//			===========================================================================
 			PreparedStatement stmt = conn.prepareStatement(SQL);
 			stmt.setString(1,userAcc);
 			ResultSet rs = stmt.executeQuery();
@@ -61,7 +63,7 @@ public class LogIn7 extends HttpServlet {
 			}
 			
 			String userPwd= request.getParameter("EPD");
-			int userMgr= Integer.parseInt(request.getParameter("MGR"));
+//			int userMgr= Integer.parseInt(request.getParameter("MGR").toString());
 			String dbAcc = emp.getEmp_acc();
 			String dbPwd = emp.getEmp_pwd();
 			int dbMgr = emp.getEmp_mgr();
@@ -70,20 +72,25 @@ public class LogIn7 extends HttpServlet {
 			System.out.println(dbMgr);
 			
 			if ( userAcc.equals(dbAcc) && userPwd.equals(dbPwd) ) {
-	            if (dbMgr==1){
+	            if (dbMgr==2){
 	        		HttpSession session = request.getSession();
 	        		session.setAttribute("dbname", "employee"); 
 	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
 	        		request.getRequestDispatcher("/html/MainTable.jsp").forward(request, response);
+	            } else if (dbMgr==1){
+	        		HttpSession session = request.getSession();
+	        		session.setAttribute("dbname", "result"); 
+	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
+	        		request.getRequestDispatcher("/html/ManagerMain.jsp").forward(request, response);
 	            }else {
-	        		request.getRequestDispatcher("/html/LogIn4.jsp").forward(request, response);
+	        		request.getRequestDispatcher("/html/login.jsp").forward(request, response);
 	        		System.out.println("<h1>非主管/系統管理員</h1>");
 	            }
 			} else if ( userAcc.equals(dbAcc)){
-        		request.getRequestDispatcher("/html/LogIn4.jsp").forward(request, response);
+        		request.getRequestDispatcher("/html/login.jsp").forward(request, response);
         		System.out.println("<h1>密碼錯誤</h1>");
             } else if ( userPwd.equals(dbPwd)){
-        		request.getRequestDispatcher("/html/LogIn4.jsp").forward(request, response);
+        		request.getRequestDispatcher("/html/login.jsp").forward(request, response);
         		System.out.println("<h1>帳號錯誤</h1>");	
 			}
 //		}finally

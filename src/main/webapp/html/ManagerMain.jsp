@@ -304,8 +304,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 
 <script>
-
- 
+	if (dbname == "result") {
+		$('#lefter1,#lefter2').css("display","");
+	} 
 		
 	// 右測顯示切換鍵
 	$('#empButton,#pcbButton,#assyButton,#comButton').click(function () {
