@@ -108,6 +108,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                 "last": "最後一頁"
            				} 
 			}; 
+		DT.data= "aDemoItems";
 		DT.serverSide = true;
 		return DT;
 		}	
@@ -119,12 +120,13 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		var loadBody = function(){
 			var importButton;
 			console.log("dbname in body = "+dbname);	//test
-			$.ajax ({	
-			 		url : '/JavaServer/DatasLoader',
-			 		type :'POST',
-			 		dataType : 'json',
-			 		data : 'json',
-			 		success : function (res){
+			$("#myDataTalbe").DataTable({
+			"ajax" :{	
+			 		"url" : '/JavaServer/DatasLoader',
+			 		"type" :'POST',
+			 		"dataType" : 'json',
+			 		"data" : 'json',
+			 		"success" : function (res){
 			 			//$('#mainTable').load('/JavaServer/EmpReader');
 			 			//console.log("res:"+res);	//test
 			 			//console.log("typeof res:"+typeof res);	//test
@@ -163,14 +165,14 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 					}else{
 			 				$('#buttonAdd').css("display","");
 			 					}
-			 			var nDT = createDataTable();
-			 			$("#myDataTalbe").dataTable(nDT);
+			 			//var nDT = createDataTable();
+			 			
 			 			},
-			 		error : function (error) {
+			 		"error" : function (error) {
 			 			console.log(error);
 			 			}
-			 	});
-				
+			 	}
+				});
 			}
 		loadBody();
 		var loadHead = function(){
