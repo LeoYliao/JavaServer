@@ -84,34 +84,13 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         	<tbody id='tbody'>
             </tbody>
             </table>
-            <input class='btn btn-primary' type='button' value='新增' id='buttonAdd' style='display:none'>
+            <div id='import'>
+            
+            </div>
        </div>
     </header>
  <script>
-	//DataTable設定物件
-	var createDataTable = function(){
-		var DT = new Object;
-		DT.language= {
-            "processing": "處理中...",
-            "loadingRecords": "載入中...",
-            "lengthMenu": "顯示 _MENU_ 項結果",
-            "zeroRecords": "沒有符合的結果",
-            "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-            "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-            "infoFiltered": "(從 _MAX_ 項結果中過濾)",
-            "infoPostFix": "",
-            "search": "搜尋:",
-            "paginate": {
-                "first": "第一頁",
-                "previous": "上一頁",
-                "next": "下一頁",
-                "last": "最後一頁"
-           				} 
-			}; 
-		DT.serverSide = true;
-		return DT;
-		}	
-	//Ajax 載入 Table 內容列印
+		//Ajax 載入 Table 內容列印
 		var dbname=$("#dbname").val();;
 		var keys;
 		var data;
@@ -123,7 +102,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 		url : '/JavaServer/DatasLoader',
 			 		type :'POST',
 			 		dataType : 'json',
-			 		data : 'json',
 			 		success : function (res){
 			 			//$('#mainTable').load('/JavaServer/EmpReader');
 			 			//console.log("res:"+res);	//test
@@ -159,12 +137,10 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 			$('#tbody').html(html);
 			 			//$('#tbody').html("<tr><td>fadfafasdfgdsf</td></tr>");
 			 			if(dbname=="result"){
-			 				$('#buttonAdd').css("display","none");
-			 					}else{
-			 				$('#buttonAdd').css("display","");
-			 					}
-			 			var nDT = createDataTable();
-			 			$("#myDataTalbe").dataTable(nDT);
+			 				$('#import').html("");		
+			 				}else{
+			 				$('#import').html("<input class='btn btn-primary' type='button' value='新增' id='buttonAdd'>");
+			 				}
 			 			},
 			 		error : function (error) {
 			 			console.log(error);
@@ -303,7 +279,27 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 <script>
 
- 
+ // 刪除鍵
+	$("#myDataTalbe").on("click", ".btn-danger", function () {
+		// $("#example").on("click", ".btn-danger", function () {
+		var tr = $(this).parents('tr');
+		var key = tr.find('td:eq(0)').text();
+		var strData = keys[0]+"="+key;
+		console.log(strData);	//test		
+		$.ajax ({	
+	 		url : '/JavaServer/MainDelete?'+strData,
+	 		type :'POST',
+	 		success : function (res){
+	 			//$('#mainTable').load('/JavaServer/EmpReader');
+	 			window.alert("Delete done!!?")
+	 			loadBody();
+	 			},
+	 		error : function (error) {
+	 			console.log(error);
+	 			}
+	 	});
+		//$(this).parents('tr').remove();
+	});
 		
 	// 右測顯示切換鍵
 	$('#empButton,#pcbButton,#assyButton,#comButton').click(function () {
@@ -338,8 +334,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 	 			$('#lefter1,#lefter2').css("display","");
 	 			loadBody();
 	 			loadHead();
-	 			var nDT = createDataTable();
-	 			//$("#").DataTable(nDT);
 	 			},
 	 		error : function (error) {
 	 			console.log(error);
@@ -347,57 +341,33 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 	 	});
 	});
 	
+	$(document).ready(function(){
+    $("#myDataTalbe").dataTable({
+    	"language": {
+            "processing": "處理中...",
+            "loadingRecords": "載入中...",
+            "lengthMenu": "顯示 _MENU_ 項結果",
+            "zeroRecords": "沒有符合的結果",
+            "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+            "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+            "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+            "infoPostFix": "",
+            "search": "搜尋:",
+            "paginate": {
+                "first": "第一頁",
+                "previous": "上一頁",
+                "next": "下一頁",
+                "last": "最後一頁"
+            },
+            "aria": {
+                "sortAscending": ": 升冪排列",
+                "sortDescending": ": 降冪排列"
+            	}
+        	}
+    	});
+    });
 
-	
-	// 舊DataTable
-	//$(document).ready(function(){
-    //$("#myDataTalbe").dataTable({
-    //	"language": {
-    //       "processing": "處理中...",
-    //        "loadingRecords": "載入中...",
-    //        "lengthMenu": "顯示 _MENU_ 項結果",
-    //        "zeroRecords": "沒有符合的結果",
-    //        "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-    //        "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-    //        "infoFiltered": "(從 _MAX_ 項結果中過濾)",
-    //        "infoPostFix": "",
-    //        "search": "搜尋:",
-    //        "paginate": {
-    //            "first": "第一頁",
-    //           "previous": "上一頁",
-    //            "next": "下一頁",
-    //            "last": "最後一頁"
-    //        },
-    //       "aria": {
-    //            "sortAscending": ": 升冪排列",
-    //            "sortDescending": ": 降冪排列"
-    //        	}
-    //    	}
-    //	});
-    //});
 
-	// 刪除鍵
-	$("#myDataTalbe").on("click", ".btn-danger", function () {
-		// $("#example").on("click", ".btn-danger", function () {
-		var tr = $(this).parents('tr');
-		var key = tr.find('td:eq(0)').text();
-		var strData = keys[0]+"="+key;
-		console.log(strData);	//test		
-		$.ajax ({	
-	 		url : '/JavaServer/MainDelete?'+strData,
-	 		type :'POST',
-	 		success : function (res){
-	 			//$('#mainTable').load('/JavaServer/EmpReader');
-	 			window.alert("Delete done!!?")
-	 			loadBody();
-	 			},
-	 		error : function (error) {
-	 			console.log(error);
-	 			}
-	 	});
-		//$(this).parents('tr').remove();
-	});
-		
 	// 新增鍵
 	$('#buttonAdd').click(function () {
 		//$('table').append("<tr><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>");

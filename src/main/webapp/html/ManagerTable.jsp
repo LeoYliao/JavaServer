@@ -192,9 +192,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                             <a onclick="">
                                 <div class='wrapper22'>
                                     <button type="button" name="button" id="comButton" value="compo" class='btn22' onclick="">
-                                        <span class='top22 content22'>主機板與零件配對表</span>
-                                        <span class='bottom22 content22'>X</span>
-                                    </button>
+                            			<span class='top22 content22'>主機板與零件配對表</span>
+                            			<span class='bottom22 content22'>X</span>
+                        			</button>
                                 </div>
                             </a>
                     </div>
@@ -205,9 +205,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                             <a onclick="">
                                 <div class='wrapper22'>
                                     <button type="button" name="button" id="rsButton" value="result" class='btn22' onclick="">
-                                        <span class='top22 content22'>偵測結果</span>
-                                        <span class='bottom22 content22'>X</span>
-                                    </button>
+                            			<span class='top22 content22'>偵測結果</span>
+                           		 		<span class='bottom22 content22'>X</span>
+                        			</button>
                                 </div>
                             </a>
                     </div>
@@ -246,26 +246,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 
     <script>
-    
-    
-    //$("#myDataTalbe").DataTable({
-	//		searching:true, //關閉search功能
-	//		"ordering":false,
-	//		"processing":false,
-
-	//		"paging":false,
-    //     "information":false,
-    //     "info":false,
-			// columnDefs: [{
-			// 	targets: [3],
-			// 	orderable: false,
-			// }],
-			// serverSide:true
-	//});
-
-		// $("#example").DataTable();
-		// Table列印
-		
 	
 		// 刪除鍵
 		$("#myDataTalbe").on("click", ".btn-danger", function () {
@@ -290,7 +270,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		});
 			
 		// 右測顯示切換鍵
-		$('#empButton,#pcbButton,#assyButton,#assyButton').click(function () {
+		$('#empButton,#pcbButton,#assyButton,#comButton').click(function () {
 			dbname = this.value;
 			console.log("員工資料表 click~?? "+dbname);	//test
 			$.ajax ({	
@@ -440,36 +420,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			console.log(text);	//test
 			
 			$(this).parents('tr').before(text);
-			//var update=$('#myDataTalbe :input').serialize();
-			//$('#test').html(update).append("!!!!!?");
-			//
-			//var key = tr.find('td:eq(0)').text();
-			//var no = tr.find('td:eq(1)').text();
-			//var acc = tr.find('td:eq(2)').text();
-			//var pwd = tr.find('td:eq(3)').text();
-			//var name = tr.find('td:eq(4)').text();
-			//var job = tr.find('td:eq(5)').text();
-			//var img = tr.find('td:eq(6)').text();
-			//var mgr = tr.find('td:eq(7)').text();
-			//var hired = tr.find('td:eq(8)').text();
-			//var leave = tr.find('td:eq(9)').text();
-            // $('table')   
-            //
-            //$(this).parents('tr').before("<tr>\
-			//	<td><input type='text' size='2' value=" + key + " ></td>\
-			//	<td><input type='text' size='2' value=" + no + " ></td>\
-			//	<td><input type='text' size='2' value=" + acc + " ></td>\
-			//	<td><input type='text' size='2' value=" + pwd + " ></td>\
-			//	<td><input type='text' size='2' value=" + name + " ></td>\
-			//	<td><input type='text' size='2' value=" + job + " ></td>\
-			//	<td><input type='text' size='2' value=" + img + " ></td>\
-			//	<td><input type='text' size='2' value=" + mgr + " ></td>\
-			//	<td><input type='text' size='2' value=" + hired + " ></td>\
-			//	<td><input type='text' size='2' value=" + leave + " ></td><td>\
-			//	<a class='btn btn-success'>確定</a>\
-			//	<a class='btn btn-danger'>刪除</a>\
-			//	</td></tr>");
-			//
+
 			$(this).parents('tr').remove();
 			});
 
@@ -494,35 +445,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 						}
 		      	});
 			window.alert("out of Ajax succeed!?");	//test
-			//var key1 = tr1.find('td:eq(0)').find("input").val();
-			//var no1 = tr1.find('td:eq(1)').find("input").val();
-			//var acc1 = tr1.find('td:eq(2)').find("input").val();
-			//var pwd1 = tr1.find('td:eq(3)').find("input").val();
-			//var name1 = tr1.find('td:eq(4)').find("input").val();
-			//var job1 = tr1.find('td:eq(5)').find("input").val();
-			//var img1 = tr1.find('td:eq(6)').find("input").val();
-			//var mgr1 = tr1.find('td:eq(7)').find("input").val();
-			//var hired1 = tr1.find('td:eq(8)').find("input").val();
-			//var leave1 = tr1.find('td:eq(9)').find("input").val();
-			
-			//$(this).parents('#tbody').remove();
-            //$(this).parents('tr').before(`<tr>\
-			//	<td>${key1}</td>\
-			//	<td>${no1}</td>\
-			//	<td>${acc1}</td>\
-			//	<td>${pwd1}</td>\
-			//	<td>${name1}</td>\
-			//	<td>${job1}</td>\
-			//	<td>${img1}</td>\
-			//	<td>${mgr1}</td>\
-			//	<td>${hired1}</td>\
-			//	<td>${leave1}</td>\
-			//	<td>\
-			//		<a class="btn btn-warning" id="buttonChange">修改</a>\
-			//		<a class="btn btn-danger">刪除</a>\
-			//	</td>\
-			//	</tr>`);
-			//$(this).parents('tr').remove();
 
 
 			});
