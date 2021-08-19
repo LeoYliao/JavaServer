@@ -26,7 +26,7 @@ public class DbConfirm extends HttpServlet {
 		//import datas from MainReader
 		//request.getRequestDispatcher("/MainReader").include(request, response);
 		//redirect to html/MainReader.jsp
-		request.getRequestDispatcher("/html/ManagerMain.jsp").forward(request, response);
+		request.getRequestDispatcher("/html/ManagerMain2.jsp").forward(request, response);
 	}
 
 

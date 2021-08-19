@@ -84,9 +84,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         	<tbody id='tbody'>
             </tbody>
             </table>
-            <div id='import'>
-            
-            </div>
+            <input class='btn btn-primary' type='button' value='新增' id='buttonAdd' style="display:none">
        </div>
     </header>
  <script>
@@ -137,10 +135,10 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 			$('#tbody').html(html);
 			 			//$('#tbody').html("<tr><td>fadfafasdfgdsf</td></tr>");
 			 			if(dbname=="result"){
-			 				$('#import').html("");		
-			 				}else{
-			 				$('#import').html("<input class='btn btn-primary' type='button' value='新增' id='buttonAdd'>");
-			 				}
+			 				$('#buttonAdd').css("display","none");
+			 					}else{
+			 				$('#buttonAdd').css("display","");
+			 					}
 			 			},
 			 		error : function (error) {
 			 			console.log(error);
@@ -363,7 +361,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                 "sortAscending": ": 升冪排列",
                 "sortDescending": ": 降冪排列"
             	}
-        	}
+        	},
+        "destroy":true
+        //"stateSave":true
     	});
     });
 
