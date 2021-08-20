@@ -14,7 +14,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>查詢結果</title>
-    <link rel="stylesheet" href="<%=basePath%>public/css/managerother.css" type="text/css" />
+    <link rel="stylesheet" href="<%=basePath%>public/css/admin.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
     
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -24,11 +24,11 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
 </head>
 
-<body class="is-preload" id="kingbody">
+<body class="is-preload">
 <input id="dbname" style="display:none" value=<%=session.getAttribute("dbname")%>>
 
 <!-- 中間內容 -->
-<section id="lefter" >
+<section id="lefter">
     <header>
         <div>
             <h3 id="title1">檢視畫面</h3>
@@ -49,11 +49,12 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     </header>
 <script>
 		//Ajax 載入 Table 內容列印
-		var dbname = $("#dbname").val();
+		var dbname=$("#dbname").val();;
 		var keys;
 		var data;
+		
 		var loadBody = function(){
-			console.log(dbname+" in loadData");	//test
+			console.log("dbname in body = "+dbname);	//test
 			$.ajax ({	
 			 		url : '/JavaServer/DatasLoader',
 			 		type :'POST',
@@ -95,8 +96,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 	});
 			}
 		loadBody();
-		var title;
 		var loadHead = function(){
+			var title;
+			console.log("dbname in head = "+dbname);	//test
 			switch(dbname){
 			case "pcb":
 				title = "<tr><th>編號</th><th>電路板編號</th><th>電路板名稱</th><th>電路板創建日</th><th>使用中是/否</th><th>停用日期</th><th></th></tr>";
@@ -123,36 +125,111 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				$('thead').html(title);
 				break;
 			default:
+				}
+			console.log("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff : "+title);	//test
 			}
-		}
 		loadHead();
 </script>
 </section>
 <section id="header">
-    <header>
-        <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
-        <h1 id="idId">張◯睿</h1>
-        <p id="number">inspector0002</p>
-        <h4 id="position">檢查員</h4>
-    </header>
-    <nav id="nav">
-        <form method="POST" id="contoller">
-            <ul>					
+        <header>
+            <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
+            <h1 id="idId">王◯瑄</h1>
+            <p id="number">0004</p>
+            <h4 id="position">主管</h4>
+        </header>
+        <nav id="nav">
+            <form method="POST" id="contoller">
+                <ul>
+                    <!-- 原來的button已分別塞入所有按鈕的第三行 -->
+                    <!-- <li><button type="submit" class="active" id="start" name="folder" value="imgs">開始辨識</button></li> -->
+                    <!-- <li><button type="submit" class="active" name="snapshot"onclick="self.location.href='/capture'" >拍照</button></li> -->
+                    <!-- <li><button type="button" class="active" id="start" name="folder" value="imgs">開始辨識</button></li> -->
+                    <!-- <li><button onclick="" class="active">停止辨識</button></li> -->
+                    <!-- <li><button type="reset" onclick="reset" class="active">重置</button></li> -->
 
-                <div>
-                    <a onclick=""><div class='wrapper22'>
-                        <button type="button" name="button" id="button" value="登出" class='btn22' onclick="self.location.href='/'">
-                            <span class='top22 content22'>登出</span>
-                            <span class='bottom22 content22'>Logout</span>
-                        </button>
-                        <input type="button" id="refresh" value="refresh">
-                    </div></a>
-                </div>
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="snapshot" onclick="" id="empButton" value="employee" class='btn22'>
+                                        <span class='top22 content22'>員工資料表</span>
+                                        <span class='bottom22 content22'>Edit Members</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
 
-            </ul>
-        </form>
-    </nav>
-</section>
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="folder" id="pcbButton" value="pcb" class='btn22'>
+                                        <span class='top22 content22'>主機版資訊</span>
+                                        <span class='bottom22 content22'>X</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="button" id="assyButton" value="assy" class='btn22' onclick="">
+                                        <span class='top22 content22'>零件資訊</span>
+                                        <span class='bottom22 content22'>X</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="button" id="comButton" value="compo" class='btn22' onclick="">
+                            			<span class='top22 content22'>主機板與零件配對表</span>
+                            			<span class='bottom22 content22'>X</span>
+                        			</button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="button" id="rsButton" value="result" class='btn22' onclick="">
+                            			<span class='top22 content22'>偵測結果</span>
+                           		 		<span class='bottom22 content22'>X</span>
+                        			</button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a onclick="">
+                                <div class='wrapper22'>
+                                    <button type="button" name="button" id="button" value="登出" class='btn22'
+                                        onclick="self.location.href='/'">
+                                        <span class='top22 content22'>登出</span>
+                                        <span class='bottom22 content22'>Logout</span>
+                                    </button>
+                                </div>
+                            </a>
+                    </div>
+                    </li>
+                </ul>
+            </form>
+        </nav>
+    </section>
 
 <script src="<%=basePath%>public/javascript/admin/jquery.min.js" type='text/JavaScript'></script>
 <script src="<%=basePath%>public/javascript/admin/jquery.scrollex.min.js" type='text/JavaScript'></script>
@@ -169,16 +246,15 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 
     <script>
-    $(document).ready(function(){
+	$(document).ready(function(){
         $("#myDataTalbe").dataTable({
-        	
         	"language": {
                 "processing": "處理中...",
                 "loadingRecords": "載入中...",
                 "lengthMenu": "顯示 _MENU_ 項結果",
                 "zeroRecords": "沒有符合的結果",
-                //"info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-                //"infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
                 "infoFiltered": "(從 _MAX_ 項結果中過濾)",
                 "infoPostFix": "",
                 "search": "搜尋:",
@@ -191,30 +267,10 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                 "aria": {
                     "sortAscending": ": 升冪排列",
                     "sortDescending": ": 降冪排列"
-                }
-            }
+                	}
+            	}
+        	});
         });
-        });
-
-    
-    //$("#myDataTalbe").DataTable({
-	//		searching:true, //關閉search功能
-	//		"ordering":false,
-	//		"processing":false,
-
-	//		"paging":false,
-    //     "information":false,
-    //     "info":false,
-			// columnDefs: [{
-			// 	targets: [3],
-			// 	orderable: false,
-			// }],
-			// serverSide:true
-	//});
-
-		// $("#example").DataTable();
-		// Table列印
-		
 	
 		// 刪除鍵
 		$("#myDataTalbe").on("click", ".btn-danger", function () {
@@ -226,7 +282,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			$.ajax ({	
 		 		url : '/JavaServer/MainDelete?'+strData,
 		 		type :'POST',
-		 		//data : strData,
 		 		success : function (res){
 		 			//$('#mainTable').load('/JavaServer/EmpReader');
 		 			window.alert("Delete done!!?")
@@ -238,11 +293,47 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		 	});
 			//$(this).parents('tr').remove();
 		});
-		// 重整鍵
-		$('#refresh').click(function () {
-			console.log("refresh click~??");	//test
-			loadBody();
+			
+		// 右測顯示切換鍵
+		$('#empButton,#pcbButton,#assyButton,#comButton').click(function () {
+			dbname = this.value;
+			console.log("員工資料表 click~?? "+dbname);	//test
+			$.ajax ({	
+		 		url : '/JavaServer/TableConfirm?dbname='+dbname,
+		 		type :'POST',
+		 		success : function (res){
+		 			//$('#mainTable').load('/JavaServer/EmpReader');
+		 			window.alert("TableConfirm 員工資料表鍵 done!!?")
+		 			loadBody();
+		 			loadHead();
+		 			},
+		 		error : function (error) {
+		 			console.log(error);
+		 			}
+		 	});
 		});
+		
+		// 偵測結果鍵
+		$('#rsButton').click(function () {
+			dbname = this.value;
+			console.log("偵測結果 click~?? "+dbname);	//test
+			$.ajax ({	
+		 		url : '/JavaServer/TableConfirm?dbname='+dbname,
+		 		type :'POST',
+		 		success : function (res){
+		 			//$('#mainTable').load('/JavaServer/EmpReader');
+		 			window.alert("TableConfirm 偵測結果 done!!?")
+		 			loadBody();
+		 			loadHead();
+		 			},
+		 		error : function (error) {
+		 			console.log(error);
+		 			}
+		 	});
+		});
+		
+		
+
 
 		// 新增鍵
 		$('#buttonAdd').click(function () {
@@ -330,36 +421,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			console.log(text);	//test
 			
 			$(this).parents('tr').before(text);
-			//var update=$('#myDataTalbe :input').serialize();
-			//$('#test').html(update).append("!!!!!?");
-			//
-			//var key = tr.find('td:eq(0)').text();
-			//var no = tr.find('td:eq(1)').text();
-			//var acc = tr.find('td:eq(2)').text();
-			//var pwd = tr.find('td:eq(3)').text();
-			//var name = tr.find('td:eq(4)').text();
-			//var job = tr.find('td:eq(5)').text();
-			//var img = tr.find('td:eq(6)').text();
-			//var mgr = tr.find('td:eq(7)').text();
-			//var hired = tr.find('td:eq(8)').text();
-			//var leave = tr.find('td:eq(9)').text();
-            // $('table')   
-            //
-            //$(this).parents('tr').before("<tr>\
-			//	<td><input type='text' size='2' value=" + key + " ></td>\
-			//	<td><input type='text' size='2' value=" + no + " ></td>\
-			//	<td><input type='text' size='2' value=" + acc + " ></td>\
-			//	<td><input type='text' size='2' value=" + pwd + " ></td>\
-			//	<td><input type='text' size='2' value=" + name + " ></td>\
-			//	<td><input type='text' size='2' value=" + job + " ></td>\
-			//	<td><input type='text' size='2' value=" + img + " ></td>\
-			//	<td><input type='text' size='2' value=" + mgr + " ></td>\
-			//	<td><input type='text' size='2' value=" + hired + " ></td>\
-			//	<td><input type='text' size='2' value=" + leave + " ></td><td>\
-			//	<a class='btn btn-success'>確定</a>\
-			//	<a class='btn btn-danger'>刪除</a>\
-			//	</td></tr>");
-			//
+
 			$(this).parents('tr').remove();
 			});
 
@@ -384,35 +446,6 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 						}
 		      	});
 			window.alert("out of Ajax succeed!?");	//test
-			//var key1 = tr1.find('td:eq(0)').find("input").val();
-			//var no1 = tr1.find('td:eq(1)').find("input").val();
-			//var acc1 = tr1.find('td:eq(2)').find("input").val();
-			//var pwd1 = tr1.find('td:eq(3)').find("input").val();
-			//var name1 = tr1.find('td:eq(4)').find("input").val();
-			//var job1 = tr1.find('td:eq(5)').find("input").val();
-			//var img1 = tr1.find('td:eq(6)').find("input").val();
-			//var mgr1 = tr1.find('td:eq(7)').find("input").val();
-			//var hired1 = tr1.find('td:eq(8)').find("input").val();
-			//var leave1 = tr1.find('td:eq(9)').find("input").val();
-			
-			//$(this).parents('#tbody').remove();
-            //$(this).parents('tr').before(`<tr>\
-			//	<td>${key1}</td>\
-			//	<td>${no1}</td>\
-			//	<td>${acc1}</td>\
-			//	<td>${pwd1}</td>\
-			//	<td>${name1}</td>\
-			//	<td>${job1}</td>\
-			//	<td>${img1}</td>\
-			//	<td>${mgr1}</td>\
-			//	<td>${hired1}</td>\
-			//	<td>${leave1}</td>\
-			//	<td>\
-			//		<a class="btn btn-warning" id="buttonChange">修改</a>\
-			//		<a class="btn btn-danger">刪除</a>\
-			//	</td>\
-			//	</tr>`);
-			//$(this).parents('tr').remove();
 
 
 			});

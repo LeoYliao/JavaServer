@@ -3,20 +3,30 @@ package DbBean;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class RsBean {
 private static final long serialVersionUID = 1L;
-	
+	@JSONField(ordinal=1)
 	private int r_key;
+	@JSONField(ordinal=2)
 	private int r_assykey;
+	@JSONField(ordinal=3)
 	private String r_empno;
 	
+	@JSONField(ordinal=4)
 	private int r_allqty;
+	@JSONField(ordinal=5)
 	private int r_okqty;
+	@JSONField(ordinal=6)
 	private int r_errqty;
 	
-	private BigDecimal r_er;
+	@JSONField(ordinal=7)
 	private String r_errloc;
-	private Timestamp r_cdate;
+	@JSONField(ordinal=8)
+	private BigDecimal r_dtime;
+	@JSONField(ordinal=9)
+	private String r_cdate;
 	
 	public int getR_key() {
 		return r_key;
@@ -54,23 +64,24 @@ private static final long serialVersionUID = 1L;
 	public void setR_errqty(int r_errqty) {
 		this.r_errqty = r_errqty;
 	}
-	public BigDecimal getR_er() {
-		return r_er;
-	}
-	public void setR_er(BigDecimal r_er) {
-		this.r_er = r_er;
-	}
 	public String getR_errloc() {
 		return r_errloc;
 	}
 	public void setR_errloc(String r_errloc) {
 		this.r_errloc = r_errloc;
 	}
-	public Timestamp getR_cdate() {
+	public BigDecimal getR_dtime() {
+		return r_dtime;
+	}
+	public void setR_dtime(BigDecimal r_dtime) {
+		this.r_dtime = r_dtime;
+	}
+	public String getR_cdate() {
 		return r_cdate;
 	}
 	public void setR_cdate(Timestamp r_cdate) {
-		this.r_cdate = r_cdate;
+		String strTimestamp = r_cdate.toString();
+		this.r_cdate = strTimestamp.substring(0,strTimestamp.length()-2);
 	}
 	
 }

@@ -20,24 +20,19 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" /> 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
-<<<<<<< HEAD
-	<body class="is-preload" id="kingbody">
-<!-- 載入頭部段
-=======
 
 <body class="is-preload" id="kingbody">
 <input id="dbname" style="display:none" value=<%=session.getAttribute("dbname")%>>
->>>>>>> d9ec2b1805e11cd8d98135ab9cef3c614785b975
 
 
 <!-- 中間內容 -->
-<section style="display:none" id="lefter1">
+<section style="display:" id="lefter1">
     <div>
         <h3 id="title1">錯誤統計</h3>
     </div>
@@ -64,14 +59,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         <span>1145</span>
       </li>
     </ul>
-<<<<<<< HEAD
-  </section>
-<section id="lefter2">
-=======
   
 </section>
-<section style="display:none" id="lefter2">
->>>>>>> d9ec2b1805e11cd8d98135ab9cef3c614785b975
+<section style="display:" id="lefter2">
     <div>
         <h3 id="title1">一週偵測錯誤變化</h3>
     </div>
@@ -94,35 +84,11 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         	<tbody id='tbody'>
             </tbody>
             </table>
-            <input class='btn btn-primary' type='button' value='新增' id='buttonAdd' style='display:none'>
+            <input class='btn btn-primary' type='button' value='新增' id='buttonAdd' style="display:none">
        </div>
     </header>
  <script>
-	//DataTable設定物件
-	var createDataTable = function(){
-		var DT = new Object;
-		DT.language= {
-            "processing": "處理中...",
-            "loadingRecords": "載入中...",
-            "lengthMenu": "顯示 _MENU_ 項結果",
-            "zeroRecords": "沒有符合的結果",
-            "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-            "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-            "infoFiltered": "(從 _MAX_ 項結果中過濾)",
-            "infoPostFix": "",
-            "search": "搜尋:",
-            "paginate": {
-                "first": "第一頁",
-                "previous": "上一頁",
-                "next": "下一頁",
-                "last": "最後一頁"
-           				} 
-			}; 
-		DT.data= "aDemoItems";
-		DT.serverSide = true;
-		return DT;
-		}	
-	//Ajax 載入 Table 內容列印
+		//Ajax 載入 Table 內容列印
 		var dbname=$("#dbname").val();;
 		var keys;
 		var data;
@@ -130,13 +96,11 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		var loadBody = function(){
 			var importButton;
 			console.log("dbname in body = "+dbname);	//test
-			$("#myDataTalbe").DataTable({
-			"ajax" :{	
-			 		"url" : '/JavaServer/DatasLoader',
-			 		"type" :'POST',
-			 		"dataType" : 'json',
-			 		"data" : 'json',
-			 		"success" : function (res){
+			$.ajax ({	
+			 		url : '/JavaServer/DatasLoader',
+			 		type :'POST',
+			 		dataType : 'json',
+			 		success : function (res){
 			 			//$('#mainTable').load('/JavaServer/EmpReader');
 			 			//console.log("res:"+res);	//test
 			 			//console.log("typeof res:"+typeof res);	//test
@@ -175,16 +139,14 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 					}else{
 			 				$('#buttonAdd').css("display","");
 			 					}
-			 			//var nDT = createDataTable();
-			 			
 			 			},
-			 		"error" : function (error) {
+			 		error : function (error) {
 			 			console.log(error);
 			 			}
-			 	}
-				});
+			 	});
+				
 			}
-		loadBody();
+		
 		var loadHead = function(){
 			var title;
 			console.log("dbname in head = "+dbname);	//test
@@ -217,15 +179,16 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 				}
 			console.log("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff : "+title);	//test
 			}
-		loadHead();
+		
+		
 </script>   
 </section>
 <section id="header">
     <header>
         <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
-        <h1 id="idId">ㄚ玟</h1>
+        <h1 id="idId">王◯瑄</h1>
         <p id="number">0004</p>
-        <h4 id="position">系統管理員</h4>
+        <h4 id="position">主管</h4>
     </header>
     <nav id="nav">				
         <form method="POST" id="contoller">
@@ -248,30 +211,18 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     
                 <div><li>
                     <a onclick=""><div class='wrapper22'>
-<<<<<<< HEAD
-                        <button type="button" name="folder" id="start" value="imgs" class='btn22'>
-                            <span class='top22 content22'>主機版資訊</span>
-                            <span class='bottom22 content22'>PCBs</span>
-=======
                          <button type="button" name="folder" id="pcbButton" value="pcb" class='btn22'>
                           		<span class='top22 content22'>主機版資訊</span>
                             	<span class='bottom22 content22'>X</span>
->>>>>>> d9ec2b1805e11cd8d98135ab9cef3c614785b975
                         </button>
                     </div></a>
                 </div></li>	
 
                 <div><li>
                     <a onclick=""><div class='wrapper22'>
-<<<<<<< HEAD
-                        <button type="button" name="button" id="button" value="重置" class='btn22' onclick="">
-                            <span class='top22 content22'>零件資訊</span>
-                            <span class='bottom22 content22'>Components</span>
-=======
                        <button type="button" name="button" id="assyButton" value="assy" class='btn22' onclick="">
                         		<span class='top22 content22'>零件資訊</span>
                           		<span class='bottom22 content22'>X</span>
->>>>>>> d9ec2b1805e11cd8d98135ab9cef3c614785b975
                         </button>
                     </div></a>
                 </div></li>
@@ -280,7 +231,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="comButton" value="compo" class='btn22' onclick="">
                             <span class='top22 content22'>主機板與零件配對表</span>
-                            <span class='bottom22 content22'>Pairing</span>
+                            <span class='bottom22 content22'>X</span>
                         </button>
                     </div></a>
                 </div></li>
@@ -289,7 +240,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="rsButton" value="result" class='btn22' onclick="">
                             <span class='top22 content22'>偵測結果</span>
-                            <span class='bottom22 content22'>Result</span>
+                            <span class='bottom22 content22'>X</span>
                         </button>
                     </div></a>
                 </div></li> 
@@ -326,82 +277,43 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 
 <script>
-	if (dbname == "result") {
-		$('#lefter1,#lefter2').css("display","");
-	} 
-		
-	// 右測顯示切換鍵
-	$('#empButton,#pcbButton,#assyButton,#comButton').click(function () {
-		dbname = this.value;
-		console.log("員工資料表 click~?? "+dbname);	//test
-		$.ajax ({	
-	 		url : '/JavaServer/TableConfirm?dbname='+dbname,
-	 		type :'POST',
-	 		success : function (res){
-	 			//$('#mainTable').load('/JavaServer/EmpReader');
-	 			window.alert("TableConfirm "+dbname+" done!!?")
-	 			$('#lefter1,#lefter2').css("display","none");
-	 			loadBody();
-	 			loadHead();
-	 			},
-	 		error : function (error) {
-	 			console.log(error);
-	 			}
-	 	});
-	});
+// TableCreate
+var createTable = function(){
+	loadBody();
+	loadHead();
 	
-	// 偵測結果鍵
-	$('#rsButton').click(function () {
-		dbname = this.value;
-		console.log("偵測結果 click~?? "+dbname);	//test
-		$.ajax ({	
-	 		url : '/JavaServer/TableConfirm?dbname='+dbname,
-	 		type :'POST',
-	 		success : function (res){
-	 			//$('#mainTable').load('/JavaServer/EmpReader');
-	 			window.alert("TableConfirm "+dbname+" done!!?")
-	 			$('#lefter1,#lefter2').css("display","");
-	 			loadBody();
-	 			loadHead();
-	 			var nDT = createDataTable();
-	 			//$("#").DataTable(nDT);
-	 			},
-	 		error : function (error) {
-	 			console.log(error);
-	 			}
-	 	});
-	});
-	
+}
+$(document).ready(function(){
+	$("#myDataTalbe").dataTable({
+		"language": {
+    		"processing": "處理中...",
+    		"loadingRecords": "載入中...",
+    		"lengthMenu": "顯示 _MENU_ 項結果",
+    		"zeroRecords": "沒有符合的結果",
+    		"info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+    		"infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+    		"infoFiltered": "(從 _MAX_ 項結果中過濾)",
+   			"infoPostFix": "",
+    		"search": "搜尋:",
+    		"paginate": {
+        		"first": "第一頁",
+        		"previous": "上一頁",
+        		"next": "下一頁",
+        		"last": "最後一頁"
+    		},
+    		"aria": {
+        		"sortAscending": ": 升冪排列",
+        		"sortDescending": ": 降冪排列"
+    			}
+			},
+		"destroy":true,
+		//"deferRender": true
+		//"stateSave":true
+		});	
+});
+createTable();
 
-	
-	// 舊DataTable
-	//$(document).ready(function(){
-    //$("#myDataTalbe").dataTable({
-    //	"language": {
-    //       "processing": "處理中...",
-    //        "loadingRecords": "載入中...",
-    //        "lengthMenu": "顯示 _MENU_ 項結果",
-    //        "zeroRecords": "沒有符合的結果",
-    //        "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-    //        "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-    //        "infoFiltered": "(從 _MAX_ 項結果中過濾)",
-    //        "infoPostFix": "",
-    //        "search": "搜尋:",
-    //        "paginate": {
-    //            "first": "第一頁",
-    //           "previous": "上一頁",
-    //            "next": "下一頁",
-    //            "last": "最後一頁"
-    //        },
-    //       "aria": {
-    //            "sortAscending": ": 升冪排列",
-    //            "sortDescending": ": 降冪排列"
-    //        	}
-    //    	}
-    //	});
-    //});
-
-	// 刪除鍵
+ // 刪除鍵
 	$("#myDataTalbe").on("click", ".btn-danger", function () {
 		// $("#example").on("click", ".btn-danger", function () {
 		var tr = $(this).parents('tr');
@@ -423,6 +335,53 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		//$(this).parents('tr').remove();
 	});
 		
+	// 右測顯示切換鍵
+	$('#empButton,#pcbButton,#assyButton,#comButton').click(function () {
+		dbname = this.value;
+		console.log("員工資料表 click~?? "+dbname);	//test
+		$.ajax ({	
+	 		url : '/JavaServer/TableConfirm?dbname='+dbname,
+	 		type :'POST',
+	 		success : function (res){
+	 			//$('#mainTable').load('/JavaServer/EmpReader');
+	 			window.alert("TableConfirm "+dbname+" done!!?")
+	 			$('#lefter1,#lefter2').css("display","none");
+	 			$('#lefter3').css({"height": "90.5%","width": "82%","left": "44%","top": "50%"});
+	 			$('#mainTable').css("height","80%");
+	 			createTable();
+	 			},
+	 		error : function (error) {
+	 			console.log(error);
+	 			}
+	 	});
+	});
+	
+	// 偵測結果鍵
+	$('#rsButton').click(function () {
+		dbname = this.value;
+		console.log("偵測結果 click~?? "+dbname);	//test
+		$.ajax ({	
+	 		url : '/JavaServer/TableConfirm?dbname='+dbname,
+	 		type :'POST',
+	 		success : function (res){
+	 			//$('#mainTable').load('/JavaServer/EmpReader');
+	 			window.alert("TableConfirm "+dbname+" done!!?")
+	 			$('#lefter1,#lefter2').css("display","");
+	 			$('#lefter3').css({"height": "43.5%","width": "82%","left": "44%","top": "73.5%"});
+	 			$('#mainTable').css("height","60%");
+	 			createTable();
+	 			},
+	 		error : function (error) {
+	 			console.log(error);
+	 			}
+	 	});
+	});
+	//dataTable position
+	//$(document).ready(function(){
+    
+	//	});
+
+
 	// 新增鍵
 	$('#buttonAdd').click(function () {
 		//$('table').append("<tr><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>");

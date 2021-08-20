@@ -1,7 +1,7 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Source+Code+Pro:400");
 
-/* 右邊欄位 */
+/* ������ */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -114,7 +114,7 @@
 ol, ul {
 	list-style: none;
 }
-/* 右邊特效按鈕 */
+/* �������� */
 
 .btn22 {
 	/* margin-top: 25px; */
@@ -168,7 +168,7 @@ ol, ul {
 	top: 0px;
   }
 
- /* 所有 */
+ /* ����� */
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, abbr, acronym, address, big, cite,
@@ -222,7 +222,7 @@ footer, header, hgroup, menu, nav, section {
 		line-height: 1.75em;
 	}
 
-/* 左邊欄位 */
+/* 撌阡���� */
 #lefter1 {
 	border-radius: 60px;
 	background: #2b2b2b;
@@ -312,7 +312,7 @@ footer, header, hgroup, menu, nav, section {
 	top: 73.6%;
 }	 */
 
-/* 表格 */
+/* 銵冽 */
 
 /* #mainTable{
 	border: 2px red solid;
@@ -331,7 +331,7 @@ td{
 	padding: 30px;
 	color: #3c3c3c;
 	height: 60%;
-	width: 95%;
+	width: 90%;
 	position: absolute;
 	text-align: center;
 	transform: translate(-50%,-50%);
@@ -3082,7 +3082,7 @@ input, select, textarea {
 				font-size: 11pt;
 			}
 
-/* 左邊欄位 */
+/* 撌阡���� */
 
 #lefter1 {
 	border-radius: 60px;
@@ -3205,7 +3205,7 @@ input, select, textarea {
 					top: auto;
 				}
 
-		/* 圖表們 */
+		/* ��”�� */
 
 	
 
@@ -3306,7 +3306,7 @@ input, select, textarea {
 
 	}
 
-/* 左一圖表 */
+/* 撌虫���” */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 @keyframes bake-pie {
