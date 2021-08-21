@@ -204,7 +204,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                          <button type="button" name="snapshot" onclick="" id="empButton" value="employee" class='btn22'>
                            		<span class='top22 content22'>員工資料表</span>
-                           		<span class='bottom22 content22'>Edit Members</span>
+                           		<span class='bottom22 content22'>Members</span>
                           </button>
                     </div></a>
                 </div></li>
@@ -213,7 +213,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                          <button type="button" name="folder" id="pcbButton" value="pcb" class='btn22'>
                           		<span class='top22 content22'>主機版資訊</span>
-                            	<span class='bottom22 content22'>X</span>
+                            	<span class='bottom22 content22'>PCBs</span>
                         </button>
                     </div></a>
                 </div></li>	
@@ -222,7 +222,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                        <button type="button" name="button" id="assyButton" value="assy" class='btn22' onclick="">
                         		<span class='top22 content22'>零件資訊</span>
-                          		<span class='bottom22 content22'>X</span>
+                          		<span class='bottom22 content22'>Components</span>
                         </button>
                     </div></a>
                 </div></li>
@@ -230,8 +230,8 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                 <div><li>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="comButton" value="compo" class='btn22' onclick="">
-                            <span class='top22 content22'>主機板與零件配對表</span>
-                            <span class='bottom22 content22'>X</span>
+                            <span class='top22 content22 lilfont'>主機板與零件配對表</span>
+                            <span class='bottom22 content22'>Pairing</span>
                         </button>
                     </div></a>
                 </div></li>
@@ -240,7 +240,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="rsButton" value="result" class='btn22' onclick="">
                             <span class='top22 content22'>偵測結果</span>
-                            <span class='bottom22 content22'>X</span>
+                            <span class='bottom22 content22'>Result</span>
                         </button>
                     </div></a>
                 </div></li> 
@@ -256,8 +256,8 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
             </ul>
         </form>
     </nav>
-    <img src="<%=basePath%>public/images/managers/01010101.png" width="100px">
-</section>
+<%--     <img src="<%=basePath%>public/images/managers/01010101.png" width="100px">
+ --%></section>
 
 
 <script src="<%=basePath%>public/javascript/manager/jquery.min.js" type='text/JavaScript'></script>

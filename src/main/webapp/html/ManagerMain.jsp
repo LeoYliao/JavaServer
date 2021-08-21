@@ -26,9 +26,14 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
+<<<<<<< HEAD
+	<body class="is-preload" id="kingbody">
+<!-- 載入頭部段
+=======
 
 <body class="is-preload" id="kingbody">
 <input id="dbname" style="display:none" value=<%=session.getAttribute("dbname")%>>
+>>>>>>> d9ec2b1805e11cd8d98135ab9cef3c614785b975
 
 
 <!-- 中間內容 -->
@@ -59,9 +64,14 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
         <span>1145</span>
       </li>
     </ul>
+<<<<<<< HEAD
+  </section>
+<section id="lefter2">
+=======
   
 </section>
 <section style="display:none" id="lefter2">
+>>>>>>> d9ec2b1805e11cd8d98135ab9cef3c614785b975
     <div>
         <h3 id="title1">一週偵測錯誤變化</h3>
     </div>
@@ -213,9 +223,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <section id="header">
     <header>
         <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
-        <h1 id="idId">王◯瑄</h1>
+        <h1 id="idId">ㄚ玟</h1>
         <p id="number">0004</p>
-        <h4 id="position">主管</h4>
+        <h4 id="position">系統管理員</h4>
     </header>
     <nav id="nav">				
         <form method="POST" id="contoller">
@@ -238,18 +248,30 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     
                 <div><li>
                     <a onclick=""><div class='wrapper22'>
+<<<<<<< HEAD
+                        <button type="button" name="folder" id="start" value="imgs" class='btn22'>
+                            <span class='top22 content22'>主機版資訊</span>
+                            <span class='bottom22 content22'>PCBs</span>
+=======
                          <button type="button" name="folder" id="pcbButton" value="pcb" class='btn22'>
                           		<span class='top22 content22'>主機版資訊</span>
                             	<span class='bottom22 content22'>X</span>
+>>>>>>> d9ec2b1805e11cd8d98135ab9cef3c614785b975
                         </button>
                     </div></a>
                 </div></li>	
 
                 <div><li>
                     <a onclick=""><div class='wrapper22'>
+<<<<<<< HEAD
+                        <button type="button" name="button" id="button" value="重置" class='btn22' onclick="">
+                            <span class='top22 content22'>零件資訊</span>
+                            <span class='bottom22 content22'>Components</span>
+=======
                        <button type="button" name="button" id="assyButton" value="assy" class='btn22' onclick="">
                         		<span class='top22 content22'>零件資訊</span>
                           		<span class='bottom22 content22'>X</span>
+>>>>>>> d9ec2b1805e11cd8d98135ab9cef3c614785b975
                         </button>
                     </div></a>
                 </div></li>
@@ -258,7 +280,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="comButton" value="compo" class='btn22' onclick="">
                             <span class='top22 content22'>主機板與零件配對表</span>
-                            <span class='bottom22 content22'>X</span>
+                            <span class='bottom22 content22'>Pairing</span>
                         </button>
                     </div></a>
                 </div></li>
@@ -267,7 +289,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="rsButton" value="result" class='btn22' onclick="">
                             <span class='top22 content22'>偵測結果</span>
-                            <span class='bottom22 content22'>X</span>
+                            <span class='bottom22 content22'>Result</span>
                         </button>
                     </div></a>
                 </div></li> 

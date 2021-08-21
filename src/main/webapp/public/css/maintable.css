@@ -1,7 +1,7 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Source+Code+Pro:400");
 
-/* ������ */
+/* 右邊欄位 */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -9,25 +9,46 @@
   font-family: 'Poppins', sans-serif;
 }
 
-#chart {
-  transform: translate(-50%,-50%);
-  left: 50%;
-  top: 50%;
-  width: 600px;
-  height: 90%;
-  /* margin: 15px auto; */
-  opacity: 0.9;
+.asmbtn {
+	color: #ffffff;
+		font-size: 60px;
+		font-weight: bolder;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		border:15px solid #ffffff9c;
+		border-radius:85px;
+		text-shadow: 0.1em 0.1em 0.2em black;
+	
+		/* line-height: 30px; */
+		transform: translate(0%,30%);
+		/* height: 90%; */
+		height: 270px;
+		width: 1300px;
+		background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+		cursor:pointer;
+		margin-bottom: 30px;
+		outline: none;
+}
+
+.inbtn {
+    /* position: relative;
+    z-index: 1; */
+	line-height: 220px;
+	color: #ffffff;
+	outline: none;
+
+}
+.asmbtn:hover {
+	border:15px solid #4aca8e;
+	outline: none;
 
 }
 
-#timeline-chart .apexcharts-toolbar {
-  opacity: 1;
-  border: 0;
-}
 
-.lilfont {
-	font-size: 8px;
-}
+
+
+
 
 #header {
 	background: -webkit-linear-gradient(left top,#4aca8e,#4a8cca);
@@ -106,13 +127,15 @@ background: linear-gradient(to bottom right,#4aca8e,#4a8cca);
 			display: block;
 			margin: 0 auto 2.25em auto;
 			width: 8em;
+			/* height: 8em; */
+
 		}
 
 
 ol, ul {
 	list-style: none;
 }
-/* �������� */
+/* 右邊特效按鈕 */
 
 .btn22 {
 	/* margin-top: 25px; */
@@ -180,7 +203,7 @@ ol, ul {
 
   }
 
- /* ����� */
+ /* 所有 */
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, abbr, acronym, address, big, cite,
@@ -196,7 +219,9 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	vertical-align: baseline;
+	
+}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -213,6 +238,7 @@ footer, header, hgroup, menu, nav, section {
 
 	#kingbody {
 		background: #474747;
+		
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -234,59 +260,28 @@ footer, header, hgroup, menu, nav, section {
 		line-height: 1.75em;
 	}
 
-/* 撌阡���� */
-#lefter1 {
-	border-radius: 60px;
-/* 	background: #2b2b2b;
- */
- 	background: rgba(255, 255, 255, 0.151);
+/* 左邊欄位 */
  
-	color: #fff;
-	height: 43.5%;
-	width: 38.5%;
-	position: absolute;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	left: 23%;
-	/* right: 3.5%; */
-
-	top: 26.6%;
-	-webkit-filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-	transition: top .2s, left .2s;
-}	
-#lefter2 {
+#lefter {
 	border-radius: 60px;
+	/* background: #2b2b2b; */
 	background: rgba(255, 255, 255, 0.151);
+	/* background: #2b2b2b; */
 	color: #fff;
-	height: 43.5%;
-	width: 38.5%;
-	position: absolute;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	left: 63.5%;
-	top: 26.6%;
-	-webkit-filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-	transition: top .2s, left .2s;
-}	 
-#lefter3 {
-	border-radius: 60px;
-	background: rgba(255, 255, 255, 0.151);
-	color: #fff;
-	height: 43.5%;
+	height: 90.3%;
 	width: 78.9%;
 	position: absolute;
 	text-align: center;
 	transform: translate(-50%,-50%);
 	left: 43.2%;
-	top: 73.5%;
+	top: 50%;
 	-webkit-filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
     filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
 	transition: top .2s, left .2s;
-	
+	overflow: auto;
+
 	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.2) ));
-	
+
 }		
 
 
@@ -329,7 +324,7 @@ footer, header, hgroup, menu, nav, section {
 	top: 73.6%;
 }	 */
 
-/* 銵冽 */
+/* 表格 */
 
 /* #mainTable{
 	border: 2px red solid;
@@ -348,7 +343,7 @@ td{
 	padding: 30px;
 	color: #3c3c3c;
 	height: 60%;
-	width: 90%;
+	width: 95%;
 	position: absolute;
 	text-align: center;
 	transform: translate(-50%,-50%);
@@ -385,14 +380,16 @@ td{
 
 
 #title1 {
-	transform: translate(0%,35%);
+	transform: translate(0%,100%);
+	/* top: 50%; */
+	/* left: 50%; */
 	color: #fff;
 }
 
 
 #text1 {
 	border:7px solid #fff;
-	background-color: #4acaa8;
+	background-color: #4aca8e;
 	border-radius: 35px;
 	width: 46.1%;	
 	position: relative;
@@ -767,7 +764,7 @@ input, select, textarea {
 		position: relative;
 		top: -0.5em;
 	}
-
+ 
 	hr {
 		border: 0;
 		border-bottom: solid 2px #f4f4f4;
@@ -3099,46 +3096,21 @@ input, select, textarea {
 				font-size: 11pt;
 			}
 
-/* 撌阡���� */
+/* 左邊欄位 */
 
-#lefter1 {
-	border-radius: 60px;
-	/* background: rgba(0, 0, 0, 0.2); */
-	background: #2b2b2b;
-	color: #fff;
-	height: 43.5%;
-	width: 43.5%;
-	position: absolute;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	left: 26.7%;
-	top: 26.6%;
-	float: left;
-}	
-#lefter2 {
+
+
+#lefter {
 	border-radius: 60px;
 	background: #2b2b2b;
 	color: #fff;
-	height: 43.5%;
-	width: 44%;
-	/* position: absolute; */
-	text-align: center;
-	transform: translate(-50%,-50%);
-	margin-left: 9.5%;
-	top: 26.6%;
-	float: right;
-}	 
-#lefter3 {
-	border-radius: 60px;
-	background: #2b2b2b;
-	color: #fff;
-	height: 43.5%;
+	height: 90.3%;
 	width: 90%;
 	/* position: absolute; */
 	text-align: center;
 	transform: translate(-50%,-50%);
 	left: 50%;
-	top: 73.5%;
+	top: 50%;
 
 }	
 
@@ -3222,7 +3194,7 @@ input, select, textarea {
 					top: auto;
 				}
 
-		/* ��”�� */
+		/* 圖表們 */
 
 	
 
@@ -3323,7 +3295,7 @@ input, select, textarea {
 
 	}
 
-/* 撌虫���” */
+/* 左一圖表 */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 @keyframes bake-pie {
@@ -3339,7 +3311,7 @@ input, select, textarea {
 }
 .pie {
 	transform: translate(-50%,-50%);
-	left: 40%;
+	left: 30%;
 	top: 65%;
 	height: 400px;
 	width: 400px;
@@ -3420,3 +3392,5 @@ footer {
 	padding: 5px 10px;
 	margin: 5px;
 }
+
+

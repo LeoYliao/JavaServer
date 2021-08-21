@@ -14,7 +14,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>查詢結果</title>
-    <link rel="stylesheet" href="<%=basePath%>public/css/admin.css" type="text/css" />
+    <link rel="stylesheet" href="<%=basePath%>public/css/maintable.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
     
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -24,11 +24,11 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
 </head>
 
-<body class="is-preload">
+<body class="is-preload" id="kingbody">
 <input id="dbname" style="display:none" value=<%=session.getAttribute("dbname")%>>
 
 <!-- 中間內容 -->
-<section id="lefter">
+<section id="lefter" >
     <header>
         <div>
             <h3 id="title1">檢視畫面</h3>
@@ -131,9 +131,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <section id="header">
     <header>
         <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
-        <h1 id="idId">張◯睿</h1>
-        <p id="number">inspector0002</p>
-        <h4 id="position">檢查員</h4>
+        <h1 id="idId">廖◯揚</h1>
+        <p id="number">0003</p>
+        <h4 id="position">管理員</h4>
     </header>
     <nav id="nav">
         <form method="POST" id="contoller">
