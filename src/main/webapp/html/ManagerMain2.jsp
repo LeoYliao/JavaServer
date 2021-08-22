@@ -392,16 +392,16 @@ createTable();
 			var Today = new Date();
 			var string = "assy_create, compo_create, emp_hired, pcb_create";
 			if (key=="assy_alive" || key=="pcb_alive" || key=="compo_alive"){
-				newtext+="<td><select name='"+key+"'><option>Y</option><option>N</option></select></td>"
+				newtext+="<td><select style:'text-align:center' name='"+key+"'><option>Y</option><option>N</option></select></td>"
 		    }
 			else if (string.includes(key)){
-				newtext+="<td><input type='text' name='"+key+"' value=" + Today.getFullYear() + - + (Today.getMonth() + 1) + - + Today.getDate() + " ></td>"
+				newtext+="<td><input style:'text-align:center' type='text' name='"+key+"' value=" + Today.getFullYear() + - + (Today.getMonth() + 1) + - + Today.getDate() + " ></td>"
 		    }
 			else if (key=="assy_parts"){
-				newtext+="<td><input type='number' min='0' class='form-control number' name='"+key+"'></td>"
+				newtext+="<td><input style:'text-align:center' type='number' min='0' class='form-control number' name='"+key+"'></td>"
 			}
 			
-			else{newtext+="<td><input type='text' value='' name='"+key+"'></td>";}
+			else{newtext+="<td><input style:'text-align:center' type='text' value='' name='"+key+"'></td>";}
 		}
 		newtext+="<td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>";
 		console.log(newtext);
@@ -424,44 +424,44 @@ createTable();
 			console.log(value);	//test
 			//obj[key] = value;
 			if(key=="assy_pcb"){
-			     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>A01</option><option>A02</option><option>A03</option><option>A04</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option disabled>"+ value + "</option><option>A01</option><option>A02</option><option>A03</option><option>A04</option></select></td>"
 			    }
 			    else if (key=="assy_compo"){
-			     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
 			    }
 			    else if (key=="assy_parts"){
-			     text+="<td><input type='number' min='0' class='form-control number' name="+key+" value="+value+"></td>"
+			     text+="<td><input style='text-align:center' type='number' min='0' class='form-control number' name="+key+" value="+value+"></td>"
 			    }
 			    else if (key=="assy_alive"){
-			     text+="<td><select name="+key+"><option>Y</option><option>N</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option>Y</option><option>N</option></select></td>"
 			    }
 			    else if (key=="assy_compo"){
-			     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option disabled>"+ value + "</option><option>CAP01</option><option>CAP02</option></select></td>"
 			    }
 			    
 			    
 			    else if (key=="pcb_no"){
-			     text+="<td><select name="+key+"><option disabled>"+ value +"</option><option>A01</option><option>A02</option><option>B01</option><option>B02</option><option>C01</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option disabled>"+ value +"</option><option>A01</option><option>A02</option><option>B01</option><option>B02</option><option>C01</option></select></td>"
 			    }
 			    else if (key=="pcb_name"){
-			     text+="<td><select name="+key+"><option disabled>"+ value +"</option><option>極速SERVERPCB-2021</option><option>超極速SERVERPCB-2021</option><option>M03系PCB-2107</option><option>M03+系PCB-2018</option><option>高工SERVERPCB</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option disabled>"+ value +"</option><option>極速SERVERPCB-2021</option><option>超極速SERVERPCB-2021</option><option>M03系PCB-2107</option><option>M03+系PCB-2018</option><option>高工SERVERPCB</option></select></td>"
 			    }
 			    else if (key=="pcb_alive"){
-			     text+="<td><select name="+key+"><option>Y</option><option>N</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option>Y</option><option>N</option></select></td>"
 			    }
 			    
 			    
 			    else if (key=="compo_no"){
-			     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>CAP</option><option>SLOT</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option disabled>"+ value + "</option><option>CAP</option><option>SLOT</option></select></td>"
 			    }
 			    else if (key=="compo_name"){
-			     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>特規電容器</option><option>插槽</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option disabled>"+ value + "</option><option>特規電容器</option><option>插槽</option></select></td>"
 			    }
 			    else if (key=="compo_alive"){
-			     text+="<td><select name="+key+"><option disabled>"+ value + "</option><option>Y</option><option>N</option></select></td>"
+			     text+="<td><select style='text-align:center' name="+key+"><option disabled>"+ value + "</option><option>Y</option><option>N</option></select></td>"
 			    }
 			    
-			    else{text+="<td><input type='text' size='2' value="+value+" name="+key+" ></td>";}
+			    else{text+="<td><input style='text-align:center' type='text' size='2' value="+value+" name="+key+" ></td>";}
 			    console.log(text);
 			    
 				}
