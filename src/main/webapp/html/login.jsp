@@ -24,7 +24,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <input id='errormsg' style="display:none" value=<%=request.getAttribute("error") %> >
 <!-- ä¸­éå§å®¹ -->
 <form name="form1" id="Form1" action="<%=basePath%>MainLogIn" method="post" class="login" onclick="return false">
-    <img src="<%=basePath%>public/images/login/01010101.png">
+    <!-- <img src="<%=basePath%>public/images/login/01010101.png"> -->
     <!-- <h2>AI é»å­é¶ä»¶è¾¨è­ç³»çµ±</h2> -->
     <!-- <i class="fa fa-user-circle-o"></i> -->
     <!-- <div> 
@@ -38,7 +38,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     </div> -->
     <div>
         <h3 for="text">帳號</h3>
-        <input type="text" name="EACC" id="EACC" placeholder="請輸入帳號" autocomplete="off" required >
+        <input type="text" name="EACC" id="EACC" placeholder="請輸入帳號" autocomplete="off" required >
         <span id="idIdSp"></span>
     </div>
     <div>
@@ -60,7 +60,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     $(document).ready(function(){
         $("#button").click(function(){
             if($("#EACC").val()==""){
-                alert("ä½ å°æªå¡«å¯«å¸³è");
+                alert("請輸入帳號");
                 eval("document.form1['EACC'].focus()");
             // }else if($("#idId").val()>=6){
             //     alert("å¸³èè³å°è¦6åå­");
@@ -68,7 +68,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
           
 
             }else if($("#EPD").val()==""){
-                alert("ä½ å°æªå¡«å¯«å¯ç¢¼");
+                alert("請輸入密碼");
                 eval("document.form1['EPD'].focus()"); 
             // }else if($("#idPwd").val()>=6){
             //     alert("å¯ç¢¼è³å°è¦6åå­");

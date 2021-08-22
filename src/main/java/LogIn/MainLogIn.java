@@ -88,7 +88,7 @@ public class MainLogIn extends HttpServlet {
 	            } else if (dbMgr==1){	//主管頁面
 	        		session.setAttribute("dbname", "result"); 
 	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
-	        		request.getRequestDispatcher("/html/ManagerMain.jsp").forward(request, response);
+	        		request.getRequestDispatcher("/html/ManagerMain2.jsp").forward(request, response);
 	            }else {
 	        		request.setAttribute("error","非主管/系統管理員");
 	            	request.getRequestDispatcher("/html/login.jsp").forward(request, response);
