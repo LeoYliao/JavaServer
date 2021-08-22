@@ -362,7 +362,7 @@ createTable();
 		dbname = this.value;
 		console.log("偵測結果 click~?? "+dbname);	//test
 		$.ajax ({	
-	 		url : '/JavaServer/TableConfirm?dbname='+dbname,
+	 		url : '/JavaServer/MainError?dbname='+dbname,
 	 		type :'POST',
 	 		success : function (res){
 	 			//$('#mainTable').load('/JavaServer/EmpReader');

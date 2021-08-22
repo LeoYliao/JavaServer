@@ -1,4 +1,4 @@
-package R;
+package E;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.alibaba.fastjson.JSONArray;
 
-@WebServlet("/TableConfirm")
-public class TableConfirm extends HttpServlet {
+
+@WebServlet("/MainError")
+public class MainError extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
  
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//set encoding UTF-8
 		request.setCharacterEncoding("UTF-8");
@@ -23,13 +25,12 @@ public class TableConfirm extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("dbname", dbname); 
 		System.out.println(session.getAttribute("dbname")+" in TableConfirm");	//test
-		
+				
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
 	}
 
 }
