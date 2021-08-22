@@ -20,8 +20,8 @@ import javax.sql.*;
 import javax.servlet.annotation.*;
 import javax.sql.DataSource;
 import DbBean.EmpBean;
-@WebServlet("/LogIn7")
-public class LogIn7 extends HttpServlet {
+@WebServlet("/MainLogIn")
+public class MainLogIn extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		doPost(request, response);
@@ -30,56 +30,62 @@ public class LogIn7 extends HttpServlet {
 	private static final String SQL = "select * from aiot2.employee where emp_acc = ? ";	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
 		Connection conn = null;
+		//encoding in UTF-8
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		String userAcc= request.getParameter("EACC");
-		System.out.println(userAcc);	//test
-	
+		//get user enter acc/pwd
+		String userAcc= request.getParameter("EACC");	
+		String userPwd= request.getParameter("EPD");
+		//===================================test
+		System.out.println("user input acc : "+userAcc);	
+		System.out.println("user input pwd : "+userPwd);
 		try {
+			//create connection from JNDI
 			Context context = new InitialContext();
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/jdbc/servdb");
 			conn = ds.getConnection();
-//			===========================================================================
+			//setup SQL cmd 
 			PreparedStatement stmt = conn.prepareStatement(SQL);
 			stmt.setString(1,userAcc);
+			System.out.println(SQL);	//test
 			ResultSet rs = stmt.executeQuery();
+			//set PrintWriter 
+			PrintWriter out = response.getWriter();
 			
-			//System.out.println("aaa");
-			//System.out.println(rs);
-			
-			EmpBean emp = new EmpBean();
-			if(rs.next()) { 
-				emp.setEmp_acc(rs.getString("emp_acc"));
-				emp.setEmp_pwd(rs.getString("emp_pwd"));
-				emp.setEmp_mgr(rs.getInt("emp_mgr"));
-				
-				System.out.println("bbb");
-				System.out.println(rs.getString("emp_acc"));
-				System.out.println(rs.getInt("emp_mgr"));
-			}else {
+			if(rs.next()) {}
+			else {
 				request.setAttribute("error","帳號錯誤");
 				request.getRequestDispatcher("/html/login.jsp").forward(request, response);
 			}
+		
+			//get value of acc/pwd/mgr from DB
+			String dbAcc = rs.getString("emp_acc");
+			String dbPwd = rs.getString("emp_pwd");
+			int dbMgr = rs.getInt("emp_mgr");
+			//============================test
+			System.out.println("--below acc & pwd from DB--");
+			System.out.println("Acc from db : "+dbAcc);
+			System.out.println("Pwd from db : "+dbPwd);
+			System.out.println("Mgr from db : "+dbMgr);
+			//out.print("suceed");
 			
-			String userPwd= request.getParameter("EPD");
-//			int userMgr= Integer.parseInt(request.getParameter("MGR").toString());
-			String dbAcc = emp.getEmp_acc();
-			String dbPwd = emp.getEmp_pwd();
-			int dbMgr = emp.getEmp_mgr();
-			
-			System.out.println(userAcc);
-			System.out.println(dbMgr);
-			
+			//If input & DB match ,setup session dbname value
+			HttpSession session = request.getSession();
+			//setup user data to session
+			String userName = rs.getString("emp_name");
+			String userNo = rs.getString("emp_no");
+			String userImg = rs.getString("emp_img");
+			session.setAttribute("userName",userName);
+			session.setAttribute("userNo",userNo);
+			session.setAttribute("userImg",userImg);
+
 			if ( userAcc.equals(dbAcc) && userPwd.equals(dbPwd) ) {
-	            if (dbMgr==2){
-	        		HttpSession session = request.getSession();
+	            if (dbMgr==2){	//系統管理員
 	        		session.setAttribute("dbname", "employee"); 
 	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
 	        		request.getRequestDispatcher("/html/MainTable.jsp").forward(request, response);
-	            } else if (dbMgr==1){
-	        		HttpSession session = request.getSession();
+	            } else if (dbMgr==1){	//主管頁面
 	        		session.setAttribute("dbname", "result"); 
 	        		System.out.println(session.getAttribute("dbname")+" in LogRequest");
 	        		request.getRequestDispatcher("/html/ManagerMain.jsp").forward(request, response);
@@ -88,10 +94,10 @@ public class LogIn7 extends HttpServlet {
 	            	request.getRequestDispatcher("/html/login.jsp").forward(request, response);
 	            }
 			} else if ( userAcc.equals(dbAcc)){
-        		response.getWriter().print("<script> alert(\"密碼錯誤\"); </script>");
+				request.setAttribute("error","密碼錯誤");
 				request.getRequestDispatcher("/html/login.jsp").forward(request, response);
             } 
-//		}finally
+		//close connection
 		stmt.close();
 		conn.close();
 		}catch(Exception e) {

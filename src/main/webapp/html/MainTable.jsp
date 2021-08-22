@@ -14,7 +14,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>查詢結果</title>
-    <link rel="stylesheet" href="<%=basePath%>public/css/maintable.css" type="text/css" />
+    <link rel="stylesheet" href="<%=basePath%>public/css/manager.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
     
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -130,9 +130,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 </section>
 <section id="header">
     <header>
-        <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
-        <h1 id="idId">廖◯揚</h1>
-        <p id="number">0003</p>
+        <span class="image avatar"><img src=<%=session.getAttribute("userImg")%> alt="" /></span>
+        <h1 id="idId"><%=session.getAttribute("userName")%></h1>
+        <p id="number"><%=session.getAttribute("userNo")%></p>
         <h4 id="position">管理員</h4>
     </header>
     <nav id="nav">
@@ -140,12 +140,11 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
             <ul>					
 
                 <div>
-                    <a onclick=""><div class='wrapper22'>
+                    <a href="<%=basePath%>html/login.jsp" onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="button" value="登出" class='btn22' onclick="self.location.href='/'">
                             <span class='top22 content22'>登出</span>
                             <span class='bottom22 content22'>Logout</span>
                         </button>
-                        <input type="button" id="refresh" value="refresh">
                     </div></a>
                 </div>
 

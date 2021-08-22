@@ -185,9 +185,9 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 </section>
 <section id="header">
     <header>
-        <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
-        <h1 id="idId">王◯瑄</h1>
-        <p id="number">0004</p>
+        <span class="image avatar"><img src=<%=session.getAttribute("userImg")%> alt="" /></span>
+        <h1 id="idId"><%=session.getAttribute("userName")%></h1>
+        <p id="number"><%=session.getAttribute("userNo")%></p>
         <h4 id="position">主管</h4>
     </header>
     <nav id="nav">				
@@ -246,7 +246,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                 </div></li> 
 
                 <div><li>
-                    <a onclick=""><div class='wrapper22'>
+                    <a href="<%=basePath%>html/login.jsp" onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="button" value="登出" class='btn22' onclick="self.location.href='/'">
                             <span class='top22 content22'>登出</span>
                             <span class='bottom22 content22'>Logout</span>
@@ -306,9 +306,10 @@ $(document).ready(function(){
         		"sortDescending": ": 降冪排列"
     			}
 			},
-		"destroy":true,
-		//"deferRender": true
-		//"stateSave":true
+		//"destroy":true,
+		//"deferRender": true,
+		//"stateSave":true,
+		"searching": false
 		});	
 });
 createTable();
@@ -346,7 +347,7 @@ createTable();
 	 			//$('#mainTable').load('/JavaServer/EmpReader');
 	 			window.alert("TableConfirm "+dbname+" done!!?")
 	 			$('#lefter1,#lefter2').css("display","none");
-	 			$('#lefter3').css({"height": "90.5%","width": "82%","left": "44%","top": "50%"});
+	 			$('#lefter3').css({"height": "90.5%","width": "78.9%","left": "44%","top": "50%"});
 	 			$('#mainTable').css("height","80%");
 	 			createTable();
 	 			},
@@ -367,7 +368,7 @@ createTable();
 	 			//$('#mainTable').load('/JavaServer/EmpReader');
 	 			window.alert("TableConfirm "+dbname+" done!!?")
 	 			$('#lefter1,#lefter2').css("display","");
-	 			$('#lefter3').css({"height": "43.5%","width": "82%","left": "44%","top": "73.5%"});
+	 			$('#lefter3').css({"height": "43.5%","width": "78.9%","left": "44%","top": "73.5%"});
 	 			$('#mainTable').css("height","60%");
 	 			createTable();
 	 			},

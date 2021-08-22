@@ -23,7 +23,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <body>
 <input id='errormsg' style="display:none" value=<%=request.getAttribute("error") %> >
 <!-- ä¸­éå§å®¹ -->
-<form name="form1" id="Form1" action="../LogIn7" method="post" class="login" onclick="return false">
+<form name="form1" id="Form1" action="<%=basePath%>MainLogIn" method="post" class="login" onclick="return false">
     <img src="<%=basePath%>public/images/login/01010101.png">
     <!-- <h2>AI é»å­é¶ä»¶è¾¨è­ç³»çµ±</h2> -->
     <!-- <i class="fa fa-user-circle-o"></i> -->
@@ -81,7 +81,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     
     //feedback
     var strError=$('#errormsg').val();
-    console.log("error masage : "+strError);
+    console.log("error masage : "+strError);	//test
     var feedback = function(){
     	if (strError !== "null"){
     		 window.alert("錯誤訊息 : "+strError);
