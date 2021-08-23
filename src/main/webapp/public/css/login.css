@@ -25,26 +25,15 @@ img {
 	/* width: 100%;
 	height: 100%; */
 	position: relative;
-	/* background-color: #4aca8e; */
-
-  background: -webkit-linear-gradient(left top,#4aca8e,#4a8cca);
-  background: -o-linear-gradient(bottom right,#4aca8e,#4a8cca);
-  background: -moz-linear-gradient(bottom right,#4aca8e,#4a8cca);
-  background: linear-gradient(to bottom right,#4aca8e,#4a8cca);
-
+	background-color: #4acaa8;
 	transition: background-color 0.4s;
 	overflow: hidden;
-  font-weight: bold;
+    font-weight: bold;
   }
   
   .btn22 :hover{
-	/* background-color: #4aca8e; */
-  background: -webkit-linear-gradient(left top,#4aca8e,#4a8cca);
-  background: -o-linear-gradient(bottom right,#4aca8e,#4a8cca);
-  background: -moz-linear-gradient(bottom right,#4aca8e,#4a8cca);
-  background: linear-gradient(to bottom right,#4aca8e,#4a8cca);
+	background-color: #4acaa8;
   }
-  
   
   .content22 {
 	position: absolute;
@@ -101,14 +90,6 @@ body{
     width: 15%;
     -webkit-filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
     filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
-
-    /* background: -webkit-linear-gradient(left top,#4aca8e,#4a8cca);
-    background: -o-linear-gradient(bottom right,#4aca8e,#4a8cca);
-    background: -moz-linear-gradient(bottom right,#4aca8e,#4a8cca);
-    background: linear-gradient(to bottom right,#4aca8e,#4a8cca); */
-
-    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.2) ));
-
 }
 
 
