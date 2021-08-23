@@ -196,11 +196,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 </section>
 <section id="header">
     <header>
-<<<<<<< HEAD
         <span class="image avatar"><img src="<%=basePath%><%=session.getAttribute("userImg") %>" alt="" /></span>
-=======
-        <span class="image avatar"><img src="<%=basePath%>public/images/all/ray.png" alt="" /></span>
->>>>>>> e3da8a2e8041fc24bd43148a7686f7ea03bba478
         <h1 id="idId"><%=session.getAttribute("userName")%></h1>
         <p id="number"><%=session.getAttribute("userNo")%></p>
         <h4 id="position">主管</h4>
