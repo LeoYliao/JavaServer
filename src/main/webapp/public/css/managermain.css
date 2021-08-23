@@ -5,29 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-* {
-  font-family: 'Poppins', sans-serif;
-}
 
-#chart {
-  transform: translate(-50%,-50%);
-  left: 50%;
-  top: 50%;
-  width: 600px;
-  height: 90%;
-  /* margin: 15px auto; */
-  opacity: 0.9;
-
-}
-
-#timeline-chart .apexcharts-toolbar {
-  opacity: 1;
-  border: 0;
-}
-
-.lilfont {
-	font-size: 8px;
-}
 
 #header {
 	background: -webkit-linear-gradient(left top,#4aca8e,#4a8cca);
@@ -197,6 +175,34 @@ section, summary, time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;}
+	
+	* {
+  font-family: 'Poppins', sans-serif;
+}
+
+#chart {
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 50%;
+  /*width: 80%;
+  height:90%;*/
+  /*border:1px red solid;*/
+  padding-left:5%;
+  padding-right:5%;
+  padding-bottom:10%; 
+  padding-top:5%;
+  opacity: 0.9;
+
+}
+
+#timeline-chart .apexcharts-toolbar {
+  opacity: 1;
+  border: 0;
+}
+
+.lilfont {
+	font-size: 8px;
+}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
