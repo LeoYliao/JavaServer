@@ -34,32 +34,15 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <!-- 中間內容 -->
 <section style="display:" id="lefter1">
     <div>
-        <h3 id="title1">錯誤統計</h3>
+        <h3 id="title1">錯誤統計</h3><br>
+        <div id="Pie_top"></div>
     </div>
-    <div class="pieID pie"> </div>
-    <ul class="pieID legend">
-      <li>
-        <em>Humans</em>
-        <span>718</span>
-      </li>
-      <li>
-        <em>Dogs</em>
-        <span>531</span>
-      </li>
-      <li>
-        <em>Cats</em>
-        <span>868</span>
-      </li>
-      <li>
-        <em>Slugs</em>
-        <span>344</span>
-      </li>
-      <li>
-        <em>Aliens</em>
-        <span>1145</span>
-      </li>
+    <div class="pieID pie" > </div>
+    <ul class="pieID legend" id='Pie_lis'>
+ 	<li>dawdwadwadwadwadwa</li>
+      
     </ul>
-  
+    
 </section>
 <section style="display:" id="lefter2">
     <div>
@@ -185,7 +168,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 </section>
 <section id="header">
     <header>
-        <span class="image avatar"><img src="<%=basePath%>public/images/selectAsm/avatar.jpg" alt="" /></span>
+        <span class="image avatar"><img src="<%=basePath%><%=session.getAttribute("userImg") %>" alt="" /></span>
         <h1 id="idId"><%=session.getAttribute("userName")%></h1>
         <p id="number"><%=session.getAttribute("userNo")%></p>
         <h4 id="position">主管</h4>
@@ -281,8 +264,8 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 var createTable = function(){
 	loadBody();
 	loadHead();
+	}
 	
-}
 $(document).ready(function(){
 	$("#myDataTalbe").dataTable({
 		"language": {
@@ -314,27 +297,6 @@ $(document).ready(function(){
 });
 createTable();
 
- // 刪除鍵
-	$("#myDataTalbe").on("click", ".btn-danger", function () {
-		// $("#example").on("click", ".btn-danger", function () {
-		var tr = $(this).parents('tr');
-		var key = tr.find('td:eq(0)').text();
-		var strData = keys[0]+"="+key;
-		console.log(strData);	//test		
-		$.ajax ({	
-	 		url : '/JavaServer/MainDelete?'+strData,
-	 		type :'POST',
-	 		success : function (res){
-	 			//$('#mainTable').load('/JavaServer/EmpReader');
-	 			window.alert("Delete done!!?")
-	 			loadBody();
-	 			},
-	 		error : function (error) {
-	 			console.log(error);
-	 			}
-	 	});
-		//$(this).parents('tr').remove();
-	});
 		
 	// 右測顯示切換鍵
 	$('#empButton,#pcbButton,#assyButton,#comButton').click(function () {
@@ -357,13 +319,68 @@ createTable();
 	 	});
 	});
 	
+	var assy_keys;
+	var assy_val;
+	
+	// 圓餅按鈕
+	var PieButton = function(){
+		var	bhtml="";
+		for (var j=0;j<assy_keys.length;j++){
+	 			bhtml+="<button id='a"+assy_keys[j]+"' value='"+assy_keys[j]+"'><span>"+assy_keys[j]+"</span></button>";
+	 		}
+		window.alert("Piechart html but : "+bhtml);	//test
+		$('#Pie_top').html(bhtml);
+	}
+	
+	// 圓餅圖函式
+	var PieChart = function(){
+		//var robj ;
+		var html="";
+		$.ajax ({	
+	 		url : '/JavaServer/MainError',
+	 		type :'POST',
+	 		//data : {},
+	 		dataType : 'json',
+	 		success : function (res){
+	 			window.alert("type of res Json String :"+typeof res);	//test
+	 			window.alert("res Json Keys :"+Object.keys(res));		//test
+	 			window.alert("res Json Values :"+Object.values(res));		//test
+	 			window.alert("value of res[1] :"+res["13"][0]);		//test
+	 			assy_keys = Object.keys(res);
+	 				for(var i=0;i<4;i++){
+	 				html+="<li><em>SHOT"+(i+1)+"</em><span>"+res[assy_val][i]+"</span></li>";
+	 					}
+	 			window.alert("Piechart html str : "+html);	//test
+	 			$('#Pie_lis').html(html);
+	 			createPie(".pieID.legend", ".pieID.pie");
+	 			PieButton();
+	 			},
+	 		error : function (error) {
+	 			console.log(error);
+	 			}
+	 	});
+	}
+	
+	// 圓餅內容切換
+	$('#Pie_top').on("click", ":button", function(){
+		window.alert("bk!!!!??");
+		window.alert("bk!!!!?? val : "+this.value);
+		assy_val = this.value;
+		PieChart();
+		})
+	
+	PieChart();	
+		
 	// 偵測結果鍵
 	$('#rsButton').click(function () {
+		assy_val = 1;
+		PieChart();
 		dbname = this.value;
 		console.log("偵測結果 click~?? "+dbname);	//test
 		$.ajax ({	
-	 		url : '/JavaServer/MainError?dbname='+dbname,
+	 		url : '/JavaServer/TableConfirm?dbname='+dbname,
 	 		type :'POST',
+	 		//dataType : 'json',
 	 		success : function (res){
 	 			//$('#mainTable').load('/JavaServer/EmpReader');
 	 			window.alert("TableConfirm "+dbname+" done!!?")
@@ -374,15 +391,39 @@ createTable();
 	 			},
 	 		error : function (error) {
 	 			console.log(error);
-	 			}
+	 			}		
 	 	});
+		
 	});
 	//dataTable position
 	//$(document).ready(function(){
     
 	//	});
-
-
+	// 刪除鍵
+	$("#myDataTalbe").on("click", ".btn-danger", function () {
+		// $("#example").on("click", ".btn-danger", function () {
+		var tr = $(this).parents('tr');
+		var key = tr.find('td:eq(0)').text();
+		var strData = keys[0]+"="+key;
+		console.log(strData);	//test		
+		$.ajax ({	
+	 		url : '/JavaServer/MainDelete?'+strData,
+	 		type :'POST',
+	 		success : function (res){
+	 			//$('#mainTable').load('/JavaServer/EmpReader');
+	 			window.alert("Delete done!!?");
+	 			loadBody();
+	 			if(dbname=="result"){
+	 				//window.alert("Delete done!!? refresh Pie");
+	 				PieChart();
+	 				}
+	 			},
+	 		error : function (error) {
+	 			console.log(error);
+	 			}
+	 	});
+	});
+		
 	// 新增鍵
 	$('#buttonAdd').click(function () {
 		//$('table').append("<tr><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><input type='text' value=''></td><td><a class='btn btn-success'>確定</a><a class='btn btn-danger'>刪除</a></td></tr>");
@@ -497,7 +538,63 @@ createTable();
 
 
 		});
-
+	
+	// 圓餅圖JS
+	function sliceSize(dataNum, dataTotal) {
+		return (dataNum / dataTotal) * 360;
+		}
+	function addSlice(sliceSize, pieElement, offset, sliceID, color) {
+		$(pieElement).append("<div class='slice "+sliceID+"'><span></span></div>");
+		var offset = offset - 1;
+		var sizeRotation = -179 + sliceSize;
+		$("."+sliceID).css({
+		"transform": "rotate("+offset+"deg) translate3d(0,0,0)"
+		});
+		$("."+sliceID+" span").css({
+		"transform"       : "rotate("+sizeRotation+"deg) translate3d(0,0,0)",
+		"background-color": color
+		});
+		}
+	function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+		var sliceID = "s"+dataCount+"-"+sliceCount;
+		var maxSize = 179;
+		if(sliceSize<=maxSize) {
+		addSlice(sliceSize, pieElement, offset, sliceID, color);
+		} else {
+		addSlice(maxSize, pieElement, offset, sliceID, color);
+		iterateSlices(sliceSize-maxSize, pieElement, offset+maxSize, dataCount, sliceCount+1, color);
+		}
+		}
+	function createPie(dataElement, pieElement) {
+		var listData = [];
+		$(dataElement+" span").each(function() {
+		listData.push(Number($(this).html()));
+		});
+		var listTotal = 0;
+		for(var i=0; i<listData.length; i++) {
+		listTotal += listData[i];
+		}
+		var offset = 0;
+		var color = [
+		"cornflowerblue", 
+		"olivedrab", 
+		"orange", 
+		"tomato", 
+		"crimson", 
+		"purple", 
+		"turquoise", 
+		"forestgreen", 
+		"navy", 
+		"gray"
+		];
+		for(var i=0; i<listData.length; i++) {
+		var size = sliceSize(listData[i], listTotal);
+		iterateSlices(size, pieElement, offset, i, 0, color[i]);
+		$(dataElement+" li:nth-child("+(i+1)+")").css("border-color", color[i]);
+		offset += size;
+		}
+		}
+		//createPie(".pieID.legend", ".pieID.pie");
 
 
 </script>

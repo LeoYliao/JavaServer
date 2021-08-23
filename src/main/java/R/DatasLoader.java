@@ -32,6 +32,7 @@ public class DatasLoader extends HttpServlet {
 		//confirm DB name again (use session)
 		HttpSession session = request.getSession();
 		String dbname = (String)session.getAttribute("dbname");
+		System.out.println("dbname in dataLoader : "+dbname);
 		//update to lastest datas
 		request.getRequestDispatcher("/MainReader").include(request, response);
 		//change ArrayList to JSON

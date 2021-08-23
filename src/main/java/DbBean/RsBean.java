@@ -2,6 +2,8 @@ package DbBean;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.*;
+import java.util.TimeZone;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -80,8 +82,10 @@ private static final long serialVersionUID = 1L;
 		return r_cdate;
 	}
 	public void setR_cdate(Timestamp r_cdate) {
-		String strTimestamp = r_cdate.toString();
-		this.r_cdate = strTimestamp.substring(0,strTimestamp.length()-2);
+		DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z");
+		df.setTimeZone(TimeZone.getTimeZone("GMT") );
+		this.r_cdate = df.format(r_cdate);
+		//this.r_cdate = strTimestamp.substring(0,strTimestamp.length()-2);
 	}
 	
 }

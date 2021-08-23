@@ -113,6 +113,18 @@ ol, ul {
 	list-style: none;
 }
 /* �������� */
+#idId {
+ font-weight: bolder;
+}
+#number {
+ font-weight: bolder;
+}
+#position {
+ font-weight: bolder;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
 
 .btn22 {
 	/* margin-top: 25px; */
@@ -385,8 +397,10 @@ td{
 
 
 #title1 {
-	transform: translate(0%,35%);
+	/*transform: translate(0%,35%);*/
 	color: #fff;
+	transform: translate(0%,100%);
+ 	font-weight: bolder;
 }
 
 
