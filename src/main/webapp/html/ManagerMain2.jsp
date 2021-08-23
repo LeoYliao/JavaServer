@@ -92,6 +92,10 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		var dbname=$("#dbname").val();;
 		var keys;
 		var data;
+
+		//var a = [5, 10, 5, 5];
+		var a = [];
+	    var b = [];//[5, 10, 5, 5, 5];
 		
 		var loadBody = function(){
 			var importButton;
@@ -109,6 +113,12 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 			var html;
 			 			var result = res[0];
 			 			console.log("result = " + result);
+			 			//a.push(10);
+			 			var obj = catchData(result);
+			 			a = obj.a;
+			 			b = obj.b;
+			 			console.log('a = ', a);
+			 			console.log('b = ', b);
 			 			for(var i=0;i<result.length;i++){
 			 				//console.log(JSON.stringify(res[i]));	//test
 			 				//keys = Object.keys(res[i]);
@@ -131,7 +141,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 				html+="</tr>";
 			 				console.log(html);	//test
 			 				}
-			 			//window.alert(html);
+			 			window.alert('ajax success!');
 			 			$('#tbody').html(html);
 			 			//$('#tbody').html("<tr><td>fadfafasdfgdsf</td></tr>");
 			 			if(dbname=="result"){
@@ -146,6 +156,24 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 	});
 				
 			}
+		
+		function catchData(result) {
+			let a = [];
+			let b = [];//[5, 10, 5, 5, 5];
+			for(var i=0;i<result.length;i++){
+				
+				switch(result[i]['r_assykey']) {
+					case 1:
+						a.push(result[i]['r_errqty']);
+						break;
+					case 2:
+						b.push(result[i]['r_errqty']);
+						break;
+				}
+			};
+			console.log(a);
+			return {a, b};
+		};
 		
 		var loadHead = function(){
 			var title;
@@ -497,13 +525,39 @@ createTable();
 
 
 		});
-
-
-
+	
+	 function generateDayWiseTimeSeries(s, count) {
+		    window.alert('chart success!');
+			var values = [a, b];
+		    var i = 0;
+		    var series = [];
+		    var x = new Date("11 Nov 2012").getTime();
+		    while (i < count) {
+		      series.push([x, values[s][i]]);
+		      x += 86400000;
+		      i++;
+		    }
+		    return series;
+		  }
+	
+	 function newScript() {
+		  return new Promise((resolve, reject) => {
+		    const script = document.createElement("script");
+		    script.src = "<%=basePath%>public/javascript/manager/lefter copy.js";
+		    script.addEventListener("load", () => {
+		      resolve();
+		    });
+		    script.addEventListener("error", (e) => {
+		      reject(e);
+		    });
+		    document.body.appendChild(script);
+		  });
+		}
+	 newScript();
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts" type="text/JavaScript"></script>
-<script src="<%=basePath%>public/javascript/manager/lefter copy.js" type="text/JavaScript"></script>
+<!--<script src="<%=basePath%>public/javascript/manager/lefter copy.js" type="text/JavaScript"></script>-->
 
 
 

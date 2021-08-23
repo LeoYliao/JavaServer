@@ -1,3 +1,4 @@
+
 var options = {
     chart: {
       type: "area",
@@ -22,11 +23,11 @@ var options = {
       enabled: false
     },
     series: [{
-      name: 'Total Views',
-      data: generateDayWiseTimeSeries(0, 18)
+      name: 'A01',
+      data: generateDayWiseTimeSeries(0, 5)
     }, {
-      name: 'Unique Views',
-      data: generateDayWiseTimeSeries(1, 18)
+      name: 'A02',
+      data: generateDayWiseTimeSeries(1, 5)
     }],
     markers: {
       size: 0,
@@ -77,23 +78,9 @@ var options = {
     }
   };
 
-  var chart = new ApexCharts(document.querySelector("#timeline-chart"), options);
+   var chart = new ApexCharts(document.querySelector("#timeline-chart"), options);
 
-  chart.render();
+	  chart.render();
 
-  function generateDayWiseTimeSeries(s, count) {
-    var values = [[
-      4,3,10,9,29,19,25,9,12,7,19,5,13,9,17,2,7,5
-    ], [
-      2,3,8,7,22,16,23,7,11,5,12,5,10,4,15,2,6,2
-    ]];
-    var i = 0;
-    var series = [];
-    var x = new Date("11 Nov 2012").getTime();
-    while (i < count) {
-      series.push([x, values[s][i]]);
-      x += 86400000;
-      i++;
-    }
-    return series;
-  }
+
+
