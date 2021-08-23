@@ -139,7 +139,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 	});
 				
 			}
-		
+		//================================
 		function catchData(result) {
 			let a = [];
 			let b = [];//[5, 10, 5, 5, 5];
@@ -157,7 +157,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			console.log(a);
 			return {a, b};
 		};
-		
+		//=============================
 		var loadHead = function(){
 			var title;
 			console.log("dbname in head = "+dbname);	//test
