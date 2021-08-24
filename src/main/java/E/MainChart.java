@@ -76,9 +76,23 @@ public class MainChart extends HttpServlet {
 		HashSet<Integer> ks = new HashSet(assy_key);
 		System.out.println("err_date value :　"+ds);	//test
 		System.out.println("assy_key value :　"+ks);	//test
+		//response ArrayList setup===================================
 		//Qty & date calculate
 		List<Integer> date_err_qty = new ArrayList<Integer>();
 		int count=0;
+		
+		for (int k:ks) {
+			for(int u=0;u<assy_key.size();u++) {
+			if(k==assy_key.get(u)){
+				for(String d:ds) {
+					if(d.equals(err_date.get(u))){
+						
+					}
+					}
+				}	
+			}
+		}
+		
 		for(String d:ds) {
 			int err_qty_count=0;
 			for(int j=0;j<err_date.size();j++) {
@@ -86,6 +100,7 @@ public class MainChart extends HttpServlet {
 				//System.out.println("d in loop : "+d);
 					if(d.equals(err_date.get(j))) {
 						err_qty_count=err_qty_count+err_qty.get(j);
+						
 						//System.out.println("err_qty_count in loop : "+err_qty_count);
 						//continue;
 					}
@@ -98,7 +113,7 @@ public class MainChart extends HttpServlet {
 		}
 		System.out.println("date of hashset: "+ds.toString());
 		System.out.println("date_err_qty: "+date_err_qty.toString());
-		//response ArrayList setup
+		
 		//build up zero Array
 		Calendar now_date = Calendar.getInstance();
 		System.out.println("now_date :"+now_date.getTimeInMillis());
@@ -109,15 +124,18 @@ public class MainChart extends HttpServlet {
 		for(int i=0;i<div_days;i++) {
 			qty_lis.add(0);
 		}
-		System.out.println("qty_lis : "+qty_lis.to);
+		System.out.println("qty_lis : "+qty_lis.toString());	
+	
+		//=========================
+		
 		for(int i : ks) {
 			System.out.println("key : "+i);
 			for(int j=0;j<assy_key.size();j++) {
 			if(assy_key.get(j)==i) {
-				
 				}
 			}
 		}
+		
 	} catch (Exception e) {
 					e.printStackTrace();
 				}
