@@ -44,6 +44,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
     </ul>
     
 </section>
+
 <section style="display:" id="lefter2">
     <div>
         <h3 id="title1">一週偵測錯誤變化</h3>
@@ -125,8 +126,8 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 				console.log(html);	//test
 			 				}
 			 			window.alert('ajax success!');
+			 			//ReactDOM.render(html,document.querySelector('#tbody'));
 			 			$('#tbody').html(html);
-			 			//$('#tbody').html("<tr><td>fadfafasdfgdsf</td></tr>");
 			 			if(dbname=="result"){
 			 				$('#buttonAdd').css("display","none");
 			 					}else{
@@ -370,10 +371,10 @@ createTable();
 	 		//data : {},
 	 		dataType : 'json',
 	 		success : function (res){
-	 			window.alert("type of res Json String :"+typeof res);	//test
-	 			window.alert("res Json Keys :"+Object.keys(res));		//test
-	 			window.alert("res Json Values :"+Object.values(res));		//test
-	 			window.alert("value of res[1] :"+res["13"][0]);		//test
+	 			//window.alert("type of res Json String :"+typeof res);	//test
+	 			//window.alert("res Json Keys :"+Object.keys(res));		//test
+	 			//window.alert("res Json Values :"+Object.values(res));		//test
+	 			//window.alert("value of res[1] :"+res["13"][0]);		//test
 	 			assy_keys = Object.keys(res);
 	 				for(var i=0;i<4;i++){
 	 				html+="<li><em>SHOT"+(i+1)+"</em><span>"+res[assy_val][i]+"</span></li>";
@@ -398,6 +399,10 @@ createTable();
 		})
 	
 	PieChart();	
+	
+	
+	// 山形圖
+	
 		
 	// 偵測結果鍵
 	$('#rsButton').click(function () {
@@ -413,7 +418,7 @@ createTable();
 	 			//$('#mainTable').load('/JavaServer/EmpReader');
 	 			window.alert("TableConfirm "+dbname+" done!!?")
 	 			$('#lefter1,#lefter2').css("display","");
-	 			$('#lefter3').css({"height": "43.5%","width": "78.9%","left": "44%","top": "73.5%"});
+	 			$('#lefter3').css({"height": "43.5%","width": "79%","left": "43.1%","top": "73.5%"});
 	 			$('#mainTable').css("height","60%");
 	 			createTable();
 	 			},
@@ -566,6 +571,9 @@ createTable();
 
 
 		});
+	
+	// 山形圖JS
+	
 	
 	// 圓餅圖JS
 	function sliceSize(dataNum, dataTotal) {
