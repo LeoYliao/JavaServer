@@ -125,7 +125,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 				html+="</tr>";
 			 				console.log(html);	//test
 			 				}
-			 			window.alert('ajax success!');
+			 			//window.alert('ajax success!');	//test
 			 			//ReactDOM.render(html,document.querySelector('#tbody'));
 			 			$('#tbody').html(html);
 			 			if(dbname=="result"){
@@ -192,6 +192,91 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			console.log("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff : "+title);	//test
 			}
 		
+		var assy_keys;
+		var assy_val;
+		
+		// 圓餅按鈕
+		var PieButton = function(){
+			var	bhtml="";
+			for (var j=0;j<assy_keys.length;j++){
+		 			bhtml+="<button id='a"+assy_keys[j]+"' value='"+assy_keys[j]+"'><span>"+assy_keys[j]+"</span></button>";
+		 		}
+			window.alert("Piechart html but : "+bhtml);	//test
+			$('#Pie_top').html(bhtml);
+		}
+		
+		// 圓餅圖函式
+		var PieChart = function(){
+			//var robj ;
+			var html="";
+			$.ajax ({	
+		 		url : '/JavaServer/MainError',
+		 		type :'POST',
+		 		//data : {},
+		 		dataType : 'json',
+		 		success : function (res){
+		 			//window.alert("type of res Json String :"+typeof res);	//test
+		 			//window.alert("res Json Keys :"+Object.keys(res));		//test
+		 			//window.alert("res Json Values :"+Object.values(res));		//test
+		 			//window.alert("value of res[1] :"+res["13"][0]);		//test
+		 			assy_keys = Object.keys(res);
+		 				for(var i=0;i<4;i++){
+		 				html+="<li><em>SHOT"+(i+1)+"</em><span>"+res[assy_val][i]+"</span></li>";
+		 					}
+		 			window.alert("Piechart html str : "+html);	//test
+		 			$('#Pie_lis').html(html);
+		 			createPie(".pieID.legend", ".pieID.pie");
+		 			PieButton();
+		 			},
+		 		error : function (error) {
+		 			console.log(error);
+		 			}
+		 	});
+		}
+		
+		// 山形圖函式
+		function generateDayWiseTimeSeries(s, count) {
+		    var values = [[
+		      4,3,10,9,29,19,25,9,12,7,19,5,13,9,17,2,7,5
+		    ], [
+		      2,3,8,7,22,16,23,7,11,5,12,5,10,4,15,2,6,2
+		    ]];
+			//Ajax讀入DB資料
+	    	$.ajax ({	
+		 		url : '/JavaServer/MainChart',
+		 		type :'POST',
+		 		//data : {},
+		 		dataType : 'json',
+		 		success : function (res){
+		 		
+		 			},
+		 		error : function (error) {
+		 			console.log(error);
+		 			}
+		 	});
+		 		
+	    	//============
+	    	var lis = [6,6,4,5,72,66,33,7,41,34,12,5,10,4,15,2,6,2];
+	    	window.alert("type of lis :"+typeof lis);
+	    	values.push(lis);
+	      var i = 0;
+	      var series = [];
+	      var x = new Date("11 Nov 2012").getTime();
+	      while (i < count) {
+	        series.push([x, values[s][i]]);
+	        x += 86400000;
+	        i++;
+	      }
+	      return series;
+	    }
+		
+		// TableCreate
+		var createTable = function(){
+			loadHead();
+			loadBody();
+			}
+		createTable();
+		PieChart();
 		
 </script>   
 </section>
@@ -279,7 +364,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <script src="<%=basePath%>public/javascript/manager/breakpoints.min.js" type='text/JavaScript'></script>
 <script src="<%=basePath%>public/javascript/manager/util.js" type='text/JavaScript'></script>
 <script src="<%=basePath%>public/javascript/manager/main.js" type='text/JavaScript'></script>
-<script src="<%=basePath%>public/javascript/manager/chart1.js" type='text/JavaScript'></script>
+<!-- <script src="<%=basePath%>public/javascript/manager/chart1.js" type='text/JavaScript'></script> -->
 
 <!--引用jQuery-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -289,12 +374,8 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 
 <script>
-// TableCreate
-var createTable = function(){
-	loadBody();
-	loadHead();
-	}
 	
+	//
 $(document).ready(function(){
 	$("#myDataTalbe").dataTable({
 		"language": {
@@ -323,10 +404,12 @@ $(document).ready(function(){
 		//"stateSave":true,
 		"searching": false
 		});	
+	
 });
-createTable();
 
-		
+
+
+
 	// 右測顯示切換鍵
 	$('#empButton,#pcbButton,#assyButton,#comButton').click(function () {
 		dbname = this.value;
@@ -348,47 +431,6 @@ createTable();
 	 	});
 	});
 	
-	var assy_keys;
-	var assy_val;
-	
-	// 圓餅按鈕
-	var PieButton = function(){
-		var	bhtml="";
-		for (var j=0;j<assy_keys.length;j++){
-	 			bhtml+="<button id='a"+assy_keys[j]+"' value='"+assy_keys[j]+"'><span>"+assy_keys[j]+"</span></button>";
-	 		}
-		window.alert("Piechart html but : "+bhtml);	//test
-		$('#Pie_top').html(bhtml);
-	}
-	
-	// 圓餅圖函式
-	var PieChart = function(){
-		//var robj ;
-		var html="";
-		$.ajax ({	
-	 		url : '/JavaServer/MainError',
-	 		type :'POST',
-	 		//data : {},
-	 		dataType : 'json',
-	 		success : function (res){
-	 			//window.alert("type of res Json String :"+typeof res);	//test
-	 			//window.alert("res Json Keys :"+Object.keys(res));		//test
-	 			//window.alert("res Json Values :"+Object.values(res));		//test
-	 			//window.alert("value of res[1] :"+res["13"][0]);		//test
-	 			assy_keys = Object.keys(res);
-	 				for(var i=0;i<4;i++){
-	 				html+="<li><em>SHOT"+(i+1)+"</em><span>"+res[assy_val][i]+"</span></li>";
-	 					}
-	 			window.alert("Piechart html str : "+html);	//test
-	 			$('#Pie_lis').html(html);
-	 			createPie(".pieID.legend", ".pieID.pie");
-	 			PieButton();
-	 			},
-	 		error : function (error) {
-	 			console.log(error);
-	 			}
-	 	});
-	}
 	
 	// 圓餅內容切換
 	$('#Pie_top').on("click", ":button", function(){
@@ -398,16 +440,31 @@ createTable();
 		PieChart();
 		})
 	
-	PieChart();	
-	
-	
-	// 山形圖
+	// 山形圖內容切換
 	
 		
 	// 偵測結果鍵
 	$('#rsButton').click(function () {
+		//print out 圓餅圖
 		assy_val = 1;
 		PieChart();
+		//print out 山形圖
+		var chart = new ApexCharts(document.querySelector("#timeline-chart"),options);
+ 		window.alert("yama kei printing ~")
+    	
+ 		options.series[0].name='dadwwdw';
+ 		window.alert("Series of options : "+options.series[0].name);	//test
+ 		window.alert("Data from generateDayWise : "+generateDayWiseTimeSeries(0, 15))
+ 		options.series[0].data=generateDayWiseTimeSeries(0, 15);
+ 		//setup new element & push to chart
+ 		var ns={};
+ 		ns.name='dgggggg';
+ 		ns.data=generateDayWiseTimeSeries(2, 15);
+ 		window.alert("type of ns : "+ns);
+ 		options.series.push(ns);
+ 		
+ 		chart.render(); 
+		//print out table
 		dbname = this.value;
 		console.log("偵測結果 click~?? "+dbname);	//test
 		$.ajax ({	
@@ -573,7 +630,90 @@ createTable();
 		});
 	
 	// 山形圖JS
-	
+	var options = {
+      chart: {
+        type: "area",
+        height: 300,
+        foreColor: "#999",
+        stacked: true,
+        dropShadow: {
+          enabled: true,
+          enabledSeries: [0],
+          top: -2,
+          left: 2,
+          blur: 5,
+          opacity: 0.06
+        }
+      },
+      colors: ['#00E396', '#0090FF'],
+      stroke: {
+        curve: "smooth",
+        width: 3
+      },
+      dataLabels: {
+        enabled: false
+      },
+      series: [{
+        name: 'Total22222 Views',
+        data: generateDayWiseTimeSeries(0, 18)
+      }, {
+        name: 'Unique Views',
+        data: generateDayWiseTimeSeries(1, 18)
+      }],
+      markers: {
+        size: 0,
+        strokeColor: "#fff",
+        strokeWidth: 3,
+        strokeOpacity: 1,
+        fillOpacity: 1,
+        hover: {
+          size: 6
+        }
+      },
+      xaxis: {
+        type: "datetime",
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        }
+      },
+      yaxis: {
+        labels: {
+          offsetX: 14,
+          offsetY: -5
+        },
+        tooltip: {
+          enabled: true
+        }
+      },
+      grid: {
+        padding: {
+          left: -5,
+          right: 5
+        }
+      },
+      tooltip: {
+        x: {
+          format: "dd MMM yyyy"
+        },
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'left'
+      },
+      fill: {
+        type: "solid",
+        fillOpacity: 0.7
+      }
+    };
+
+    
+
+    
+    
+    
 	
 	// 圓餅圖JS
 	function sliceSize(dataNum, dataTotal) {
@@ -599,7 +739,7 @@ createTable();
 		} else {
 		addSlice(maxSize, pieElement, offset, sliceID, color);
 		iterateSlices(sliceSize-maxSize, pieElement, offset+maxSize, dataCount, sliceCount+1, color);
-		}
+			}
 		}
 	function createPie(dataElement, pieElement) {
 		var listData = [];
@@ -628,9 +768,10 @@ createTable();
 		iterateSlices(size, pieElement, offset, i, 0, color[i]);
 		$(dataElement+" li:nth-child("+(i+1)+")").css("border-color", color[i]);
 		offset += size;
+			}
 		}
-		}
-		//createPie(".pieID.legend", ".pieID.pie");
+		
+		
 
 
 </script>
