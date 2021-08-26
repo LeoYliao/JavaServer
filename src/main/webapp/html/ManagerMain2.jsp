@@ -256,7 +256,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 	          opacity: 0.06
 	        }
 	      },
-	      colors: ['#00E396', '#0090FF', '#0090FF', '#0090FF', '#0090FF', '#0090FF', '#0090FF', '#0090FF', '#0090FF'],
+	      colors: ['#00E396', '#0090FF', '#D9006C', '#FFDC35', '#73BF00', '#AE57A4', '#A5A552', '#FF8000', '#984B4B'],
 	      stroke: {
 	        curve: "smooth",
 	        width: 3
@@ -318,7 +318,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		
 		// 山形圖函式
 		function generateDayWiseTimeSeries() {
-		    var values = [];
+		    
 		    //var i = 0;
 	     	
 	     	window.alert("yama kei printing ~"+typeof chart)
@@ -333,6 +333,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		 		success : function (res){
 		 			//impo
 		 			//window.alert("type of res Json String :"+typeof res);	//test
+		 			var values = [];
 		 			var option=options;
 		 			option.series=[];
 		 			window.alert("values of res : "+Object.keys(res));
