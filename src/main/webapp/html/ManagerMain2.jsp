@@ -34,7 +34,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 <!-- 中間內容 -->
 <section style="display:" id="lefter1">
     <div>
-        <h3 id="title1">錯誤統計</h3><br>
+        <h3 id="title1">當月錯誤位置統計</h3><br>
         <div id="Pie_top"></div>
     </div>
     <div class="pieID pie" > </div>
@@ -47,7 +47,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 <section style="display:" id="lefter2">
     <div>
-        <h3 id="title1">一週偵測錯誤變化</h3>
+        <h3 id="title1">當月偵測錯誤數量變化</h3>
     </div>
     <div id="chart">
         <div id="timeline-chart"></div>
@@ -118,7 +118,8 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			 					console.log(result[i][keys[j]]);	//test
 			 					}
 			 				if(dbname=="result"){
-			 				html+="<td><button type='button' class='btn btn-danger'>刪除</button></td>";
+			 				//html+="<td><button type='button' class='btn btn-danger'>刪除</button></td>";
+			 				html+="<td></td>";
 			 					}else{
 			 				html+="<td><button type='button' class='btn btn-warning' id='buttonChg'>修改</button><button type='button' class='btn btn-danger'>刪除</button></td>";		
 			 					}
@@ -193,13 +194,13 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			}
 		
 		var assy_keys;
-		var assy_val;
+		var index_assy_keys=0;
 		
 		// 圓餅按鈕
 		var PieButton = function(){
 			var	bhtml="";
 			for (var j=0;j<assy_keys.length;j++){
-		 			bhtml+="<button id='a"+assy_keys[j]+"' value='"+assy_keys[j]+"'><span>"+assy_keys[j]+"</span></button>";
+		 			bhtml+="<button id='a"+assy_keys[j]+"' value='"+j+"'><span>"+assy_keys[j]+"</span></button>";
 		 		}
 			window.alert("Piechart html but : "+bhtml);	//test
 			$('#Pie_top').html(bhtml);
@@ -223,7 +224,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		 			//window.alert("value of res[1] :"+res["13"][0]);		//test
 		 			assy_keys = Object.keys(res);
 		 				for(var i=0;i<4;i++){
-		 				html+="<li><em>SHOT"+(i+1)+"</em><span>"+res[assy_val][i]+"</span></li>";
+		 				html+="<li><em>SHOT"+(i+1)+"</em><span>"+res[assy_keys[index_assy_keys]][i]+"</span></li>";
 		 					}
 		 			window.alert("Piechart html str : "+html);	//test
 		 			$('#Pie_lis').html(html);
@@ -379,6 +380,14 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 	    	//values.push(lis);
 	    }
 		
+		
+		// TableCreate
+		var createTable = function(){
+			loadBody();
+			loadHead();
+			}
+		
+		
 </script>   
 </section>
 <section id="header">
@@ -428,7 +437,7 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
                 <div><li>
                     <a onclick=""><div class='wrapper22'>
                         <button type="button" name="button" id="comButton" value="compo" class='btn22' onclick="">
-                            <span class='top22 content22 lilfont'>主機板與零件配對表</span>
+                            <span class='top22 content22 lilfont'>主機板與零件配對</span>
                             <span class='bottom22 content22'>Pairing</span>
                         </button>
                     </div></a>
@@ -475,14 +484,12 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 
 <script>
-		// TableCreate
-		var createTable = function(){
-			loadBody();
-			loadHead();
-			}
+	createTable();
+	PieChart();
+	generateDayWiseTimeSeries();
 		//createTable();
 		//PieChart();
-
+		
 	//
 $(document).ready(function(){
 	$("#myDataTalbe").dataTable({
@@ -507,6 +514,9 @@ $(document).ready(function(){
         		"sortDescending": ": 降冪排列"
     			}
 			},
+		"paging": false,
+        "info": false,   
+        "ordering": false,
 		//"destroy":true,
 		//"deferRender": true,
 		//"stateSave":true,
@@ -544,7 +554,7 @@ $(document).ready(function(){
 	$('#Pie_top').on("click", ":button", function(){
 		window.alert("bk!!!!??");
 		window.alert("bk!!!!?? val : "+this.value);
-		assy_val = this.value;
+		index_assy_keys = this.value;
 		PieChart();
 		})
 	
@@ -554,10 +564,10 @@ $(document).ready(function(){
 	// 偵測結果鍵
 	$('#rsButton').click(function () {
 		//print out 圓餅圖
-		assy_val = 1;
-		PieChart();
+		//assy_val = 1;
+		
 		//print out 山形圖
-		generateDayWiseTimeSeries();
+		
 		
 		
  		//window.alert("Series of options : "+options.series[0].name);	//test
@@ -581,6 +591,8 @@ $(document).ready(function(){
 	 			$('#lefter3').css({"height": "43.5%","width": "79%","left": "43.1%","top": "73.5%"});
 	 			$('#mainTable').css("height","60%");
 	 			createTable();
+	 			PieChart();
+	 			generateDayWiseTimeSeries();
 	 			},
 	 		error : function (error) {
 	 			console.log(error);

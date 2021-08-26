@@ -94,6 +94,8 @@ public class MainError extends HttpServlet {
 					case "4":
 						cot4++;
 						break;
+					default:
+						break;
 						}
 					}
 					}
