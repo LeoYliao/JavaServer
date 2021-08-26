@@ -205,6 +205,8 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 			$('#Pie_top').html(bhtml);
 		}
 		
+		
+		
 		// 圓餅圖函式
 		var PieChart = function(){
 			//var robj ;
@@ -234,13 +236,94 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		 	});
 		}
 		
+		var series = [];
+		var yama_keys;
+		//generateDayWiseTimeSeries(4,30);
+		
+		// 山形圖JS
+		var options = {
+	      chart: {
+	        type: "area",
+	        height: 300,
+	        foreColor: "#999",
+	        stacked: true,
+	        dropShadow: {
+	          enabled: true,
+	          enabledSeries: [0],
+	          top: -2,
+	          left: 2,
+	          blur: 5,
+	          opacity: 0.06
+	        }
+	      },
+	      colors: ['#00E396', '#0090FF', '#0090FF', '#0090FF', '#0090FF', '#0090FF', '#0090FF', '#0090FF', '#0090FF'],
+	      stroke: {
+	        curve: "smooth",
+	        width: 3
+	      },
+	      dataLabels: {
+	        enabled: false
+	      },
+	      series: [],
+	      markers: {
+	        size: 0,
+	        strokeColor: "#fff",
+	        strokeWidth: 3,
+	        strokeOpacity: 1,
+	        fillOpacity: 1,
+	        hover: {
+	          size: 6
+	        }
+	      },
+	      xaxis: {
+	        type: "datetime",
+	        axisBorder: {
+	          show: false
+	        },
+	        axisTicks: {
+	          show: false
+	        }
+	      },
+	      yaxis: {
+	        labels: {
+	          offsetX: 14,
+	          offsetY: -5
+	        },
+	        tooltip: {
+	          enabled: true
+	        }
+	      },
+	      grid: {
+	        padding: {
+	          left: -5,
+	          right: 5
+	        }
+	      },
+	      tooltip: {
+	        x: {
+	          format: "dd MMM yyyy"
+	        },
+	      },
+	      legend: {
+	        position: 'top',
+	        horizontalAlign: 'left'
+	      },
+	      fill: {
+	        type: "solid",
+	        fillOpacity: 0.7
+	      }
+	    };
+
+		// 建立山形圖
+		
 		// 山形圖函式
-		function generateDayWiseTimeSeries(s, count) {
-		    var values = [[
-		      4,3,10,9,29,19,25,9,12,7,19,5,13,9,17,2,7,5
-		    ], [
-		      2,3,8,7,22,16,23,7,11,5,12,5,10,4,15,2,6,2
-		    ]];
+		function generateDayWiseTimeSeries() {
+		    var values = [];
+		    //var i = 0;
+	     	
+	     	window.alert("yama kei printing ~"+typeof chart)
+	    	
+
 			//Ajax讀入DB資料
 	    	$.ajax ({	
 		 		url : '/JavaServer/MainChart',
@@ -248,35 +331,52 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		 		//data : {},
 		 		dataType : 'json',
 		 		success : function (res){
-		 		
-		 			},
+		 			//impo
+		 			//window.alert("type of res Json String :"+typeof res);	//test
+		 			var option=options;
+		 			option.series=[];
+		 			window.alert("values of res : "+Object.keys(res));
+		 			yama_keys = Object.keys(res);
+		 			for(var i=0;i<yama_keys.length;i++){
+		 				var lis = res[yama_keys[i]];
+		 				values.push(lis);
+		 					}
+		 				
+		 				for(var s=0;s<yama_keys.length;s++){
+		 				var x = new Date("11 Nov 2012").getTime();
+		 				var ix=0;
+		 				series = [];
+		 				while (ix < 30) {
+	       			 	series.push([x, values[s][ix]]);
+	        			x += 86400000;
+	        			ix++;
+	      					}
+		 				window.alert("return series : "+series);
+		 				var ns={};
+			 	 		ns.name=yama_keys[s];
+			 	 		ns.data = series;
+			 	 		//generateDayWiseTimeSeries(i, 30);
+			 	 		//var lis = series;
+			 	 		//ns.data = lis;
+			 	 		option.series.push(ns);
+			 	 		window.alert("return count : "+s+" / ns.name :"+option.series[s].name+" / ns.data :"+option.series[s].data);
+		 				}
+		 				//print out chart
+		 				var chart = new ApexCharts(document.querySelector("#timeline-chart"), option);
+
+		 			    chart.render();
+		 				
+		 				},
 		 		error : function (error) {
 		 			console.log(error);
 		 			}
 		 	});
-		 		
+	    	//return series;
 	    	//============
-	    	var lis = [6,6,4,5,72,66,33,7,41,34,12,5,10,4,15,2,6,2];
-	    	window.alert("type of lis :"+typeof lis);
-	    	values.push(lis);
-	      var i = 0;
-	      var series = [];
-	      var x = new Date("11 Nov 2012").getTime();
-	      while (i < count) {
-	        series.push([x, values[s][i]]);
-	        x += 86400000;
-	        i++;
-	      }
-	      return series;
+	    	//var lis = [6,6,4,5,72,66,33,7,41,34,12,5,10,4,15,2,6,2];
+	    	//window.alert("type of lis :"+typeof lis);
+	    	//values.push(lis);
 	    }
-		
-		// TableCreate
-		var createTable = function(){
-			loadHead();
-			loadBody();
-			}
-		createTable();
-		PieChart();
 		
 </script>   
 </section>
@@ -374,7 +474,14 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 
 
 <script>
-	
+		// TableCreate
+		var createTable = function(){
+			loadBody();
+			loadHead();
+			}
+		//createTable();
+		//PieChart();
+
 	//
 $(document).ready(function(){
 	$("#myDataTalbe").dataTable({
@@ -440,7 +547,7 @@ $(document).ready(function(){
 		PieChart();
 		})
 	
-	// 山形圖內容切換
+	
 	
 		
 	// 偵測結果鍵
@@ -449,21 +556,16 @@ $(document).ready(function(){
 		assy_val = 1;
 		PieChart();
 		//print out 山形圖
-		var chart = new ApexCharts(document.querySelector("#timeline-chart"),options);
- 		window.alert("yama kei printing ~")
-    	
- 		options.series[0].name='dadwwdw';
- 		window.alert("Series of options : "+options.series[0].name);	//test
- 		window.alert("Data from generateDayWise : "+generateDayWiseTimeSeries(0, 15))
- 		options.series[0].data=generateDayWiseTimeSeries(0, 15);
- 		//setup new element & push to chart
- 		var ns={};
- 		ns.name='dgggggg';
- 		ns.data=generateDayWiseTimeSeries(2, 15);
- 		window.alert("type of ns : "+ns);
- 		options.series.push(ns);
+		generateDayWiseTimeSeries();
+		
+		
+ 		//window.alert("Series of options : "+options.series[0].name);	//test
+ 		//window.alert("Data from generateDayWise : "+generateDayWiseTimeSeries(0, 15));
  		
- 		chart.render(); 
+ 		//setup new element & push to chart
+ 		
+ 		
+ 		 
 		//print out table
 		dbname = this.value;
 		console.log("偵測結果 click~?? "+dbname);	//test
@@ -506,6 +608,7 @@ $(document).ready(function(){
 	 			if(dbname=="result"){
 	 				//window.alert("Delete done!!? refresh Pie");
 	 				PieChart();
+	 				generateDayWiseTimeSeries();
 	 				}
 	 			},
 	 		error : function (error) {
@@ -629,86 +732,7 @@ $(document).ready(function(){
 
 		});
 	
-	// 山形圖JS
-	var options = {
-      chart: {
-        type: "area",
-        height: 300,
-        foreColor: "#999",
-        stacked: true,
-        dropShadow: {
-          enabled: true,
-          enabledSeries: [0],
-          top: -2,
-          left: 2,
-          blur: 5,
-          opacity: 0.06
-        }
-      },
-      colors: ['#00E396', '#0090FF'],
-      stroke: {
-        curve: "smooth",
-        width: 3
-      },
-      dataLabels: {
-        enabled: false
-      },
-      series: [{
-        name: 'Total22222 Views',
-        data: generateDayWiseTimeSeries(0, 18)
-      }, {
-        name: 'Unique Views',
-        data: generateDayWiseTimeSeries(1, 18)
-      }],
-      markers: {
-        size: 0,
-        strokeColor: "#fff",
-        strokeWidth: 3,
-        strokeOpacity: 1,
-        fillOpacity: 1,
-        hover: {
-          size: 6
-        }
-      },
-      xaxis: {
-        type: "datetime",
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        }
-      },
-      yaxis: {
-        labels: {
-          offsetX: 14,
-          offsetY: -5
-        },
-        tooltip: {
-          enabled: true
-        }
-      },
-      grid: {
-        padding: {
-          left: -5,
-          right: 5
-        }
-      },
-      tooltip: {
-        x: {
-          format: "dd MMM yyyy"
-        },
-      },
-      legend: {
-        position: 'top',
-        horizontalAlign: 'left'
-      },
-      fill: {
-        type: "solid",
-        fillOpacity: 0.7
-      }
-    };
-
+	
     
 
     

@@ -50,8 +50,9 @@ public class MainChart extends HttpServlet {
 		List<Integer> assy_key = new ArrayList<Integer>();
 		List<Integer> err_qty = new ArrayList<Integer>();
 		List<String> err_date = new ArrayList<String>();
+		try {
 		for(RsBean data : datas) {
-			try {
+			
 				Date dataDate = dateFormat.parse(data.getR_cdate());
 				Calendar cdate = Calendar.getInstance();
 				cdate.setTime(dataDate);
@@ -68,9 +69,22 @@ public class MainChart extends HttpServlet {
 				}else {
 					System.out.println("fail");	//test
 				}
+			}
+//		//build up zero Array
+//		Calendar now_date = Calendar.getInstance();
+//		System.out.println("now_date :"+now_date.getTimeInMillis());
+//		System.out.println("ndate : "+ndate.getTimeInMillis());
+//		int div_days = (int)((now_date.getTimeInMillis()-ndate.getTimeInMillis())/86400000);
+//		System.out.println("div_days :"+div_days);
+//		List<Integer> qty_lis = new ArrayList<Integer>();
+//		for(int i=0;i<div_days;i++) {
+//			qty_lis.add(0);
+//		}
+//		System.out.println("qty_lis : "+qty_lis.toString());	
 			
+		//=========================
+				
 		
-		String strJson ="{"; 
 		//take unique assy_key & err_date value
 		HashSet<String> ds = new HashSet(err_date);
 		HashSet<Integer> ks = new HashSet(assy_key);
@@ -80,66 +94,54 @@ public class MainChart extends HttpServlet {
 		//Qty & date calculate
 		List<Integer> date_err_qty = new ArrayList<Integer>();
 		int count=0;
+		String strJson ="{";
 		
 		for (int k:ks) {
+			// zero array
+			strJson+="\""+k+"\":";
+			Calendar now_date = Calendar.getInstance();
+			//System.out.println("now_date :"+now_date.getTimeInMillis());
+			//System.out.println("ndate : "+ndate.getTimeInMillis());
+			int div_days = (int)((now_date.getTimeInMillis()-ndate.getTimeInMillis())/86400000);
+			//System.out.println("div_days :"+div_days);
+			List<Integer> qty_lis = new ArrayList<Integer>();
+			for(int i=0;i<div_days;i++) {
+				qty_lis.add(0);
+			}
+			
+			//=======
+			List<Integer> err_cot = qty_lis;
 			for(int u=0;u<assy_key.size();u++) {
 			if(k==assy_key.get(u)){
-				for(String d:ds) {
-					if(d.equals(err_date.get(u))){
-						
-					}
-					}
+					String d = err_date.get(u);
+					Date err_Date = dateFormat.parse(d);
+					Calendar errdate = Calendar.getInstance();
+					errdate.setTime(err_Date);
+					int date_index = (int)((errdate.getTimeInMillis()-ndate.getTimeInMillis())/86400000);
+					System.out.print("assy_key : "+k+" / ndate : "+ndate.getTimeInMillis());
+					System.out.print(" / errdate : "+errdate.getTimeInMillis());
+					System.out.println(" / date_index : "+date_index);
+					int qty_cot=0;
+					qty_cot = err_cot.get(date_index)+err_qty.get(u);
+					err_cot.set(date_index-1, qty_cot);
+					
 				}	
 			}
+			strJson+=err_cot.toString()+",";
+			//System.out.println("err_cot : "+err_cot.toString());
 		}
+		strJson = strJson.substring(0,strJson.length()-1);
+		strJson+="}";
+		System.out.println("Complete strJson : "+strJson);
 		
-		for(String d:ds) {
-			int err_qty_count=0;
-			for(int j=0;j<err_date.size();j++) {
-				//System.out.println("err_date in loop : "+err_date.get(j));
-				//System.out.println("d in loop : "+d);
-					if(d.equals(err_date.get(j))) {
-						err_qty_count=err_qty_count+err_qty.get(j);
-						
-						//System.out.println("err_qty_count in loop : "+err_qty_count);
-						//continue;
-					}
-					else {
-						//System.out.println("fail!~~");
-					}
-				}
-			date_err_qty.add(count, err_qty_count);
-			count++;
-		}
-		System.out.println("date of hashset: "+ds.toString());
-		System.out.println("date_err_qty: "+date_err_qty.toString());
-		
-		//build up zero Array
-		Calendar now_date = Calendar.getInstance();
-		System.out.println("now_date :"+now_date.getTimeInMillis());
-		System.out.println("ndate : "+ndate.getTimeInMillis());
-		int div_days = (int)((now_date.getTimeInMillis()-ndate.getTimeInMillis())/86400000);
-		System.out.println("div_days :"+div_days);
-		List<Integer> qty_lis = new ArrayList<Integer>();
-		for(int i=0;i<div_days;i++) {
-			qty_lis.add(0);
-		}
-		System.out.println("qty_lis : "+qty_lis.toString());	
-	
 		//=========================
 		
-		for(int i : ks) {
-			System.out.println("key : "+i);
-			for(int j=0;j<assy_key.size();j++) {
-			if(assy_key.get(j)==i) {
-				}
-			}
-		}
+		out.print(strJson);
 		
 	} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			
 	//====================================
 	//System.out.println("data jsonString : "+strJson);
 	//out.print(strJson);
