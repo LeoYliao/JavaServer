@@ -345,7 +345,8 @@ pageEncoding="UTF-8" import= "java.util.* ,DbBean.*,java.lang.*" %>
 		 					}
 		 				
 		 				for(var s=0;s<yama_keys.length;s++){
-		 				var x = new Date("11 Nov 2012").getTime();
+		 				var x = new Date().getTime();
+		 				x = x-2592000000;
 		 				var ix=0;
 		 				series = [];
 		 				while (ix < 30) {
